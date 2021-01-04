@@ -4,11 +4,12 @@ import { View, ScreenSpinner } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import Persik from './panels/Persik';
-import GamesList from './panels/GamesList'
+import Home from './panels/Home'
 
 const App = () => {
-	const [activePanel, setActivePanel] = useState('games_list');
+	const [activePanel, setActivePanel] = useState('home');
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
+	const [games, setGames] = useState(null);
 
 	useEffect(() => {
 		bridge.subscribe(({ detail: { type, data }}) => {
@@ -20,6 +21,16 @@ const App = () => {
 		});
 		async function fetchData() {
 			setPopout(null);
+
+			const game1 = {title: 'Я никогда не..', duration: '10+', players: '2+', image_url: 'https://sun9-62.userapi.com/impf/CjpreBz-At3iffDV1988mdTk3KSRWHzlBLhUeA/gF6X3_BfEN4.jpg?size=1090x604&quality=96&proxy=1&sign=e3e0b7280d2ef0a778a37888ac3b09c2&type=album'};
+			setGames([
+				game1,
+				game1,
+				game1,
+				game1,
+				game1,
+				game1,
+			])
 		}
 		fetchData();
 	}, []);
@@ -30,7 +41,7 @@ const App = () => {
 
 	return (
 		<View activePanel={activePanel} popout={popout}>
-			<GamesList id='games_list' go={go} />
+			<Home id='home' go={go} games={games} />
 			<Persik id='persik' go={go} />
 		</View>
 	);
