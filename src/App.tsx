@@ -5,16 +5,19 @@ import '@vkontakte/vkui/dist/vkui.css';
 
 import Persik from './panels/Persik';
 import Home from './panels/Home'
+import {Game} from "./types";
 
 const App = () => {
 	const [activePanel, setActivePanel] = useState('home');
-	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
-	const [games, setGames] = useState(null);
+	// @ts-ignore
+	const [popout, setPopout] = useState<Element|null>(<ScreenSpinner size='large' />);
+	const [games, setGames] = useState<Game[]|null>(null);
 
 	useEffect(() => {
 		bridge.subscribe(({ detail: { type, data }}) => {
 			if (type === 'VKWebAppUpdateConfig') {
 				const schemeAttribute = document.createAttribute('scheme');
+				// @ts-ignore
 				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
 				document.body.attributes.setNamedItem(schemeAttribute);
 			}
@@ -35,8 +38,9 @@ const App = () => {
 		fetchData();
 	}, []);
 
-	const go = e => {
-		setActivePanel(e.currentTarget.dataset.to);
+	const go = (event: React.SyntheticEvent<EventTarget>) => {
+		// @ts-ignore
+		setActivePanel(event.currentTarget.dataset.to);
 	};
 
 	return (

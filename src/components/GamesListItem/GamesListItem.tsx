@@ -1,11 +1,17 @@
 import React from 'react';
 import './GamesListItem.css';
-import {Card, CardGrid, Div} from '@vkontakte/vkui';
+import {Card} from '@vkontakte/vkui';
 import Icon12Clock from '@vkontakte/icons/dist/12/clock';
 import Icon16Users from '@vkontakte/icons/dist/16/users';
+import {Game} from "../../types";
 
-export function GamesListItem({game}) {
+interface Props {
+  game: Game;
+}
+
+export function GamesListItem(props: Props) {
   let tags = [];
+  const game = props.game;
 
   tags.push(<div className="GamesListItem__tag"><Icon12Clock /> {game.duration}</div>)
   tags.push(<div className="GamesListItem__tag"><Icon16Users width={12} height={12} /> {game.players}</div>)

@@ -13,6 +13,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
     "cross-env": "5.2.1",
     "eslint": "6.6.0",
     "eslint-plugin-react": "7.22.0",
@@ -20,10 +21,14 @@
     "react-scripts": "3.4.4"
   },
   "dependencies": {
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.19",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "@vkontakte/icons": "1.69.0",
     "@vkontakte/vk-bridge": "2.3.0",
-    "@vkontakte/vkjs": "0.20.0",
     "@vkontakte/vk-miniapps-deploy": "0.0.17",
+    "@vkontakte/vkjs": "0.20.0",
     "@vkontakte/vkui": "4.0.3",
     "babel-eslint": "10.1.0",
     "chalk": "2.4.2",
@@ -33,7 +38,8 @@
     "eruda-dom": "2.0.0",
     "prop-types": "15.7.2",
     "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "react-dom": "16.14.0",
+    "typescript": "^4.1.3"
   },
   "browserslist": {
     "production": [

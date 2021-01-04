@@ -5,12 +5,19 @@ import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 import Group from '@vkontakte/vkui/dist/components/Group/Group'
 import {GamesSearch} from '../components/GamesSeach/GamesSearch';
 import {GamesList} from '../components/GamesList/GamesList';
+import {Game, GoFunc} from "../types";
 
-const Home = ({ id, go, games }) => (
-  <Panel id={id}>
+interface Props {
+  id: string;
+  go: GoFunc;
+  games: Game[] | null;
+}
+
+const Home = (props: Props) => (
+  <Panel id={props.id}>
     <Group>
       <GamesSearch />
-      <GamesList games={games}/>
+      <GamesList games={props.games}/>
     </Group>
   </Panel>
 );
