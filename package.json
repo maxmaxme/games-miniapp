@@ -13,24 +13,27 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "cross-env": "^5.2.1",
-    "react-hot-loader": "^4.13.0",
-    "react-scripts": "^3.4.4"
+    "cross-env": "5.2.1",
+    "eslint": "6.6.0",
+    "eslint-plugin-react": "7.22.0",
+    "react-hot-loader": "4.13.0",
+    "react-scripts": "3.4.4"
   },
   "dependencies": {
-    "@vkontakte/icons": "^1.69.0",
-    "@vkontakte/vk-bridge": "^2.3.0",
+    "@vkontakte/icons": "1.69.0",
+    "@vkontakte/vk-bridge": "2.3.0",
+    "@vkontakte/vkjs": "0.20.0",
     "@vkontakte/vk-miniapps-deploy": "0.0.17",
     "@vkontakte/vkui": "4.0.3",
-    "babel-eslint": "^10.1.0",
-    "chalk": "^2.4.2",
-    "core-js": "^3.8.2",
-    "eruda": "^2.4.1",
-    "eruda-code": "^2.0.0",
-    "eruda-dom": "^2.0.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "babel-eslint": "10.1.0",
+    "chalk": "2.4.2",
+    "core-js": "3.8.2",
+    "eruda": "2.4.1",
+    "eruda-code": "2.0.0",
+    "eruda-dom": "2.0.0",
+    "prop-types": "15.7.2",
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
   },
   "browserslist": {
     "production": [
