@@ -1,54 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import bridge from '@vkontakte/vk-bridge';
-import { View, ScreenSpinner } from '@vkontakte/vkui';
+import {ScreenSpinner, View} from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import Persik from './panels/Persik';
+import {NeverHateIEver} from './games/NeverHateIEver/NeverHateIEver';
 import Home from './panels/Home'
-import {Game} from "./types";
+import {Game, GameNames} from "./types";
+import {getGames} from "./games";
+import {Modals} from "./panels/Modals";
 
 const App = () => {
-	const [activePanel, setActivePanel] = useState('home');
-	// @ts-ignore
-	const [popout, setPopout] = useState<Element|null>(<ScreenSpinner size='large' />);
-	const [games, setGames] = useState<Game[]|null>(null);
+  const [activePanel, setActivePanel] = useState('home');
+  // @ts-ignore
+  const [popout, setPopout] = useState<Element | null>(<ScreenSpinner size='large'/>);
+  const [games, setGames] = useState<Game[] | null>(null);
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+  const openModal = (name: string) => setActiveModal(name);
+  const closeModal = () => setActiveModal(null);
 
-	useEffect(() => {
-		bridge.subscribe(({ detail: { type, data }}) => {
-			if (type === 'VKWebAppUpdateConfig') {
-				const schemeAttribute = document.createAttribute('scheme');
-				// @ts-ignore
-				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
-				document.body.attributes.setNamedItem(schemeAttribute);
-			}
-		});
-		async function fetchData() {
-			setPopout(null);
+  useEffect(() => {
+    bridge.subscribe(({detail: {type, data}}) => {
+      if (type === 'VKWebAppUpdateConfig') {
+        const schemeAttribute = document.createAttribute('scheme');
+        // @ts-ignore
+        schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
+        document.body.attributes.setNamedItem(schemeAttribute);
+      }
+    });
 
-			const game1 = {title: 'Я никогда не..', duration: '10+', players: '2+', image_url: 'https://sun9-62.userapi.com/impf/CjpreBz-At3iffDV1988mdTk3KSRWHzlBLhUeA/gF6X3_BfEN4.jpg?size=1090x604&quality=96&proxy=1&sign=e3e0b7280d2ef0a778a37888ac3b09c2&type=album'};
-			setGames([
-				game1,
-				game1,
-				game1,
-				game1,
-				game1,
-				game1,
-			])
-		}
-		fetchData();
-	}, []);
+    async function fetchData() {
+      setGames(getGames())
+    }
 
-	const go = (event: React.SyntheticEvent<EventTarget>) => {
-		// @ts-ignore
-		setActivePanel(event.currentTarget.dataset.to);
-	};
+    fetchData().then(() => setPopout(null));
+  }, []);
 
-	return (
-		<View activePanel={activePanel} popout={popout}>
-			<Home id='home' go={go} games={games} />
-			<Persik id='persik' go={go} />
-		</View>
-	);
+  const go = (event: React.SyntheticEvent<EventTarget>) => {
+    // @ts-ignore
+    setActivePanel(event.currentTarget.dataset.to);
+  };
+
+  const modals = <Modals
+    activeModal={activeModal}
+    closeModal={closeModal}
+  />
+
+  return (
+    <View activePanel={activePanel} popout={popout} modal={modals}>
+      <Home id='home' go={go} games={games} openModal={openModal}/>
+      <NeverHateIEver id={GameNames.NeverHateIEver} go={go} openModal={openModal}/>
+    </View>
+  );
 }
 
 export default App;

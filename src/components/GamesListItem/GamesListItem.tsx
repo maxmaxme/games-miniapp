@@ -3,9 +3,9 @@ import './GamesListItem.css';
 import {Card} from '@vkontakte/vkui';
 import Icon12Clock from '@vkontakte/icons/dist/12/clock';
 import Icon16Users from '@vkontakte/icons/dist/16/users';
-import {Game} from "../../types";
+import {defaultProps, Game} from "../../types";
 
-interface Props {
+interface Props extends defaultProps {
   game: Game;
 }
 
@@ -17,7 +17,7 @@ export function GamesListItem(props: Props) {
   tags.push(<div className="GamesListItem__tag"><Icon16Users width={12} height={12} /> {game.players}</div>)
 
 
-  return <Card mode="outline">
+  return <Card mode="outline" onClick={props.go} data-to={game.id}>
     <div className="GamesListItem">
       <div className="GamesListItem__image" style={{backgroundImage: `url(${game.image_url})`}}/>
       <div className="GamesListItem__info">
