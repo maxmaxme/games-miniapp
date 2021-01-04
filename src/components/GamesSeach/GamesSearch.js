@@ -12,10 +12,10 @@ export function GamesSearch() {
     <HorizontalScroll className="SearchFilters">
       <div style={{display: 'flex'}}>
         <HorizontalCell size='l'>
-          <Button mode="outline">Фильтры</Button>
+          <Button mode="outline">{getLang('gamelist_search_filters_button')}</Button>
         </HorizontalCell>
         <HorizontalCell size='l'>
-          <Button mode="outline">Сортировка: по популярности</Button>
+          <Button mode="outline">{getLang('gameslist_search_sort_popularity')}</Button>
         </HorizontalCell>
       </div>
     </HorizontalScroll>
