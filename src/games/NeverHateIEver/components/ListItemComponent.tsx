@@ -1,6 +1,6 @@
 import React, {SetStateAction} from "react";
 import {Cell, Switch} from "@vkontakte/vkui";
-import {WordsListItem} from "../../../types";
+import {WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
 
 interface Props {

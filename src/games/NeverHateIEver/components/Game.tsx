@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Div} from "@vkontakte/vkui";
 import {GameButtons} from "./GameButtons";
-import {defaultProps} from "../../../types";
+import {defaultProps} from "../../../utils/types";
 
 interface Props extends defaultProps {
   phrases: string[],

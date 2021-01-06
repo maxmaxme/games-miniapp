@@ -3,7 +3,7 @@ import './GamesListItem.css';
 import {Card} from '@vkontakte/vkui';
 import Icon12Clock from '@vkontakte/icons/dist/12/clock';
 import Icon16Users from '@vkontakte/icons/dist/16/users';
-import {defaultProps, Game, MinMax} from "../../types";
+import {defaultProps, Game, MinMax} from "../../utils/types";
 import {langNumeric} from "../../utils/langs";
 
 interface Props extends defaultProps {

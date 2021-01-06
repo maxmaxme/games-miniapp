@@ -1,5 +1,5 @@
-import {Game, GameNames} from "./types";
-import {lang} from "./utils/langs";
+import {Game, GameNames} from "../utils/types";
+import {lang} from "../utils/langs";
 
 export function getGames(): Game[] {
   const neverHateIEver = {
