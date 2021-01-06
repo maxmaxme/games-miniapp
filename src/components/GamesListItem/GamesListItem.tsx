@@ -4,6 +4,7 @@ import {Card} from '@vkontakte/vkui';
 import Icon12Clock from '@vkontakte/icons/dist/12/clock';
 import Icon16Users from '@vkontakte/icons/dist/16/users';
 import {defaultProps, Game, MinMax} from "../../types";
+import {langNumeric} from "../../utils/langs";
 
 interface Props extends defaultProps {
   game: Game;
@@ -13,16 +14,16 @@ export const GamesListItem = (props: Props) => {
   let tags = [];
   const game = props.game;
 
-  const minMaxFormatter = (minMax: MinMax) => {
+  const minMaxFormatter = (minMax: MinMax, langKey: string) => {
     if (!minMax.max) {
-      return minMax.min + '+';
+      return langNumeric(minMax.min, langKey).replace('%s', minMax.min + '+');
     } else {
-      return `${minMax.min}–${minMax.max}`;
+      return langNumeric(minMax.max, langKey).replace('%s', `${minMax.min}–${minMax.max}`);
     }
   }
 
-  tags.push(<div key="duration" className="GamesListItem__tag"><Icon12Clock /> {minMaxFormatter(game.duration)} минут</div>)
-  tags.push(<div key="players" className="GamesListItem__tag"><Icon16Users width={12} height={12} /> {minMaxFormatter(game.players)} игроков</div>)
+  tags.push(<div key="duration" className="GamesListItem__tag"><Icon12Clock /> {minMaxFormatter(game.duration, 'gamelist_item_tag_minutes')}</div>)
+  tags.push(<div key="players" className="GamesListItem__tag"><Icon16Users width={12} height={12} /> {minMaxFormatter(game.players, 'gamelist_item_tag_players')}</div>)
 
 
   return <Card mode="outline" onClick={props.go} data-to={game.id}>

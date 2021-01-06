@@ -13,6 +13,7 @@ import {Game} from "./components/Game";
 import {getPhrases} from "./phrases";
 import {getPunishments} from "./punishments";
 import './NeverHateIEver.css';
+import {lang} from "../../utils/langs";
 
 const osName = platform();
 
@@ -46,7 +47,7 @@ export const NeverHateIEver = (props: panelProps) => {
           {osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
         </PanelHeaderButton>}
       >
-        Я никогда не...
+        {lang('games_neverihaveever_title')}
       </PanelHeader>
       {isActiveGame ?
         <Game

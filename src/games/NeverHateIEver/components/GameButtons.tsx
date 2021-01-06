@@ -1,6 +1,7 @@
 import React, {SetStateAction} from "react";
 import {Div, Button, FixedLayout, Separator, Footer} from "@vkontakte/vkui";
 import {defaultProps} from "../../../types";
+import {lang, langNumeric} from "../../../utils/langs";
 
 interface Props extends defaultProps {
   phrases: string[],
@@ -19,7 +20,12 @@ export const GameButtons = (props: Props) => {
   return <FixedLayout vertical="bottom">
 
     <Separator wide />
-    <Footer>Осталось {phrases.length} высказываний и {punishments.length} наказаний</Footer>
+    <Footer>
+      {lang('games_neverihaveever_left_count')
+        .replace('{phrases}', langNumeric(phrases.length, 'games_neverihaveever_left_phrases').replace('%s', String(phrases.length)))
+        .replace('{punishments}', langNumeric(punishments.length, 'games_neverihaveever_left_punishments').replace('%s', String(punishments.length)))
+      }
+    </Footer>
 
     <Div style={{display: 'flex'}}>
       <Button
@@ -32,7 +38,7 @@ export const GameButtons = (props: Props) => {
           setPunishment(undefined)
         }}
       >
-        {phrase ? 'Высказывание' : 'Начать'}
+        {lang(phrase ? 'games_neverihaveever_next_phrase_button' : 'games_neverihaveever_start_game_button')}
       </Button>
       <Button
         size="l"
@@ -41,7 +47,7 @@ export const GameButtons = (props: Props) => {
         disabled={phrase === undefined || !punishments.length}
         onClick={() => setPunishment(getAndShift(punishments))}
       >
-        Наказание
+        {lang('games_neverihaveever_next_punishment_button')}
       </Button>
     </Div>
   </FixedLayout>

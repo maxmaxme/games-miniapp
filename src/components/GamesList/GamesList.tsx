@@ -2,6 +2,7 @@ import React from 'react';
 import {GamesListItem} from '../GamesListItem/GamesListItem';
 import {CardGrid, Footer, Placeholder, Spinner} from '@vkontakte/vkui';
 import {defaultProps, Game} from "../../types";
+import {lang, langNumeric} from "../../utils/langs";
 
 interface Props extends defaultProps {
   games: Game[] | null;
@@ -22,8 +23,8 @@ export function GamesList(props: Props) {
     {
       games.length > 0 ?
       <CardGrid size={cardsSize}>{games.map((game, i) => <GamesListItem key={i} go={props.go} game={game} openModal={props.openModal}/>)}</CardGrid> :
-      <Placeholder>Не найдено</Placeholder>
+      <Placeholder>{lang('gamelist_search_not_found')}</Placeholder>
     }
-    <Footer>{games.length} игра</Footer>
+    <Footer>{langNumeric(games.length, 'gamelist_search_count').replace('%s', String(games.length))}</Footer>
   </>;
 }
