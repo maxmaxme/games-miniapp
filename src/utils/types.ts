@@ -28,6 +28,7 @@ export interface panelProps extends defaultProps {
 export enum GameNames {
   NeverHateIEver = 'NeverHateIEver',
   TruthOrDare = 'TruthOrDare',
+  OpenQuestions = 'OpenQuestions',
 }
 
 export type ListItem = {

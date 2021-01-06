@@ -18,5 +18,13 @@ export function getGames(): Game[] {
       players: {min: 2, max: 10},
       image_url: '/img/games/truth-or-dare.jpg',
     },
+    {
+      unavailable: true,
+      id: GameNames.OpenQuestions,
+      title: lang('games_openquestions_title'),
+      duration: {min: 10},
+      players: {min: 2, max: 10},
+      image_url: '/img/games/open-questions.jpeg',
+    },
   ];
 }
