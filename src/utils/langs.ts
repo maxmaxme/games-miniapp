@@ -16,6 +16,7 @@ export function lang(langKey: string): string {
     games_truthordare_title: 'Правда или действие',
     games_openquestions_title: 'Открытые вопросы',
     games_danetka_title: 'Данетка',
+    games_spy_title: 'Шпион',
 
     games_neverihaveever_title: 'Я никогда не..',
     games_neverihaveever_left_count: 'Осталось {phrases} и {punishments}',

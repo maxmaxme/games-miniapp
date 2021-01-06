@@ -15,15 +15,15 @@ export function getGames(): Game[] {
       id: GameNames.TruthOrDare,
       title: lang('games_truthordare_title'),
       duration: {min: 10},
-      players: {min: 2, max: 10},
+      players: {min: 2},
       image_url: '/img/games/truth-or-dare.jpg',
     },
     {
       unavailable: true,
       id: GameNames.OpenQuestions,
       title: lang('games_openquestions_title'),
-      duration: {min: 10},
-      players: {min: 2, max: 10},
+      duration: {min: 5},
+      players: {min: 2},
       image_url: '/img/games/open-questions.jpeg',
     },
     {
@@ -31,8 +31,16 @@ export function getGames(): Game[] {
       id: GameNames.Danetka,
       title: lang('games_danetka_title'),
       duration: {min: 5},
-      players: {min: 2, max: 10},
+      players: {min: 2},
       image_url: '/img/games/danetka.jpg',
+    },
+    {
+      unavailable: true,
+      id: GameNames.Spy,
+      title: lang('games_spy_title'),
+      duration: {min: 5},
+      players: {min: 2, max: 8},
+      image_url: '/img/games/spy.jpg',
     },
   ];
 }
