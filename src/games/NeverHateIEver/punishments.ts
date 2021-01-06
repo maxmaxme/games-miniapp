@@ -1,4 +1,4 @@
-import {WordsListItem} from "../../types";
+import {WordsListItem} from "../../utils/types";
 
 export function getPunishments(): WordsListItem[] {
   return [

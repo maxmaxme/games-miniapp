@@ -1,7 +1,7 @@
 import React from 'react';
 import {GamesListItem} from '../GamesListItem/GamesListItem';
 import {CardGrid, Footer, Placeholder, Spinner} from '@vkontakte/vkui';
-import {defaultProps, Game} from "../../types";
+import {defaultProps, Game} from "../../utils/types";
 import {lang, langNumeric} from "../../utils/langs";
 
 interface Props extends defaultProps {

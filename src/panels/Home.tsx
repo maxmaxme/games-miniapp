@@ -5,7 +5,7 @@ import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 import Group from '@vkontakte/vkui/dist/components/Group/Group'
 import {GamesSearch} from '../components/GamesSeach/GamesSearch';
 import {GamesList} from '../components/GamesList/GamesList';
-import {Game, panelProps} from "../types";
+import {Game, panelProps} from "../utils/types";
 
 interface Props extends panelProps {
   games: Game[] | null;

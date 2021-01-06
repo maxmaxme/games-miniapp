@@ -5,8 +5,8 @@ import '@vkontakte/vkui/dist/vkui.css';
 
 import {NeverHateIEver} from './games/NeverHateIEver/NeverHateIEver';
 import Home from './panels/Home'
-import {Game, GameNames} from "./types";
-import {getGames} from "./games";
+import {Game, GameNames} from "./utils/types";
+import {getGames} from "./games/gameslist";
 import {Modals} from "./panels/Modals";
 
 const App = () => {

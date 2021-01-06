@@ -1,6 +1,6 @@
 import React, {SetStateAction} from "react";
 import {Div, Button, FixedLayout, Separator, Footer} from "@vkontakte/vkui";
-import {defaultProps} from "../../../types";
+import {defaultProps} from "../../../utils/types";
 import {lang, langNumeric} from "../../../utils/langs";
 
 interface Props extends defaultProps {

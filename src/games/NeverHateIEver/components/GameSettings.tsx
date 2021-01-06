@@ -1,6 +1,6 @@
 import {Button, CellButton, Div, Group, Tabs, TabsItem} from "@vkontakte/vkui";
 import React, {SetStateAction, useState} from "react";
-import {defaultProps, WordsListItem} from "../../../types";
+import {defaultProps, WordsListItem} from "../../../utils/types";
 import {ListItemComponent} from "./ListItemComponent";
 import {lang} from "../../../utils/langs";
 
