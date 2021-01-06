@@ -8,6 +8,10 @@ export function lang(langKey: string): string {
 
     modal_close_button: 'Закрыть',
     rules_header: 'Правила',
+    card_add_to_favorite: 'В закладки',
+    card_added_to_favorite: 'В закладках',
+    card_share_app: 'Поделиться',
+    card_share_app_text: 'Мини–приложение с настольными играми для компании. «Я никогда не..», «Данетка», «Общие вопросы» и другие',
 
     games_truthordare_title: 'Правда или действие',
     games_openquestions_title: 'Открытые вопросы',

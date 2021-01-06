@@ -3,7 +3,7 @@ import {GamesListItem} from '../GamesListItem/GamesListItem';
 import {Card, CardGrid, Footer, Placeholder, Spinner} from '@vkontakte/vkui';
 import {defaultProps, Game} from "../../utils/types";
 import {lang, langNumeric} from "../../utils/langs";
-import {Icon24ShareOutline, Icon24FavoriteOutline} from "@vkontakte/icons";
+import {Icon24ShareOutline, Icon24FavoriteOutline, Icon24Favorite} from "@vkontakte/icons";
 import './GameList.css';
 import bridge from "@vkontakte/vk-bridge";
 
@@ -44,13 +44,24 @@ export function GamesList(props: Props) {
         />)}
       </CardGrid>);
 
+      const urlParams = new URLSearchParams(window.location.search);
+      const isFavorite = Boolean(urlParams.get('vk_is_favorite'));
+      let favoriteButton = null;
+      if (isFavorite) {
+        favoriteButton = <Card onClick={() => {
+          bridge.send("VKWebAppAddToFavorites");
+        }} className="GamesList__subscribeBlock GamesList__subscribeBlock--orange"><Icon24Favorite/>{lang('card_added_to_favorite')}</Card>
+      } else {
+        favoriteButton = <Card onClick={() => {
+          bridge.send("VKWebAppAddToFavorites");
+        }} className="GamesList__subscribeBlock GamesList__subscribeBlock--orange"><Icon24FavoriteOutline/>{lang('card_add_to_favorite')}</Card>
+      }
+
       gamesBlock.push(<CardGrid size='m'>
         <Card onClick={() => {
-          bridge.send("VKWebAppShare", {"link": "https://vk.com/app7718732"});
-        }} className="GamesList__subscribeBlock GamesList__subscribeBlock--green"><Icon24ShareOutline/>Поделиться</Card>
-        <Card onClick={() => {
-          bridge.send("VKWebAppAddToFavorites");
-        }} className="GamesList__subscribeBlock GamesList__subscribeBlock--orange"><Icon24FavoriteOutline/>В избранное</Card>
+          bridge.send("VKWebAppShowWallPostBox", {"message": lang('card_share_app_text'), "attachments": 'https://vk.com/app7718732'});
+        }} className="GamesList__subscribeBlock GamesList__subscribeBlock--green"><Icon24ShareOutline/>{lang('card_share_app')}</Card>
+        {favoriteButton}
       </CardGrid>);
 
       gamesBlock.push(<CardGrid
