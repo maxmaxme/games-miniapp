@@ -1,12 +1,13 @@
 .GamesListItem {
-  border-radius: 8px;
   overflow: hidden;
-
 }
 
 .GamesListItem__image {
   height: 112px;
   background-size: cover;
+  background-position: center;
+  margin: 1px;
+  border-radius: 9px;
 }
 
 .GamesListItem__info {
@@ -26,13 +27,12 @@
   top: 2px;
 }
 
-
 .GamesListItem__tag {
   margin-right: 6px;
   display: inline-block;
-  background: #cecece66;
+  border: 1px solid var(--image_border);
   padding: 4px;
   font-size: 12px;
   border-radius: 6px;
-  color: #4e4e4e;
+  color: var(--text_subhead);
 }

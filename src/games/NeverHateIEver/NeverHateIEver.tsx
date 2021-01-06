@@ -6,7 +6,7 @@ import {
   PanelHeaderButton,
 } from "@vkontakte/vkui";
 import {platform, IOS} from '@vkontakte/vkui';
-import {Icon24Back, Icon24Cancel, Icon24Done, Icon28ChevronBack} from "@vkontakte/icons";
+import {Icon24Back, Icon28ChevronBack} from "@vkontakte/icons";
 import {panelProps, WordsListItem} from "../../types";
 import {GameSettings} from "./components/GameSettings";
 import {Game} from "./components/Game";

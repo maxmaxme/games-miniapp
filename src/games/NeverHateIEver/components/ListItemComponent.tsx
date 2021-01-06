@@ -38,6 +38,7 @@ export const ListItemComponent = (props: Props) => {
     {item.title} ({item.words.length})
   </Cell>
 
+  // eslint-disable-next-line
   return <Cell
     onClick={onClickFunc}
     key={props.key}

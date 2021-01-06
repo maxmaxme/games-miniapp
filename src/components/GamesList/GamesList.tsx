@@ -12,7 +12,7 @@ export function GamesList(props: Props) {
     return <Spinner/>;
   }
   return <>
-    <CardGrid size="l">{props.games.map((game) => <GamesListItem go={props.go} game={game} openModal={props.openModal}/>)}</CardGrid>
+    <CardGrid size="l">{props.games.map((game, i) => <GamesListItem key={i} go={props.go} game={game} openModal={props.openModal}/>)}</CardGrid>
     <Footer>{props.games.length} игра</Footer>
   </>;
 }

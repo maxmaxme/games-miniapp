@@ -4,8 +4,13 @@ export interface Game {
   id: GameNames;
   title: string;
   image_url: string;
-  duration: string; // todo
-  players: string; // todo
+  duration: MinMax;
+  players: MinMax;
+}
+
+export interface MinMax {
+  min: number;
+  max?: number
 }
 
 export type GoFunc = (event: React.SyntheticEvent<EventTarget>) => void
