@@ -1,0 +1,24 @@
+.GamesList__subscribeBlock .Icon {
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  padding-right: 10px;
+}
+.GamesList__subscribeBlock {
+  padding: 8px 16px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 17px;
+  text-align: center;
+  line-height: 31px;
+  cursor: pointer;
+}
+.GamesList__subscribeBlock--green {
+  background: rgb(0,179,91);
+  background: linear-gradient(153deg, rgba(0,179,91,1) 0%, rgba(45,253,137,1) 100%);
+}
+
+.GamesList__subscribeBlock--orange {
+  background: rgb(255,206,179);
+  background: linear-gradient(315deg, rgba(255,206,179,1) 0%, rgba(253,120,45,1) 100%);
+}
