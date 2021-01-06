@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 
@@ -11,14 +11,20 @@ interface Props extends panelProps {
   games: Game[] | null;
 }
 
-const Home = (props: Props) => (
-  <Panel id={props.id}>
+const Home = (props: Props) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const onSearch = (query: string) => {
+    setSearchQuery(query);
+  }
+
+  return <Panel id={props.id}>
     <Group>
-      <GamesSearch />
-      <GamesList go={props.go} games={props.games} openModal={props.openModal}/>
+      <GamesSearch search={onSearch}/>
+      <GamesList searchQuery={searchQuery} go={props.go} games={props.games} openModal={props.openModal}/>
     </Group>
   </Panel>
-);
+};
 
 Home.propTypes = {
 	id: PropTypes.string.isRequired,
