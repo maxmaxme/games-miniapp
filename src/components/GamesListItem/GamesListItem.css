@@ -1,5 +1,27 @@
 .GamesListItem {
   overflow: hidden;
+  position: relative;
+}
+
+.GamesListItem__disabled {
+  opacity: 0.2;
+}
+
+.GamesListItem__disabledPlaceholder {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  color: var(--text_link);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.GamesListItem__disabledPlaceholderIn {
+  text-align: center;
+  box-sizing: border-box;
+  padding: 48px 32px;
 }
 
 .GamesListItem__image {

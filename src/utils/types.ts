@@ -6,6 +6,7 @@ export interface Game {
   image_url: string;
   duration: MinMax;
   players: MinMax;
+  unavailable?: boolean;
 }
 
 export interface MinMax {
@@ -26,6 +27,7 @@ export interface panelProps extends defaultProps {
 
 export enum GameNames {
   NeverHateIEver = 'NeverHateIEver',
+  TruthOrDare = 'TruthOrDare',
 }
 
 export type ListItem = {

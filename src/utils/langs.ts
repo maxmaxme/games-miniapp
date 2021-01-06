@@ -4,9 +4,12 @@ export function lang(langKey: string): string {
     gamelist_search_filters_button: 'Фильтры',
     gameslist_search_sort_popularity: 'Сортировка: по популярности',
     gamelist_search_not_found: 'Не найдено',
+    gamelist_item_unavailable: 'Скоро',
 
     modal_close_button: 'Закрыть',
     rules_header: 'Правила',
+
+    games_truthordare_title: 'Правда или действие',
 
     games_neverihaveever_title: 'Я никогда не..',
     games_neverihaveever_left_count: 'Осталось {phrases} и {punishments}',
