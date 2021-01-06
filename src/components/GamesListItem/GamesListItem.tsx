@@ -29,7 +29,7 @@ export const GamesListItem = (props: Props) => {
   const onClick = game.unavailable ? undefined : props.go;
 
   return <Card mode="outline" onClick={onClick} data-to={game.id}>
-    <div className={classNames({GamesListItem: true, GamesListItem__disabled: game.unavailable})}>
+    <div className={classNames('GamesListItem', {'GamesListItem--disabled': game.unavailable})}>
       <div className="GamesListItem__image" style={{backgroundImage: `url(${game.image_url})`}}/>
       <div className="GamesListItem__info">
         <div className="GamesListItem__title">{game.title}</div>

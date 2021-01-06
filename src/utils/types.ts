@@ -29,6 +29,7 @@ export enum GameNames {
   NeverHateIEver = 'NeverHateIEver',
   TruthOrDare = 'TruthOrDare',
   OpenQuestions = 'OpenQuestions',
+  Danetka = 'Danetka',
 }
 
 export type ListItem = {

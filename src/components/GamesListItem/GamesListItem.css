@@ -3,7 +3,7 @@
   position: relative;
 }
 
-.GamesListItem__disabled {
+.GamesListItem--disabled {
   opacity: 0.2;
 }
 
@@ -29,7 +29,8 @@
   background-size: cover;
   background-position: center;
   margin: 1px;
-  border-radius: 9px;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
 }
 
 .GamesListItem__info {

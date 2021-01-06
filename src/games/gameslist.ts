@@ -26,5 +26,13 @@ export function getGames(): Game[] {
       players: {min: 2, max: 10},
       image_url: '/img/games/open-questions.jpeg',
     },
+    {
+      unavailable: true,
+      id: GameNames.Danetka,
+      title: lang('games_danetka_title'),
+      duration: {min: 5},
+      players: {min: 2, max: 10},
+      image_url: '/img/games/danetka.jpg',
+    },
   ];
 }
