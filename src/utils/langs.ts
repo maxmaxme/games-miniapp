@@ -1,8 +1,8 @@
 export function lang(langKey: string): string {
   const langs: { [name: string]: string } = {
     gamelist_search_placeholder: 'Поиск',
-    gamelist_search_filters_button: 'Фильтры',
-    gameslist_search_sort_popularity: 'Сортировка: по популярности',
+    gamelist_search_filters_button: 'Фильтры: все игры',
+    gameslist_search_sort_popularity: 'Сортировка: сначала доступные',
     gamelist_search_not_found: 'Не найдено',
     gamelist_item_unavailable: 'Скоро',
 
