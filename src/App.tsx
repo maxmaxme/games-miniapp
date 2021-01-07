@@ -9,6 +9,7 @@ import Home from './panels/Home'
 import {Game, GameNames} from "./utils/types";
 import {getGames} from "./games/gameslist";
 import {Modals} from "./panels/Modals";
+import {OpenQuestions} from "./games/OpenQuestions/OpenQuestions";
 
 const App = () => {
   const [activePanel, setActivePanel] = useState('home');
@@ -51,6 +52,7 @@ const App = () => {
       <Home id='home' go={go} games={games} openModal={openModal}/>
       <NeverHateIEver id={GameNames.NeverHateIEver} go={go} openModal={openModal}/>
       <SpyFall id={GameNames.SpyFall} go={go} openModal={openModal}/>
+      <OpenQuestions id={GameNames.OpenQuestions} go={go} openModal={openModal}/>
     </View>
   );
 }

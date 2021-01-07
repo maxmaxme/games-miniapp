@@ -1,0 +1,6 @@
+.OpenQuestions__header {
+  padding-bottom: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--text_secondary);
+}

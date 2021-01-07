@@ -14,10 +14,19 @@ export function lang(langKey: string): string {
     card_share_app_text: 'Мини–приложение с настольными играми для компании. «Я никогда не..», «Данетка», «Общие вопросы» и другие',
 
     games_truthordare_title: 'Правда или действие',
-    games_openquestions_title: 'Открытые вопросы',
     games_danetka_title: 'Данетка',
     games_twister_title: 'Твистер',
     games_alias_title: 'Alias',
+
+    games_openquestions_title: 'Открытые вопросы',
+    games_openquestions_rules_button: 'Правила игры',
+    games_openquestions_questions: 'Список вопросов',
+    games_openquestions_reset_viewed: 'Сбросить галочки',
+    games_openquestions_rules: `Мы уверены, что всё начинается с хорошей беседы.<br><br>В этой игре 100 вопросов на различные темы,
+                                которые можно обсудить с друзьями, коллегами или на первом свидании.<br><br>
+                                Правила придумываете вы сами, но есть подсказки:<br>
+                                – Человек может называть цифру от 1 до 100 и отвечать на вопрос;<br>
+                                – Компания людей выбирает цифру и каждый отвечает по очереди.`,
 
     games_spyfall_title: 'Шпион',
     games_spyfall_start_game_full_button: 'Начать игру',

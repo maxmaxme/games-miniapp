@@ -13,6 +13,7 @@ export const Modals = (props: Props) => {
   const rules: { [name: string]: string } = {
     NeverHateIEver_rules: lang('games_neverihaveever_rules'),
     SpyFall_rules: lang('games_spyfall_rules'),
+    OpenQuestions_rules: lang('games_openquestions_rules'),
   }
 
   return <ModalRoot
