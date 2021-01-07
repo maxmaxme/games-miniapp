@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 
-import {Button, Div, FormItem, Group, Panel, PanelHeader, PanelHeaderButton, Title, View} from "@vkontakte/vkui";
+import {Panel, PanelHeader, PanelHeaderButton} from "@vkontakte/vkui";
 import {platform, IOS} from '@vkontakte/vkui';
 import {Icon24Back, Icon28ChevronBack} from "@vkontakte/icons";
 import {panelProps, YesNoItem} from "../../utils/types";
-import {lang, langNumeric} from "../../utils/langs";
+import {lang} from "../../utils/langs";
 import {getYesNoBase} from "./yesnobase";
-import {shuffleArray} from "@vkontakte/vkjs";
 import {Intro} from "./components/Intro";
 import {ListView} from "./components/ListView";
 import {ViewOne} from "./components/ViewOne";

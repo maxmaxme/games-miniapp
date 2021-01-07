@@ -1,4 +1,4 @@
-import {Button, Card, Div, FixedLayout, Group, Separator, Title} from "@vkontakte/vkui";
+import {Button, Card, Div, FixedLayout, Separator, Title} from "@vkontakte/vkui";
 import React, {useState} from "react";
 import {YesNoItem} from "../../../utils/types";
 import './ViewOne.css';

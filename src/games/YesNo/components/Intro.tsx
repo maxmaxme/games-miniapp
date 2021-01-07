@@ -1,4 +1,4 @@
-import {Button, CellButton, Div, Group, Panel, Title} from "@vkontakte/vkui";
+import {Button, CellButton, Div, Group, Title} from "@vkontakte/vkui";
 import {lang, langNumeric} from "../../../utils/langs";
 import React, {SetStateAction} from "react";
 import {defaultProps, YesNoItem} from "../../../utils/types";

@@ -1,8 +1,7 @@
-import {Button, Cell, Div, FormItem, Group, Input, List, Title} from "@vkontakte/vkui";
-import {lang, langNumeric} from "../../../utils/langs";
-import React, {SetStateAction, useState} from "react";
+import { Cell, Div, FormItem, Input, List} from "@vkontakte/vkui";
+import {lang} from "../../../utils/langs";
+import React, {useState} from "react";
 import {YesNoItem} from "../../../utils/types";
-import {YesNoViewTypes} from "../YesNo";
 
 interface Props {
   yesNoBase: YesNoItem[];
