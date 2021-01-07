@@ -12,16 +12,36 @@ interface Props extends defaultProps {
 }
 
 export const Intro = (props: Props) => (
-  <Div>
+  <>
     <Group separator="hide">
       <CellButton onClick={() => props.openModal('YesNo_rules')}>
         {lang('games_yesno_rules_button')}
       </CellButton>
     </Group>
-    <Title style={{marginBottom: 20, marginTop: 20, textAlign: 'center'}} level="2" weight="regular">
-      {langNumeric(props.yesNoBase.length, 'games_yesno_base_count').replace('%s', props.yesNoBase.length.toString())}
-    </Title>
-    <Group separator="hide"><Button onClick={() => props.setViewType(YesNoViewTypes.LIST_VIEW)} stretched mode="secondary" size="l">{lang('games_yesno_list_of_yesno')}</Button></Group>
-    <Group separator="hide"><Button onClick={() => props.openYesNo(shuffleArray(props.yesNoBase)[0])} stretched mode="secondary" size="l">{lang('games_yesno_rand_yesno')}</Button></Group>
-  </Div>
+    <Div>
+      <Title style={{marginBottom: 20, marginTop: 20, textAlign: 'center'}} level="2" weight="regular">
+        {langNumeric(props.yesNoBase.length, 'games_yesno_base_count').replace('%s', props.yesNoBase.length.toString())}
+      </Title>
+      <Group separator="hide">
+        <Button
+          onClick={() => props.setViewType(YesNoViewTypes.LIST_VIEW)}
+          stretched
+          mode="secondary"
+          size="l"
+        >
+          {lang('games_yesno_list_of_yesno')}
+        </Button>
+      </Group>
+      <Group separator="hide">
+        <Button
+          onClick={() => props.openYesNo(shuffleArray(props.yesNoBase)[0])}
+          stretched
+          mode="secondary"
+          size="l"
+        >
+          {lang('games_yesno_rand_yesno')}
+        </Button>
+      </Group>
+    </Div>
+  </>
 )

@@ -4,3 +4,7 @@
   text-transform: uppercase;
   color: var(--text_secondary);
 }
+
+.OpenQuestions__question {
+  padding-left: 10px;
+}

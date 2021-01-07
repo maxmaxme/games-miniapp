@@ -12,10 +12,8 @@ export const ListView = (props: Props) => {
   const filtered = props.yesNoBase.filter(item => !searchQuery.length || item.title.toLowerCase().includes(searchQuery.toLowerCase()))
   return <>
     <Search onChange={(e) => setSearchQuery(e.currentTarget.value)}/>
-    <Div>
-      <List>
-        {filtered.map((item, num) => <Cell key={'yesno' + num} multiline onClick={() => props.openYesNo(item)}>{item.title}</Cell>)}
-      </List>
-    </Div>
+    <List>
+      {filtered.map((item, num) => <Cell key={'yesno' + num} multiline onClick={() => props.openYesNo(item)}>{item.title}</Cell>)}
+    </List>
   </>
 }

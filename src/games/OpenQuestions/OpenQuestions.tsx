@@ -51,12 +51,17 @@ export const OpenQuestions = (props: panelProps) => {
           {lang('games_openquestions_rules_button')}
         </CellButton>
       </Group>
-      <Div style={{paddingTop: 0}}>
-        <div className="OpenQuestions__header">{lang('games_openquestions_questions')}</div>
-          <List>
-            {questions.map((question, num) => <Cell key={'question' + num} onClick={() => clickQuestion(num)} after={viewedQuestions.includes(num) ? <Icon20Check /> : null} multiline><b>{num + 1}</b>. {question}</Cell>)}
-          </List>
-      </Div>
+      <Div style={{paddingTop: 0}} className="OpenQuestions__header">{lang('games_openquestions_questions')}</Div>
+      <List>
+        {questions.map((question, num) => <Cell
+          key={'question' + num} onClick={() => clickQuestion(num)}
+          after={viewedQuestions.includes(num) ? <Icon20Check/> : null}
+          multiline
+        >
+          <div className="OpenQuestions__question"><b>{num + 1}</b>. {question}</div>
+        </Cell>)}
+      </List>
+
       {viewedQuestions.length > 0 && <Group>
         <CellButton onClick={() => resetViewed()}>
           {lang('games_openquestions_reset_viewed')}
