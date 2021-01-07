@@ -16,6 +16,8 @@ export function lang(langKey: string): string {
     games_truthordare_title: 'Правда или действие',
     games_openquestions_title: 'Открытые вопросы',
     games_danetka_title: 'Данетка',
+    games_twister_title: 'Твистер',
+    games_alias_title: 'Alias',
 
     games_spyfall_title: 'Шпион',
     games_spyfall_start_game_full_button: 'Начать игру',

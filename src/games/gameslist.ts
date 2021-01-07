@@ -41,5 +41,21 @@ export function getGames(): Game[] {
       players: {min: 2},
       image_url: '/img/games/danetka.jpg',
     },
+    {
+      unavailable: true,
+      id: GameNames.Twister,
+      title: lang('games_twister_title'),
+      duration: {min: 10},
+      players: {min: 2},
+      image_url: '/img/games/twister.jpg',
+    },
+    {
+      unavailable: true,
+      id: GameNames.Alias,
+      title: lang('games_alias_title'),
+      duration: {min: 5},
+      players: {min: 2},
+      image_url: '/img/games/alias.jpg',
+    },
   ];
 }
