@@ -15,9 +15,30 @@ export function lang(langKey: string): string {
     card_share_app_text: 'Мини–приложение с настольными играми для компании. «Я никогда не..», «Данетка», «Общие вопросы» и другие',
 
     games_truthordare_title: 'Правда или действие',
-    games_danetka_title: 'Данетка',
     games_twister_title: 'Твистер',
     games_alias_title: 'Alias',
+
+    games_yesno_title: 'Данетка',
+    games_yesno_rules_button: 'Правила игры',
+    games_yesno_list_of_yesno: 'Список',
+    games_yesno_rand_yesno: 'Случайная',
+    games_yesno_show_answer: 'Показать ответ',
+    games_yesno_hide_answer: 'Скрыть ответ',
+    games_yesno_rules: `Ведущий выбирает данетку и озвучивает её условие. Затем смотрит ответ, не показывая его остальным.<br>
+                        Цель игроков: догадаться и пересказать, что же произошло. Для этого нужно задавать вопросы ведущему. При этом ведущий может отвечать на вопросы только «Да», «Нет» или «Не имеет значения/Не знаю/Уточните вопрос».<br><br>
+                        <b>Пример:</b><br>
+                        Ведущий загадал: Голый человек был найден мертвым посреди поля. В его руке была сгоревшая спичка. Что произошло и как он сюда попал?<br>
+                        <br>
+                        Игроки начинают задавать вопросы:<br>
+                        - Был ли кто-нибудь рядом?<br>
+                        - Нет<br>
+                        - Перед смертью он тоже был голым?<br>
+                        - Да<br>
+                        - Он стеснялся своей наготы?<br>
+                        - Не имеет значения<br>
+                        И так далее...<br><br>
+
+                        Правила и данетки взяты с сайта <a href="https://yesnogame.net/">yesnogame.net</a>`,
 
     games_openquestions_title: 'Открытые вопросы',
     games_openquestions_rules_button: 'Правила игры',
@@ -81,6 +102,7 @@ export function langNumeric(value: number, langKey: string): string {
     gamelist_item_tag_players: ['%s игрок', '%s игрока', '%s игроков'],
     games_neverihaveever_left_phrases: ['%s высказывание', '%s высказывания', '%s высказываний'],
     games_neverihaveever_left_punishments: ['%s наказание', '%s наказания', '%s наказаний'],
+    games_yesno_base_count: ['Всего %s данетка', 'Всего %s данетки', 'Всего %s данеток'],
   };
 
   const fallback = langKey.replace('_', ' ');

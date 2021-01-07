@@ -10,6 +10,7 @@ import {Game, GameNames} from "./utils/types";
 import {getGames} from "./games/gameslist";
 import {Modals} from "./panels/Modals";
 import {OpenQuestions} from "./games/OpenQuestions/OpenQuestions";
+import {YesNo} from "./games/YesNo/YesNo";
 
 const App = () => {
   const [activePanel, setActivePanel] = useState('home');
@@ -53,6 +54,7 @@ const App = () => {
       <NeverHateIEver id={GameNames.NeverHateIEver} go={go} openModal={openModal}/>
       <SpyFall id={GameNames.SpyFall} go={go} openModal={openModal}/>
       <OpenQuestions id={GameNames.OpenQuestions} go={go} openModal={openModal}/>
+      <YesNo id={GameNames.YesNo} go={go} openModal={openModal}/>
     </View>
   );
 }

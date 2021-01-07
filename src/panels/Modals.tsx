@@ -14,6 +14,7 @@ export const Modals = (props: Props) => {
     NeverHateIEver_rules: lang('games_neverihaveever_rules'),
     SpyFall_rules: lang('games_spyfall_rules'),
     OpenQuestions_rules: lang('games_openquestions_rules'),
+    YesNo_rules: lang('games_yesno_rules'),
   }
 
   return <ModalRoot

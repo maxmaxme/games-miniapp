@@ -18,6 +18,13 @@ export function getGames(): Game[] {
       image_url: '/img/games/spy-fall.jpg',
     },
     {
+      id: GameNames.YesNo,
+      title: lang('games_yesno_title'),
+      duration: {min: 5},
+      players: {min: 2},
+      image_url: '/img/games/yesno.jpg',
+    },
+    {
       id: GameNames.OpenQuestions,
       title: lang('games_openquestions_title'),
       duration: {min: 10},
@@ -31,14 +38,6 @@ export function getGames(): Game[] {
       duration: {min: 10},
       players: {min: 2},
       image_url: '/img/games/truth-or-dare.jpg',
-    },
-    {
-      unavailable: true,
-      id: GameNames.Danetka,
-      title: lang('games_danetka_title'),
-      duration: {min: 5},
-      players: {min: 2},
-      image_url: '/img/games/danetka.jpg',
     },
     {
       unavailable: true,

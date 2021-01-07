@@ -6,8 +6,7 @@ import Group from '@vkontakte/vkui/dist/components/Group/Group'
 import {GamesSearch} from '../components/GamesSeach/GamesSearch';
 import {GamesList} from '../components/GamesList/GamesList';
 import {Game, panelProps} from "../utils/types";
-import {IOS, PanelHeader, PanelHeaderButton} from "@vkontakte/vkui";
-import {Icon24Back, Icon28ChevronBack} from "@vkontakte/icons";
+import {PanelHeader} from "@vkontakte/vkui";
 import {lang} from "../utils/langs";
 
 interface Props extends panelProps {

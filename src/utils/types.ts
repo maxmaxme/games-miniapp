@@ -29,7 +29,7 @@ export enum GameNames {
   NeverHateIEver = 'NeverHateIEver',
   TruthOrDare = 'TruthOrDare',
   OpenQuestions = 'OpenQuestions',
-  Danetka = 'Danetka',
+  YesNo = 'YesNo',
   SpyFall = 'SpyFall',
   Twister = 'Twister',
   Alias = 'Alias',
@@ -44,4 +44,11 @@ export type ListItem = {
 export interface WordsListItem extends ListItem {
   words: string[];
   disabled?: boolean;
+}
+
+
+export interface YesNoItem {
+  title: string;
+  question: string;
+  answer: string;
 }
