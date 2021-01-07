@@ -22,15 +22,6 @@ const App = () => {
   const closeModal = () => setActiveModal(null);
 
   useEffect(() => {
-    bridge.subscribe(({detail: {type, data}}) => {
-      if (type === 'VKWebAppUpdateConfig') {
-        const schemeAttribute = document.createAttribute('scheme');
-        // @ts-ignore
-        schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
-        document.body.attributes.setNamedItem(schemeAttribute);
-      }
-    });
-
     async function fetchData() {
       setGames(getGames())
     }
