@@ -3,6 +3,7 @@ import {Cell, Switch} from "@vkontakte/vkui";
 import './ListItemComponent.css';
 import {WordsListItem} from "../../utils/types";
 import {lang} from "../../utils/langs";
+import bridge from "@vkontakte/vk-bridge";
 
 interface Props {
   key: string;
@@ -18,6 +19,7 @@ export const ListItemComponent = (props: Props) => {
 
 
   const onClick = (id: number, selected: number[], setSelected: SetStateAction<any>, event: any) => {
+    bridge.send("VKWebAppTapticSelectionChanged", {});
     if (selected.includes(id)) {
       setSelected(selected.filter(selectedId => selectedId !== id));
     } else {

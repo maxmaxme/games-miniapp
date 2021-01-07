@@ -3,6 +3,7 @@ import {Button, Div, FixedLayout, Placeholder, Separator} from "@vkontakte/vkui"
 import {defaultProps} from "../../../utils/types";
 import Timer from "react-compound-timer";
 import {lang} from "../../../utils/langs";
+import bridge from "@vkontakte/vk-bridge";
 
 interface Props extends defaultProps {
   spyPlayerNum: number;
@@ -28,6 +29,7 @@ export const Game = (props: Props) => {
 
   if ((viewStatus === ViewStatus.RULES || viewStatus === ViewStatus.WORD)) {
     button = <Button size="l" stretched onClick={() => {
+      bridge.send("VKWebAppTapticSelectionChanged", {});
       if (viewStatus === ViewStatus.RULES) {
         setViewStatus(ViewStatus.WORD);
       }
@@ -42,6 +44,7 @@ export const Game = (props: Props) => {
     }}>{lang('games_spyfall_next_player_button')}</Button>;
   } else if (viewStatus === ViewStatus.GAME) {
     button = <Button size="l" disabled={disabledEndGameButton} stretched onClick={() => {
+      bridge.send("VKWebAppTapticSelectionChanged", {});
       setViewStatus(ViewStatus.RESULTS);
     }}>{lang('games_spyfall_end_game_button')}</Button>;
   }

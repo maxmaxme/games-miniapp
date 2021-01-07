@@ -3,6 +3,7 @@ import React, {SetStateAction} from "react";
 import {defaultProps, WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
 import {ListItemComponent} from "../../../components/ListItemComponent/ListItemComponent";
+import bridge from "@vkontakte/vk-bridge";
 
 interface Props extends defaultProps {
   startGame: () => void;
@@ -28,7 +29,12 @@ export const GameSettings = (props: Props) => {
             min={3}
             max={8}
             value={playersCount}
-            onChange={value => setPlayersCount(value)}
+            onChange={value => {
+              if (value !== playersCount) {
+                bridge.send("VKWebAppTapticSelectionChanged", {});
+              }
+              setPlayersCount(value)}
+            }
           />
         </FormItem>
         {collections.map(item => <ListItemComponent key={'collection' + item.id} item={item} selected={selectedCollections} setSelected={setSelectedCollections}/>)}
@@ -40,7 +46,10 @@ export const GameSettings = (props: Props) => {
           disabled={!selectedCollections.length}
           size="l"
           stretched mode="secondary"
-          onClick={() => props.startGame()}
+          onClick={() => {
+            bridge.send("VKWebAppTapticSelectionChanged", {});
+            props.startGame()
+          }}
         >{lang('games_spyfall_start_game_full_button')}</Button>
       </Div>
     </Group>);
