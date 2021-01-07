@@ -8,8 +8,13 @@
   line-height: 1.3;
 }
 
+.YesNo__rowItem {
+  user-select: none;
+}
+
 .YesNo__cards {
   position: relative;
+  user-select: none;
 }
 .YesNo__card {
   position: absolute;

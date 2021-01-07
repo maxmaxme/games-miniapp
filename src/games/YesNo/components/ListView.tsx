@@ -13,7 +13,7 @@ export const ListView = (props: Props) => {
   return <>
     <Search onChange={(e) => setSearchQuery(e.currentTarget.value)}/>
     <List>
-      {filtered.map((item, num) => <Cell key={'yesno' + num} multiline onClick={() => props.openYesNo(item)}>{item.title}</Cell>)}
+      {filtered.map((item, num) => <Cell className="YesNo__rowItem" key={'yesno' + num} multiline onClick={() => props.openYesNo(item)}>{item.title}</Cell>)}
     </List>
   </>
 }

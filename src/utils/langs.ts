@@ -1,6 +1,5 @@
 export function lang(langKey: string): string {
   const langs: { [name: string]: string } = {
-    gamelist_search_placeholder: 'Поиск',
     gamelist_search_filters_button: 'Фильтры: все игры',
     gameslist_search_sort_popularity: 'Сортировка: сначала доступные',
     gamelist_search_not_found: 'Не найдено',
@@ -24,6 +23,7 @@ export function lang(langKey: string): string {
     games_yesno_list_of_yesno: 'Список',
     games_yesno_rand_yesno: 'Случайная',
     games_yesno_show_answer: 'Показать ответ',
+    games_yesno_answer: 'Ответ',
     games_yesno_hide_answer: 'Скрыть ответ',
     games_yesno_rules: `Ведущий выбирает данетку и озвучивает её условие. Затем смотрит ответ, не показывая его остальным.<br>
                         Цель игроков: догадаться и пересказать, что же произошло. Для этого нужно задавать вопросы ведущему. При этом ведущий может отвечать на вопросы только «Да», «Нет» или «Не имеет значения/Не знаю/Уточните вопрос».<br><br>

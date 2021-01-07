@@ -19,7 +19,7 @@ export const ViewOne = (props: Props) => {
           <Div className="YesNo__cardText">{props.yesNoItem.question}</Div>
         </Card>
         <Card className={classNames('YesNo__card', 'YesNo__card--back', {'YesNo__card--flipped': flipped})}>
-          <Title className="YesNo__cardHeader" level="2" weight="regular">{props.yesNoItem.title}</Title>
+          <Title className="YesNo__cardHeader" level="2" weight="regular">{lang('games_yesno_answer')}</Title>
           <Div className="YesNo__cardText">{props.yesNoItem.answer}</Div>
         </Card>
       </div>
