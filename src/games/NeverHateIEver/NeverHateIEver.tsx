@@ -14,16 +14,35 @@ import {getPhrases} from "./phrases";
 import {getPunishments} from "./punishments";
 import './NeverHateIEver.css';
 import {lang} from "../../utils/langs";
+import {localStorage} from "@vkontakte/vkjs";
 
 const osName = platform();
 
 export const NeverHateIEver = (props: panelProps) => {
-
   const phrases: WordsListItem[] = getPhrases();
   const punishments: WordsListItem[] = getPunishments();
+
+  let defaultSelectedPhrases
+  let defaultSelectedPhrasesLS = localStorage.getItem('spyfall_defaultSelectedPhrases');
+  if (defaultSelectedPhrasesLS !== null) {
+    defaultSelectedPhrases = defaultSelectedPhrasesLS.split(',').map(itemId => parseInt(itemId));
+  } else {
+    defaultSelectedPhrases = phrases.filter(item => item.defaultSelected).map(item => item.id);
+  }
+
+  let defaultSelectedPunishments
+  let defaultSelectedPunishmentsLS = localStorage.getItem('spyfall_defaultSelectedPunishments');
+  if (defaultSelectedPunishmentsLS !== null) {
+    defaultSelectedPunishments = defaultSelectedPunishmentsLS.split(',').map(itemId => parseInt(itemId));
+  } else {
+    defaultSelectedPunishments = punishments.filter(item => item.defaultSelected).map(item => item.id);
+  }
+
   const [isActiveGame, setIsActiveGame] = useState<boolean>(false);
-  const [selectedPhrases, setSelectedPhrases] = useState<number[]>(phrases.filter(item => item.defaultSelected).map(item => item.id));
-  const [selectedPunishments, setSelectedPunishments] = useState<number[]>(punishments.filter(item => item.defaultSelected).map(item => item.id));
+  const [selectedPhrases, setSelectedPhrases] = useState<number[]>(defaultSelectedPhrases);
+  const [selectedPunishments, setSelectedPunishments] = useState<number[]>(defaultSelectedPunishments);
+  localStorage.setItem('spyfall_defaultSelectedPhrases', selectedPhrases.join(','));
+  localStorage.setItem('spyfall_defaultSelectedPunishments', selectedPunishments.join(','));
 
   const startGame = () => {
     setIsActiveGame(true);

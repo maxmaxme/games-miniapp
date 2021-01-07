@@ -13,6 +13,7 @@ import {Game} from "./components/Game";
 import {lang} from "../../utils/langs";
 import {getCollections} from "./collections";
 import {randomInteger} from "../../utils/numbers";
+import {localStorage} from "@vkontakte/vkjs";
 
 const osName = platform();
 
@@ -22,8 +23,22 @@ export const SpyFall = (props: panelProps) => {
 
   const collections = getCollections();
 
-  const [playersCount, setPlayersCount] = useState(4)
-  const [selectedCollections, setSelectedCollections] = useState<number[]>(collections.filter(item => item.defaultSelected).map(item => item.id));
+  let defaultSelected
+  let defaultSelectedLS = localStorage.getItem('spyfall_defaultSelected');
+  if (defaultSelectedLS !== null) {
+    defaultSelected = defaultSelectedLS.split(',').map(itemId => parseInt(itemId));
+  } else {
+    defaultSelected = collections.filter(item => item.defaultSelected).map(item => item.id);
+  }
+
+  const defaultPlayersCount = localStorage.getItem('spyfall_players_count') !== null ?
+    parseInt(String(localStorage.getItem('spyfall_players_count')))
+    : 4;
+
+  const [playersCount, setPlayersCount] = useState<number>(defaultPlayersCount)
+  const [selectedCollections, setSelectedCollections] = useState<number[]>(defaultSelected);
+  localStorage.setItem('spyfall_defaultSelected', selectedCollections.join(','));
+  localStorage.setItem('spyfall_players_count', playersCount.toString());
 
   const startGame = () => {
     setIsActiveGame(true);
