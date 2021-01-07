@@ -1,5 +1,4 @@
-import { Cell, Div, FormItem, Input, List} from "@vkontakte/vkui";
-import {lang} from "../../../utils/langs";
+import {Cell, Div, List, Search} from "@vkontakte/vkui";
 import React, {useState} from "react";
 import {YesNoItem} from "../../../utils/types";
 
@@ -12,9 +11,7 @@ export const ListView = (props: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
   const filtered = props.yesNoBase.filter(item => !searchQuery.length || item.title.toLowerCase().includes(searchQuery.toLowerCase()))
   return <>
-    <FormItem>
-      <Input placeholder={lang('gamelist_search_placeholder')} onKeyUp={(e) => setSearchQuery(e.currentTarget.value)}/>
-    </FormItem>
+    <Search onChange={(e) => setSearchQuery(e.currentTarget.value)}/>
     <Div>
       <List>
         {filtered.map((item, num) => <Cell key={'yesno' + num} multiline onClick={() => props.openYesNo(item)}>{item.title}</Cell>)}

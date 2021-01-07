@@ -1,4 +1,4 @@
-import {Button, FormItem, HorizontalCell, HorizontalScroll, Input} from '@vkontakte/vkui';
+import {Button,  HorizontalCell, HorizontalScroll,  Search} from '@vkontakte/vkui';
 import React from 'react';
 import './SearchFilters.css'
 import {lang} from '../../utils/langs';
@@ -9,9 +9,7 @@ interface Props {
 
 export function GamesSearch(props: Props) {
   return (<div className="GamesSearch">
-    <FormItem>
-      <Input placeholder={lang('gamelist_search_placeholder')} onKeyUp={(e) => props.search(e.currentTarget.value)}/>
-    </FormItem>
+    <Search onChange={(e) => props.search(e.currentTarget.value)}/>
 
     <HorizontalScroll className="SearchFilters">
       <div style={{display: 'flex'}}>
