@@ -11,8 +11,11 @@ import {Modals} from "./panels/Modals";
 import {OpenQuestions} from "./games/OpenQuestions/OpenQuestions";
 import {YesNo} from "./games/YesNo/YesNo";
 import bridge from "@vkontakte/vk-bridge";
+import {AppearanceScheme} from "@vkontakte/vkui/src/components/ConfigProvider/ConfigProviderContext";
 
 const App = () => {
+  const [scheme, SetStateScheme] = useState<AppearanceScheme>('bright_light');
+  const lights = ['bright_light', 'client_light'];
   const [activePanel, setActivePanel] = useState('home');
   // @ts-ignore
   const [popout, setPopout] = useState<Element | null>(<ScreenSpinner size='large'/>);
@@ -31,6 +34,28 @@ const App = () => {
       setActivePanel( history[history.length - 1] ) // Изменяем массив с иторией и меняем активную панель.
     }
   }
+
+  function changeScheme( scheme: string, needChange = false ) {
+    let isLight = lights.includes( scheme );
+
+    if( needChange ) {
+      isLight = !isLight;
+    }
+    SetStateScheme( isLight ? 'bright_light' : 'space_gray' );
+
+    bridge.send('VKWebAppSetViewSettings', {
+      'status_bar_style': isLight ? 'dark' : 'light',
+      'action_bar_color': isLight ? '#ffffff' : '#191919'
+    });
+  }
+
+  bridge.subscribe(({detail: {type, data}}) => {
+    if (type === 'VKWebAppUpdateConfig') {
+      // @ts-ignore
+      changeScheme( data.scheme )
+    }
+  });
+  bridge.send("VKWebAppInit");
 
   useEffect(() => {
     window.addEventListener('popstate', () => goBack());
@@ -55,7 +80,7 @@ const App = () => {
   />
 
   return (
-    <ConfigProvider>
+    <ConfigProvider scheme={scheme}>
       <View
         activePanel={activePanel}
         popout={popout}
