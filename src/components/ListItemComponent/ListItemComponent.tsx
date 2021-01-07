@@ -1,7 +1,8 @@
 import React, {SetStateAction} from "react";
 import {Cell, Switch} from "@vkontakte/vkui";
-import {WordsListItem} from "../../../utils/types";
-import {lang} from "../../../utils/langs";
+import './ListItemComponent.css';
+import {WordsListItem} from "../../utils/types";
+import {lang} from "../../utils/langs";
 
 interface Props {
   key: string;
@@ -31,10 +32,11 @@ export const ListItemComponent = (props: Props) => {
     onClick={onClickFunc}
   />
   return <Cell
+    className="ListItem__cell"
     disabled
     key={props.key}
     // onClick={onClickFunc}
-    after={item.disabled ? <div className="NeverHateIEver__ListItemDisabledLabel">{lang('games_neverihaveever_listitem_disabled')}</div> : switchElement}
+    after={item.disabled ? <div className="NeverHateIEver__ListItemDisabledLabel">{lang('listitem_disabled_label')}</div> : switchElement}
   >
     {item.title} ({item.words.length})
   </Cell>

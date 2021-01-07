@@ -7,6 +7,7 @@ export function lang(langKey: string): string {
     gamelist_item_unavailable: 'Скоро',
 
     app_name: 'Настольные игры',
+    listitem_disabled_label: 'Скоро',
     modal_close_button: 'Закрыть',
     rules_header: 'Правила',
     card_add_to_favorite: 'В закладки',
@@ -84,7 +85,6 @@ export function lang(langKey: string): string {
     games_neverihaveever_phrases_tab: 'Высказывания',
     games_neverihaveever_punishments_tab: 'Наказания',
     games_neverihaveever_rules_button: 'Правила игры',
-    games_neverihaveever_listitem_disabled: 'Скоро',
     games_neverihaveever_rules: `Правила просты и вполне укладываются в само название игры: при нажатии кнопки "Высказывание" появляется текст, 
                                  один из игроков зачитывает его вслух. После этого все те, кто не может согласиться с произнесенным (то есть, те, 
                                  кто это делал или имел такой опыт), загибают палец на руке. 5 загнутых пальцев (или 10) — проигравшие выполняют 

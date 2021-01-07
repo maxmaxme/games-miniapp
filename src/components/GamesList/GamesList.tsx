@@ -33,7 +33,7 @@ export function GamesList(props: Props) {
       const firstRowGames = games.slice(0, twoCardsPerRow ? 2 : 1);
       const otherRowsGames = games.slice(twoCardsPerRow ? 2 : 1);
 
-      gamesBlock.push(<CardGrid
+      gamesBlock.push(<CardGrid key="firstRow"
         size={twoCardsPerRow ? 'm' : 'l'}
       >{firstRowGames.map((game, i) =>
         <GamesListItem
@@ -57,14 +57,16 @@ export function GamesList(props: Props) {
         }} className="GamesList__subscribeBlock GamesList__subscribeBlock--orange"><Icon24FavoriteOutline/>{lang('card_add_to_favorite')}</Card>
       }
 
-      gamesBlock.push(<CardGrid size='m'>
+      gamesBlock.push(<CardGrid key="shareRow" size='m'>
         <Card onClick={() => {
-          bridge.send("VKWebAppShowWallPostBox", {"message": lang('card_share_app_text'), "attachments": 'https://vk.com/app7718732'});
+          // bridge.send("VKWebAppShowWallPostBox", {"message": lang('card_share_app_text'), "attachments": 'https://vk.com/app7718732'});
+          bridge.send("VKWebAppShare", {"link": "https://vk.com/app7718732"});
         }} className="GamesList__subscribeBlock GamesList__subscribeBlock--green"><Icon24ShareOutline/>{lang('card_share_app')}</Card>
         {favoriteButton}
       </CardGrid>);
 
       gamesBlock.push(<CardGrid
+        key="otherRows"
         size={twoCardsPerRow ? 'm' : 'l'}
       >{otherRowsGames.map((game, i) =>
         <GamesListItem

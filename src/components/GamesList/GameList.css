@@ -5,6 +5,7 @@
   padding-right: 10px;
 }
 .GamesList__subscribeBlock {
+  user-select: none;
   padding: 8px 16px;
   box-sizing: border-box;
   color: white;

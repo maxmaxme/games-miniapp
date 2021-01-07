@@ -1,0 +1,7 @@
+.ListItem__cell {
+  user-select: none;
+}
+.ListItem__disabledLabel {
+  color: #a5a5a5;
+  font-size: 13px;
+}

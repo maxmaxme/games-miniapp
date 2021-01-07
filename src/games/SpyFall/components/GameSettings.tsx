@@ -2,7 +2,7 @@ import {Button, CellButton, Div, FormItem, Group, Slider} from "@vkontakte/vkui"
 import React, {SetStateAction} from "react";
 import {defaultProps, WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
-import {ListItemComponent} from "./ListItemComponent";
+import {ListItemComponent} from "../../../components/ListItemComponent/ListItemComponent";
 
 interface Props extends defaultProps {
   startGame: () => void;

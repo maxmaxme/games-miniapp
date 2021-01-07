@@ -22,6 +22,7 @@ export const Modals = (props: Props) => {
     onClose={props.closeModal}
   >
     {Object.keys(rules).map(gameId => <ModalPage
+      key={gameId}
       id={gameId}
       onClose={props.closeModal}
       header={

@@ -60,7 +60,7 @@ export const NeverHateIEver = (props: panelProps) => {
   punishmentsForGame.sort(() => Math.random() - 0.5)
 
   return (
-    <Panel id={props.id}>
+    <Panel id={props.id} className="NeverHateIEver__panel">
       <PanelHeader
         left={<PanelHeaderButton onClick={onBackClick} data-to="home">
           {osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
