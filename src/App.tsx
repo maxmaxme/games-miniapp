@@ -4,6 +4,7 @@ import {ScreenSpinner, View} from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import {NeverHateIEver} from './games/NeverHateIEver/NeverHateIEver';
+import {SpyFall} from './games/SpyFall/SpyFall';
 import Home from './panels/Home'
 import {Game, GameNames} from "./utils/types";
 import {getGames} from "./games/gameslist";
@@ -49,6 +50,7 @@ const App = () => {
     <View activePanel={activePanel} popout={popout} modal={modals}>
       <Home id='home' go={go} games={games} openModal={openModal}/>
       <NeverHateIEver id={GameNames.NeverHateIEver} go={go} openModal={openModal}/>
+      <SpyFall id={GameNames.SpyFall} go={go} openModal={openModal}/>
     </View>
   );
 }

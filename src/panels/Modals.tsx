@@ -2,19 +2,25 @@ import {ANDROID, Div, IOS, ModalPage, ModalPageHeader, ModalRoot, PanelHeaderBut
 import {Icon24Cancel, Icon24Done} from "@vkontakte/icons";
 import React from "react";
 import {lang} from "../utils/langs";
+import './Modals.css';
 
 interface Props {
   activeModal: string | null;
   closeModal: () => void;
 }
 
-export const Modals = (props: Props) => (
-  <ModalRoot
+export const Modals = (props: Props) => {
+  const rules: { [name: string]: string } = {
+    NeverHateIEver_rules: lang('games_neverihaveever_rules'),
+    SpyFall_rules: lang('games_spyfall_rules'),
+  }
+
+  return <ModalRoot
     activeModal={props.activeModal}
     onClose={props.closeModal}
   >
-    <ModalPage
-      id='NeverHateIEver_rules'
+    {Object.keys(rules).map(gameId => <ModalPage
+      id={gameId}
       onClose={props.closeModal}
       header={
         <ModalPageHeader
@@ -25,10 +31,9 @@ export const Modals = (props: Props) => (
         </ModalPageHeader>
       }
     >
-      <Div>
-        {lang('games_neverihaveever_rules')}
-        <Div />
-      </Div>
-    </ModalPage>
+      <Div className="Modals__rulesText" dangerouslySetInnerHTML={{__html: rules[gameId]}}/>
+      <Div />
+    </ModalPage>)}
+
   </ModalRoot>
-);
+};

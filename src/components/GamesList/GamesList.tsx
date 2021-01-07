@@ -21,7 +21,7 @@ export function GamesList(props: Props) {
   if (searchQuery.length > 0) {
     games = games.filter(game => game.title.toLowerCase().includes(searchQuery.toLowerCase()));
   }
-  games = games.sort((a) => a.unavailable ? 1 : -1);
+  // games = games.sort((a) => a.unavailable ? 1 : -1); // todo при открытии второй игры она встает на первое место
 
   const twoCardsPerRow = window.innerWidth > 520 // todo заменить на platform(), когда там появится VKCOM
   let gamesBlock = [];
@@ -45,7 +45,7 @@ export function GamesList(props: Props) {
       </CardGrid>);
 
       const urlParams = new URLSearchParams(window.location.search);
-      const isFavorite = Boolean(urlParams.get('vk_is_favorite'));
+      const isFavorite = urlParams.get('vk_is_favorite') === '1';
       let favoriteButton = null;
       if (isFavorite) {
         favoriteButton = <Card onClick={() => {

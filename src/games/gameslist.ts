@@ -11,6 +11,13 @@ export function getGames(): Game[] {
       image_url: '/img/games/never-have-i-ever.jpg',
     },
     {
+      id: GameNames.SpyFall,
+      title: lang('games_spyfall_title'),
+      duration: {min: 3},
+      players: {min: 3, max: 8},
+      image_url: '/img/games/spy-fall.jpg',
+    },
+    {
       unavailable: true,
       id: GameNames.TruthOrDare,
       title: lang('games_truthordare_title'),
@@ -33,14 +40,6 @@ export function getGames(): Game[] {
       duration: {min: 5},
       players: {min: 2},
       image_url: '/img/games/danetka.jpg',
-    },
-    {
-      unavailable: true,
-      id: GameNames.Spy,
-      title: lang('games_spy_title'),
-      duration: {min: 5},
-      players: {min: 2, max: 8},
-      image_url: '/img/games/spy.jpg',
     },
   ];
 }
