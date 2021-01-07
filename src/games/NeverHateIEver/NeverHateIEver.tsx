@@ -48,9 +48,10 @@ export const NeverHateIEver = (props: panelProps) => {
     setIsActiveGame(true);
   }
 
+  props.setDisableSwipeBack(isActiveGame);
   const onBackClick = isActiveGame ? () => {
     setIsActiveGame(false);
-  } : props.go;
+  } : () => window.history.back();
 
   let phrasesForGame: string[] = [];
   phrases.filter(item => selectedPhrases.includes(item.id)).map(item => item.words).forEach(ph => phrasesForGame = phrasesForGame.concat(ph))

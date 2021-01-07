@@ -29,9 +29,11 @@ export const YesNo = (props: panelProps) => {
     setViewType(YesNoViewTypes.VIEW_ONE);
   }
 
+  props.setDisableSwipeBack(viewType !== YesNoViewTypes.INTRO);
+
   const onBackClick = viewType !== YesNoViewTypes.INTRO ? () => {
     setViewType(YesNoViewTypes.INTRO)
-  } : props.go;
+  } : () => window.history.back();
 
   return (
     <Panel id={props.id}>

@@ -1,4 +1,4 @@
-import {Cell, Div, List, Search} from "@vkontakte/vkui";
+import {Cell, List, Search} from "@vkontakte/vkui";
 import React, {useState} from "react";
 import {YesNoItem} from "../../../utils/types";
 

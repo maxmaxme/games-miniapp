@@ -44,9 +44,10 @@ export const SpyFall = (props: panelProps) => {
     setIsActiveGame(true);
   }
 
+  props.setDisableSwipeBack(isActiveGame);
   const onBackClick = isActiveGame ? () => {
     setIsActiveGame(false);
-  } : props.go;
+  } : () => window.history.back();
 
   let wordsForGame: string[] = [];
   collections.filter(item => selectedCollections.includes(item.id)).map(item => item.words).forEach(words => wordsForGame = wordsForGame.concat(words))

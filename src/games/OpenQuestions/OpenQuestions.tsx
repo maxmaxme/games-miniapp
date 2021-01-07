@@ -40,7 +40,7 @@ export const OpenQuestions = (props: panelProps) => {
   return (
     <Panel id={props.id}>
       <PanelHeader
-        left={<PanelHeaderButton onClick={props.go} data-to="home">
+        left={<PanelHeaderButton onClick={() => window.history.back()} data-to="home">
           {osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
         </PanelHeaderButton>}
       >

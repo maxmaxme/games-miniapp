@@ -1,4 +1,4 @@
-import React from "react";
+import React, {SetStateAction} from "react";
 
 export interface Game {
   id: GameNames;
@@ -23,6 +23,7 @@ export interface defaultProps {
 
 export interface panelProps extends defaultProps {
   id: string;
+  setDisableSwipeBack: SetStateAction<any>;
 }
 
 export enum GameNames {
