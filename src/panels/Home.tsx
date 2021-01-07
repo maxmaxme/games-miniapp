@@ -6,6 +6,9 @@ import Group from '@vkontakte/vkui/dist/components/Group/Group'
 import {GamesSearch} from '../components/GamesSeach/GamesSearch';
 import {GamesList} from '../components/GamesList/GamesList';
 import {Game, panelProps} from "../utils/types";
+import {IOS, PanelHeader, PanelHeaderButton} from "@vkontakte/vkui";
+import {Icon24Back, Icon28ChevronBack} from "@vkontakte/icons";
+import {lang} from "../utils/langs";
 
 interface Props extends panelProps {
   games: Game[] | null;
@@ -19,6 +22,9 @@ const Home = (props: Props) => {
   }
 
   return <Panel id={props.id}>
+    <PanelHeader>
+      {lang('app_name')}
+    </PanelHeader>
     <Group>
       <GamesSearch search={onSearch}/>
       <GamesList searchQuery={searchQuery} go={props.go} games={props.games} openModal={props.openModal}/>

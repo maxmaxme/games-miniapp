@@ -6,6 +6,7 @@ export function lang(langKey: string): string {
     gamelist_search_not_found: 'Не найдено',
     gamelist_item_unavailable: 'Скоро',
 
+    app_name: 'Настольные игры',
     modal_close_button: 'Закрыть',
     rules_header: 'Правила',
     card_add_to_favorite: 'В закладки',
