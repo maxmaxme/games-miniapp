@@ -1,9 +1,15 @@
 export function lang(langKey: string): string {
   const langs: { [name: string]: string } = {
-    gamelist_search_filters_button: 'Фильтры: все игры',
+    gamelist_search_filters_button: 'Фильтры: {filters}',
+    gamelist_search_filters_all: 'все игры',
+    gamelist_search_filters_players_and_duration: '{playersCount} и {gameDuration}',
     gameslist_search_sort_popularity: 'Сортировка: сначала доступные',
     gamelist_search_not_found: 'Не найдено',
     gamelist_item_unavailable: 'Скоро',
+
+    modal_filters_header: 'Фильтры',
+    modal_filters_players_count: 'Количество игроков',
+    modal_filters_game_duration: 'Длительность игры',
 
     app_name: 'Настольные игры',
     listitem_disabled_label: 'Скоро',
@@ -108,6 +114,9 @@ export function langNumeric(value: number, langKey: string): string {
     games_neverihaveever_left_punishments: ['%s наказание', '%s наказания', '%s наказаний'],
     games_yesno_base_count: ['Всего %s данетка', 'Всего %s данетки', 'Всего %s данеток'],
     listitem_words_count: ['%s слово', '%s слова', '%s слов'],
+
+    filters_minutes: ['%s минута', '%s минуты', '%s минут'],
+    filters_players: ['%s игрок', '%s игрока', '%s игроков'],
   };
 
   const fallback = langKey.replace('_', ' ');

@@ -14,6 +14,11 @@ export interface MinMax {
   max?: number
 }
 
+export interface Filters {
+  playersCount: number | null;
+  gameDuration: number | null;
+}
+
 export type GoFunc = (event: React.SyntheticEvent<EventTarget>) => void
 
 export interface defaultProps {

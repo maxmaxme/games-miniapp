@@ -5,7 +5,7 @@ import '@vkontakte/vkui/dist/vkui.css';
 import {NeverHateIEver} from './games/NeverHateIEver/NeverHateIEver';
 import {SpyFall} from './games/SpyFall/SpyFall';
 import Home from './panels/Home'
-import {Game, GameNames} from "./utils/types";
+import {Filters, Game, GameNames} from "./utils/types";
 import {getGames} from "./games/gameslist";
 import {Modals} from "./panels/Modals";
 import {OpenQuestions} from "./games/OpenQuestions/OpenQuestions";
@@ -25,6 +25,8 @@ const App = () => {
   const [disableSwipeBack, setDisableSwipeBack] = useState(false);
   const openModal = (name: string) => setActiveModal(name);
   const closeModal = () => setActiveModal(null);
+
+  const [filters, setFilters] = useState<Filters>({playersCount: null, gameDuration: null});
 
   const goBack = () => {
     if( history.length === 1 ) {  // Если в массиве одно значение:
@@ -77,6 +79,8 @@ const App = () => {
   const modals = <Modals
     activeModal={activeModal}
     closeModal={closeModal}
+    filters={filters}
+    setFilters={setFilters}
   />
 
   return (
@@ -88,7 +92,7 @@ const App = () => {
         history={history} // Ставим историю из массива панелей.
         onSwipeBack={disableSwipeBack ? undefined : goBack} // При свайпе выполняется данная функция.
       >
-        <Home id='home' go={go} games={games} openModal={openModal} setDisableSwipeBack={setDisableSwipeBack}/>
+        <Home id='home' go={go} games={games} openModal={openModal} setDisableSwipeBack={setDisableSwipeBack} filters={filters}/>
         <NeverHateIEver id={GameNames.NeverHateIEver} go={go} openModal={openModal} setDisableSwipeBack={setDisableSwipeBack}/>
         <SpyFall id={GameNames.SpyFall} go={go} openModal={openModal} setDisableSwipeBack={setDisableSwipeBack}/>
         <OpenQuestions id={GameNames.OpenQuestions} go={go} openModal={openModal} setDisableSwipeBack={setDisableSwipeBack}/>

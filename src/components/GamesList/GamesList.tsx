@@ -1,7 +1,7 @@
 import React from 'react';
 import {GamesListItem} from '../GamesListItem/GamesListItem';
 import {Card, CardGrid, Footer, Placeholder, Spinner} from '@vkontakte/vkui';
-import {defaultProps, Game} from "../../utils/types";
+import {defaultProps, Filters, Game} from "../../utils/types";
 import {lang, langNumeric} from "../../utils/langs";
 import {Icon24ShareOutline, Icon24FavoriteOutline, Icon24Favorite} from "@vkontakte/icons";
 import './GameList.css';
@@ -10,10 +10,11 @@ import bridge from "@vkontakte/vk-bridge";
 interface Props extends defaultProps {
   games: Game[] | null;
   searchQuery: string;
+  filters: Filters;
 }
 
 export function GamesList(props: Props) {
-  const {searchQuery} = props;
+  const {searchQuery, filters} = props;
   let {games} = props;
   if (games === null) {
     return <Spinner/>;
@@ -21,6 +22,25 @@ export function GamesList(props: Props) {
   if (searchQuery.length > 0) {
     games = games.filter(game => game.title.toLowerCase().includes(searchQuery.toLowerCase()));
   }
+    games = games.filter(game => {
+      if (filters.playersCount !== null) {
+        if (filters.playersCount < game.players.min) {
+          return false
+        }
+        if (game.players.max !== undefined && filters.playersCount > game.players.max) {
+          return false
+        }
+      }
+      if (filters.gameDuration !== null) {
+        if (filters.gameDuration < game.duration.min) {
+          return false
+        }
+        if (game.duration.max !== undefined && filters.gameDuration > game.duration.max) {
+          return false
+        }
+      }
+      return true;
+    });
   // games = games.sort((a) => a.unavailable ? 1 : -1); // todo при открытии второй игры она встает на первое место
 
   const twoCardsPerRow = window.innerWidth > 520 // todo заменить на platform(), когда там появится VKCOM
