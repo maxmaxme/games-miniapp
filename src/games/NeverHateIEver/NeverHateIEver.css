@@ -14,3 +14,10 @@
   font-size: 18px;
   line-height: 1.3;
 }
+
+.NeverHateIEver__placeholderIcon {
+  width: 24px;
+  margin: 24px auto 0;
+  color: var(--text_secondary);
+  fill: currentColor;
+}
