@@ -3,7 +3,7 @@ import {WordsListItem} from '../../utils/types';
 export function getCollections(): WordsListItem[] {
   return [
     {
-      id: 0, title: 'Базовый', defaultSelected: true, words: [
+      id: 0, title: 'Базовый', defaultSelected: true, image_url: '/img/list-items/spyfall/spy.jpg', words: [
         'Аэропорт',
         'Бар',
         'Кафе',
@@ -110,7 +110,7 @@ export function getCollections(): WordsListItem[] {
     },
 
     {
-      id: 3, title: 'Машина времени', defaultSelected: true, words: [
+      id: 3, title: 'Машина времени', defaultSelected: true, image_url: '/img/list-items/spyfall/time-machine.jpg', words: [
         'Древняя Греция',
         'Древний Рим',
         'Город будущего',
@@ -126,7 +126,7 @@ export function getCollections(): WordsListItem[] {
     },
 
     {
-      id: 1, title: 'Страны', defaultSelected: false, words: [
+      id: 1, title: 'Страны', defaultSelected: false, image_url: '/img/list-items/spyfall/country.jpg', words: [
         'Россия',
         'США',
         'Великобритания',
@@ -160,7 +160,7 @@ export function getCollections(): WordsListItem[] {
     },
 
     {
-      id: 2, title: 'Города', defaultSelected: false, words: [
+      id: 2, title: 'Города', defaultSelected: false, image_url: '/img/list-items/spyfall/city.jpg', words: [
         'Москва, Россия',
         'Гонконг, Китай',
         'Бангкок, Таиланд',

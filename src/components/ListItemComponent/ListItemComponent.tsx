@@ -43,7 +43,7 @@ export const ListItemComponent = (props: Props) => {
     <div className="ListItem__photoBlur"/>
     <div className="ListItem__container">
       <div className="ListItem__in">
-        <Title className="ListItem__title" level="3" weight="regular">{item.title}</Title>
+        <Title className="ListItem__title" level="3" weight="medium">{item.title}</Title>
         <Caption className="ListItem__count" level="2" weight="regular">
           {langNumeric(item.words.length, 'listitem_words_count').replace('%s', item.words.length.toString())}
         </Caption>

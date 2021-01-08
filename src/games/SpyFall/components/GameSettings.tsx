@@ -1,4 +1,4 @@
-import {Button, CellButton, Div, FormItem, Group, Slider} from "@vkontakte/vkui";
+import {Button, CardGrid, CellButton, Div, FormItem, Group, Slider} from "@vkontakte/vkui";
 import React, {SetStateAction} from "react";
 import {defaultProps, WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
@@ -37,7 +37,9 @@ export const GameSettings = (props: Props) => {
             }
           />
         </FormItem>
-        {collections.map(item => <ListItemComponent key={'collection' + item.id} item={item} selected={selectedCollections} setSelected={setSelectedCollections}/>)}
+        <CardGrid size="m">
+          {collections.map(item => <ListItemComponent key={'collection' + item.id} item={item} selected={selectedCollections} setSelected={setSelectedCollections}/>)}
+        </CardGrid>
 
       </Group>
 
