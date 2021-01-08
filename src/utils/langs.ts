@@ -84,6 +84,7 @@ export function lang(langKey: string): string {
     games_neverihaveever_start_game_full_button: 'Начать игру',
     games_neverihaveever_phrases_tab: 'Высказывания',
     games_neverihaveever_punishments_tab: 'Наказания',
+    games_neverihaveever_game_hint: 'Сядьте в круг, ведущий нажимает кнопку «Начать»',
     games_neverihaveever_rules_button: 'Правила игры',
     games_neverihaveever_rules: `Правила просты и вполне укладываются в само название игры: при нажатии кнопки "Высказывание" появляется текст, 
                                  один из игроков зачитывает его вслух. После этого все те, кто не может согласиться с произнесенным (то есть, те, 
