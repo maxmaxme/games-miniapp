@@ -1,4 +1,4 @@
-import {Button, CardGrid, Cell, CellButton, Div, FormItem, Group, Header, NativeSelect, Slider} from "@vkontakte/vkui";
+import {Button, CardGrid, Cell, CellButton, Div, Group, Header, NativeSelect} from "@vkontakte/vkui";
 import React, {SetStateAction} from "react";
 import {defaultProps, WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";

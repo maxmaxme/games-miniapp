@@ -1,8 +1,8 @@
 import {IOS, platform} from "@vkontakte/vkui";
 import bridge from "@vkontakte/vk-bridge";
 
-export function doHaptic() {
-  if (platform() === IOS) {
+export function doHaptic(force = false) {
+  if (force || platform() === IOS) {
     bridge.send("VKWebAppTapticSelectionChanged", {});
   }
 }

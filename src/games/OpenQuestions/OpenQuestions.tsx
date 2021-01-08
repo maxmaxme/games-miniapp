@@ -21,7 +21,7 @@ export const OpenQuestions = (props: panelProps) => {
   const [viewedQuestions, setViewedQuestions] = useState<number[]>(viewedFromLS);
 
   const clickQuestion = (num: number) => {
-    doHaptic();
+    doHaptic(true);
     if (viewedQuestions.includes(num)) {
       const index = viewedQuestions.indexOf(num);
       if (index !== -1) {

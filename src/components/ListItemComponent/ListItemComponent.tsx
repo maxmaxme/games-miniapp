@@ -21,7 +21,7 @@ export const ListItemComponent = (props: Props) => {
 
 
   const onClick = (id: number, selected: number[], setSelected: SetStateAction<any>, event: any) => {
-    doHaptic();
+    doHaptic(true);
     if (selected.includes(id)) {
       setSelected(selected.filter(selectedId => selectedId !== id));
     } else {

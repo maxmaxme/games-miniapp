@@ -14,6 +14,7 @@ import {lang} from "../../utils/langs";
 import {getCollections} from "./collections";
 import {randomInteger} from "../../utils/numbers";
 import {localStorage} from "@vkontakte/vkjs";
+import './SpyFall.css';
 
 const osName = platform();
 

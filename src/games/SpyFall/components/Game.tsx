@@ -4,6 +4,7 @@ import {defaultProps} from "../../../utils/types";
 import Timer from "react-compound-timer";
 import {lang} from "../../../utils/langs";
 import {doHaptic} from "../../../utils/device";
+import {ReactSVG} from "react-svg";
 
 interface Props extends defaultProps {
   spyPlayerNum: number;
@@ -29,7 +30,7 @@ export const Game = (props: Props) => {
 
   if ((viewStatus === ViewStatus.RULES || viewStatus === ViewStatus.WORD)) {
     button = <Button size="l" stretched onClick={() => {
-      doHaptic();
+      doHaptic(true);
       if (viewStatus === ViewStatus.RULES) {
         setViewStatus(ViewStatus.WORD);
       }
@@ -41,7 +42,7 @@ export const Game = (props: Props) => {
           setViewStatus(ViewStatus.GAME);
         }
       }
-    }}>{lang('games_spyfall_next_player_button')}</Button>;
+    }}>{viewStatus === ViewStatus.RULES ? lang('games_spyfall_next_player_button').replace('%s', playerNum.toString()) : lang('games_spyfall_next_button')}</Button>;
   } else if (viewStatus === ViewStatus.GAME) {
     button = <Button size="l" disabled={disabledEndGameButton} stretched onClick={() => {
       doHaptic();
@@ -54,10 +55,22 @@ export const Game = (props: Props) => {
       time: 3000,
       callback: () => setDisabledEndGameButton(false)
     }
-  ]
+  ];
+
+  let icon = null;
+
+  if (viewStatus === ViewStatus.RULES) {
+    icon = 'right';
+  } else if (viewStatus === ViewStatus.GAME) {
+    icon = 'clock';
+  } else if (viewStatus === ViewStatus.WORD) {
+    icon = playerNum === spyPlayerNum ? 'spy' : 'speech-bubble';
+  } else if (viewStatus === ViewStatus.RESULTS) {
+    icon = 'spy';
+  }
 
   return (<>
-    <Placeholder stretched>
+    <Placeholder stretched icon={icon ? <div className="SpyFall__spyIcon"><ReactSVG src={`/icons/${icon}.svg`} /></div> : undefined}>
       {viewStatus === ViewStatus.RULES && lang('games_spyfall_next_player').replace('%s', playerNum.toString())}
       {viewStatus === ViewStatus.WORD && (playerNum === spyPlayerNum ? lang('games_spyfall_you_spy_text') : word)}
       {viewStatus === ViewStatus.RESULTS && lang('games_spyfall_spy_text').replace('%s', spyPlayerNum.toString())}
