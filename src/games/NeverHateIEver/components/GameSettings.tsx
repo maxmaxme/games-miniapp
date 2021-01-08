@@ -1,4 +1,4 @@
-import {Button, CellButton, Div, Group, Tabs, TabsItem} from "@vkontakte/vkui";
+import {Button, CardGrid, CellButton, Div, Group, Tabs, TabsItem} from "@vkontakte/vkui";
 import React, {SetStateAction, useState} from "react";
 import {defaultProps, WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
@@ -45,9 +45,9 @@ export const GameSettings = (props: Props) => {
         >{lang('games_neverihaveever_punishments_tab')}</TabsItem>
       </Tabs>
       {activeTab === 0 &&
-      <Group>{phrases.map(item => <ListItemComponent key={'phrases' + item.id} item={item} selected={selectedPhrases} setSelected={setSelectedPhrases}/>)}</Group>}
+      <CardGrid size="m">{phrases.map(item => <ListItemComponent key={'phrases' + item.id} item={item} selected={selectedPhrases} setSelected={setSelectedPhrases}/>)}</CardGrid>}
       {activeTab === 1 &&
-      <Group>{punishments.map(item => <ListItemComponent key={'punishments' + item.id} item={item} selected={selectedPunishments} setSelected={setSelectedPunishments}/>)}</Group>}
+      <CardGrid size="m">{punishments.map(item => <ListItemComponent key={'punishments' + item.id} item={item} selected={selectedPunishments} setSelected={setSelectedPunishments}/>)}</CardGrid>}
 
       <Div style={{display: 'flex'}}>
         <Button

@@ -104,6 +104,7 @@ export function langNumeric(value: number, langKey: string): string {
     games_neverihaveever_left_phrases: ['%s высказывание', '%s высказывания', '%s высказываний'],
     games_neverihaveever_left_punishments: ['%s наказание', '%s наказания', '%s наказаний'],
     games_yesno_base_count: ['Всего %s данетка', 'Всего %s данетки', 'Всего %s данеток'],
+    listitem_words_count: ['%s слово', '%s слова', '%s слов'],
   };
 
   const fallback = langKey.replace('_', ' ');

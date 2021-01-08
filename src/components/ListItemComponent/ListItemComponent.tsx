@@ -1,9 +1,10 @@
 import React, {SetStateAction} from "react";
-import {Cell, Switch} from "@vkontakte/vkui";
+import {Caption, Card, Cell, Switch, Title} from "@vkontakte/vkui";
 import './ListItemComponent.css';
 import {WordsListItem} from "../../utils/types";
-import {lang} from "../../utils/langs";
+import {langNumeric} from "../../utils/langs";
 import {doHaptic} from "../../utils/device";
+import {Icon24CheckCircleOn} from "@vkontakte/icons";
 
 interface Props {
   key: string;
@@ -29,28 +30,19 @@ export const ListItemComponent = (props: Props) => {
 
   const onClickFunc = () => onClick(item.id, selected, setSelected, window.event);
   const checked = selected.includes(item.id);
-  const switchElement = <Switch
-    checked={checked}
-    onClick={onClickFunc}
-  />
-  return <Cell
-    className="ListItem__cell"
-    disabled
-    key={props.key}
-    // onClick={onClickFunc}
-    after={item.disabled ? <div className="NeverHateIEver__ListItemDisabledLabel">{lang('listitem_disabled_label')}</div> : switchElement}
-  >
-    {item.title} ({item.words.length})
-  </Cell>
-
-  // eslint-disable-next-line
-  return <Cell
+  return <Card
+    className="ListItem"
     onClick={onClickFunc}
     key={props.key}
-    selectable
-    checked={checked}
-    data-id={item.id}
   >
-    {item.title}
-  </Cell>
+    {checked && <div className="ListItem--checked"><Icon24CheckCircleOn/></div>}
+    <div className="ListItem__container">
+      <div className="ListItem__in">
+        <Title className="ListItem__title" level="3" weight="regular">{item.title}</Title>
+        <Caption className="ListItem__count" level="1" weight="regular">
+          {langNumeric(item.words.length, 'listitem_words_count').replace('%s', item.words.length.toString())}
+        </Caption>
+      </div>
+    </div>
+  </Card>
 }
