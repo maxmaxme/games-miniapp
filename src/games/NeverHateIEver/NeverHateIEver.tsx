@@ -25,7 +25,7 @@ export const NeverHateIEver = (props: panelProps) => {
   let defaultSelectedPhrases
   let defaultSelectedPhrasesLS = localStorage.getItem('spyfall_defaultSelectedPhrases');
   if (defaultSelectedPhrasesLS !== null) {
-    defaultSelectedPhrases = defaultSelectedPhrasesLS.split(',').map(itemId => parseInt(itemId));
+    defaultSelectedPhrases = defaultSelectedPhrasesLS.split(',').map(itemId => parseInt(itemId)).filter(itemId => itemId >= 0);
   } else {
     defaultSelectedPhrases = phrases.filter(item => item.defaultSelected).map(item => item.id);
   }
@@ -33,7 +33,7 @@ export const NeverHateIEver = (props: panelProps) => {
   let defaultSelectedPunishments
   let defaultSelectedPunishmentsLS = localStorage.getItem('spyfall_defaultSelectedPunishments');
   if (defaultSelectedPunishmentsLS !== null) {
-    defaultSelectedPunishments = defaultSelectedPunishmentsLS.split(',').map(itemId => parseInt(itemId));
+    defaultSelectedPunishments = defaultSelectedPunishmentsLS.split(',').map(itemId => parseInt(itemId)).filter(itemId => itemId >= 0);
   } else {
     defaultSelectedPunishments = punishments.filter(item => item.defaultSelected).map(item => item.id);
   }

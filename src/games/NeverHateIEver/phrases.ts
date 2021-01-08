@@ -3,7 +3,7 @@ import {WordsListItem} from '../../utils/types';
 export function getPhrases(): WordsListItem[] {
   return [
     {
-      id: 0, title: 'Общие', defaultSelected: true, words: [
+      id: 0, title: 'Общие', defaultSelected: true, image_url: '/img/list-items/never-hate-i-ever/friends.jpg', words: [
         'Я никогда не надевал сланцы с носками',
         'Я никогда не падал с дерева',
         'Я никогда не танцевал вальс',
@@ -622,7 +622,7 @@ export function getPhrases(): WordsListItem[] {
       ]
     },
     {
-      id: 1, title: '18+', defaultSelected: false, words: [
+      id: 1, title: '18+', defaultSelected: false, image_url: '/img/list-items/never-hate-i-ever/adult.jpg', words: [
         'Я никогда не занимался сексом в воде',
         'Я никогда не соглашался на сексуальную позу, не зная, что это такое',
         'Я никогда не проверялся на ЗППП',
@@ -884,7 +884,7 @@ export function getPhrases(): WordsListItem[] {
       ]
     },
     {
-      id: 2, title: 'Вечеринка', defaultSelected: false, words: [
+      id: 2, title: 'Вечеринка', defaultSelected: false, image_url: '/img/list-items/never-hate-i-ever/party.jpg', words: [
         'Я никогда не просил кого-нибудь купить мне алкоголь в несовершеннолетнем возрасте',
         'Меня никогда не арестовывали в нетрезвом виде',
         'Меня никогда не просили покинуть вечеринку',
@@ -969,7 +969,7 @@ export function getPhrases(): WordsListItem[] {
       ]
     },
     {
-      id: 3, title: 'Отношения', defaultSelected: false, words: [
+      id: 3, title: 'Отношения', defaultSelected: false, image_url: '/img/list-items/never-hate-i-ever/relationships.jpg', words: [
         'Я никогда не советовал кому-то бросить своего партнера',
         'Никогда не спрашивал чей-то номер телефона',
         'Я никогда при расставании не предлагал остаться друзьями',
@@ -1035,7 +1035,7 @@ export function getPhrases(): WordsListItem[] {
       ]
     },
     {
-      id: 4, title: 'Учеба и работа', defaultSelected: false, words: [
+      id: 4, title: 'Учеба и работа', defaultSelected: false, image_url: '/img/list-items/never-hate-i-ever/work.jpg', words: [
         'Я никогда не хорошо не говорил на иностранном языке',
         'Я никогда не просил о прибавке',
         'Я никогда не был программистом',

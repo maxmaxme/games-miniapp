@@ -26,7 +26,7 @@ export const SpyFall = (props: panelProps) => {
   let defaultSelected
   let defaultSelectedLS = localStorage.getItem('spyfall_defaultSelected');
   if (defaultSelectedLS !== null) {
-    defaultSelected = defaultSelectedLS.split(',').map(itemId => parseInt(itemId));
+    defaultSelected = defaultSelectedLS.split(',').map(itemId => parseInt(itemId)).filter(itemId => itemId >= 0);
   } else {
     defaultSelected = collections.filter(item => item.defaultSelected).map(item => item.id);
   }

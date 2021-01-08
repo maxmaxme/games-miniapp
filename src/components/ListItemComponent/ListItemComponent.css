@@ -1,22 +1,36 @@
 .ListItem {
   user-select: none;
   position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 2px solid rgba(255,255,255,0);
 }
 
 .ListItem--checked {
+  border: 2px solid var(--button_commerce_background);
+}
+
+.ListItem__checkbox {
   position: absolute;
-  right: 0;
-  color: var(--button_commerce_background)
+  right: 5px;
+  bottom: 5px;
+  color: var(--button_commerce_background);
+  z-index: 5;
+  background: white;
+  border-radius: 50%;
 }
 
 .ListItem__container {
   height: 100px;
   display: flex;
   align-items: center;
+  position: relative;
+  color: white;
 }
 
 .ListItem__in {
   margin: 0 auto;
+  padding: 0 10px;
 }
 
 .ListItem__title {
@@ -25,4 +39,20 @@
 
 .ListItem__count {
   text-align: center;
+}
+
+.ListItem__photo {
+  height: 100px;
+  position: absolute;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.ListItem__photoBlur {
+  height: 100px;
+  position: absolute;
+  width: 100%;
+  background: black;
+  opacity: 0.5;
 }

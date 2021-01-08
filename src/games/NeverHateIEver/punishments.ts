@@ -3,7 +3,7 @@ import {WordsListItem} from "../../utils/types";
 export function getPunishments(): WordsListItem[] {
   return [
     {
-      id: 0, title: 'Стандарт', defaultSelected: true, words: [
+      id: 0, title: 'Стандарт', defaultSelected: true, image_url: '/img/list-items/never-hate-i-ever/game.jpg', words: [
         'Подойти к мусорному ведру, наклониться и прокричать «Ммм, как вкусно» — 7 раз',
         'Пробежаться на руках и ногах в подъезде на несколько этажей со словами «Я в танке!»',
         'Одеть женское-мужское чистое бельё на голову и поиграть следующий раунд в таком виде',
@@ -216,7 +216,7 @@ export function getPunishments(): WordsListItem[] {
       ]
     },
     {
-      id: 1, title: 'Нужно выйти на улицу', defaultSelected: true, words: [
+      id: 1, title: 'Нужно выйти на улицу', defaultSelected: true, image_url: '/img/list-items/never-hate-i-ever/street.jpg', words: [
         'Сходи и выкинь мусор в нелепом наряде',
 
         'Выверните всю одежду наизнанку, оденьте ее и сходите в магазин за презервативами',
@@ -261,7 +261,7 @@ export function getPunishments(): WordsListItem[] {
       ]
     },
     {
-      id: 2, title: '18+', defaultSelected: false, words: [
+      id: 2, title: '18+', defaultSelected: false, image_url: '/img/list-items/never-hate-i-ever/football.jpg', words: [
         'Сделай что-нибудь сексуальное с едой',
         'Поцеловать первого незнакомого парня/девушку',
         'Станцевать стриптиз с каким-то предметом (швабра, банан, дверь, ботинок)',

@@ -5,6 +5,7 @@ import {WordsListItem} from "../../utils/types";
 import {langNumeric} from "../../utils/langs";
 import {doHaptic} from "../../utils/device";
 import {Icon24CheckCircleOn} from "@vkontakte/icons";
+import {classNames} from "@vkontakte/vkjs";
 
 interface Props {
   key: string;
@@ -31,15 +32,19 @@ export const ListItemComponent = (props: Props) => {
   const onClickFunc = () => onClick(item.id, selected, setSelected, window.event);
   const checked = selected.includes(item.id);
   return <Card
-    className="ListItem"
+    className={classNames("ListItem", {"ListItem--checked": checked})}
     onClick={onClickFunc}
     key={props.key}
   >
-    {checked && <div className="ListItem--checked"><Icon24CheckCircleOn/></div>}
+    {checked && <div className="ListItem__checkbox"><Icon24CheckCircleOn/></div>}
+    {item.image_url !== undefined && <>
+      <div className="ListItem__photo" style={{backgroundImage: `url('${item.image_url}')`}}/>
+    </>}
+    <div className="ListItem__photoBlur"/>
     <div className="ListItem__container">
       <div className="ListItem__in">
         <Title className="ListItem__title" level="3" weight="regular">{item.title}</Title>
-        <Caption className="ListItem__count" level="1" weight="regular">
+        <Caption className="ListItem__count" level="2" weight="regular">
           {langNumeric(item.words.length, 'listitem_words_count').replace('%s', item.words.length.toString())}
         </Caption>
       </div>
