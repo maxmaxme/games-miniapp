@@ -2,7 +2,7 @@ import React, {SetStateAction} from "react";
 import {Div, Button, FixedLayout, Separator, Footer} from "@vkontakte/vkui";
 import {defaultProps} from "../../../utils/types";
 import {lang, langNumeric} from "../../../utils/langs";
-import bridge from "@vkontakte/vk-bridge";
+import {doHaptic} from "../../../utils/device";
 
 interface Props extends defaultProps {
   phrases: string[],
@@ -35,7 +35,7 @@ export const GameButtons = (props: Props) => {
         style={{ marginRight: 8 }}
         disabled={!phrases.length}
         onClick={() => {
-          bridge.send("VKWebAppTapticSelectionChanged", {});
+          doHaptic();
           setPhrase(getAndShift(phrases))
           setPunishment(undefined)
         }}
@@ -48,7 +48,7 @@ export const GameButtons = (props: Props) => {
         mode="secondary"
         disabled={phrase === undefined || !punishments.length}
         onClick={() => {
-          bridge.send("VKWebAppTapticSelectionChanged", {});
+          doHaptic();
           setPunishment(getAndShift(punishments))
         }}
       >

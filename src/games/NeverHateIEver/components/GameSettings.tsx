@@ -3,7 +3,7 @@ import React, {SetStateAction, useState} from "react";
 import {defaultProps, WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
 import {ListItemComponent} from "../../../components/ListItemComponent/ListItemComponent";
-import bridge from "@vkontakte/vk-bridge";
+import {doHaptic} from "../../../utils/device";
 
 interface Props extends defaultProps {
   startGame: () => void;
@@ -29,7 +29,7 @@ export const GameSettings = (props: Props) => {
           selected={activeTab === 0}
           onClick={() => {
             if (activeTab !== 0) {
-              bridge.send("VKWebAppTapticSelectionChanged", {});
+              doHaptic();
             }
             setActiveTab(0)
           }}
@@ -38,7 +38,7 @@ export const GameSettings = (props: Props) => {
           selected={activeTab === 1}
           onClick={() => {
             if (activeTab !== 1) {
-              bridge.send("VKWebAppTapticSelectionChanged", {});
+              doHaptic();
             }
             setActiveTab(1)
           }}
@@ -53,7 +53,7 @@ export const GameSettings = (props: Props) => {
         <Button
           size="l"
           disabled={selectedPhrases.length === 0 || selectedPunishments.length === 0} stretched mode="secondary" onClick={() => {
-          bridge.send("VKWebAppTapticSelectionChanged", {});
+          doHaptic();
           props.startGame()
         }}
         >{lang('games_neverihaveever_start_game_full_button')}</Button>

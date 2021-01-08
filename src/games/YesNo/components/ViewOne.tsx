@@ -4,7 +4,7 @@ import {YesNoItem} from "../../../utils/types";
 import './ViewOne.css';
 import {classNames} from "@vkontakte/vkjs";
 import {lang} from "../../../utils/langs";
-import bridge from "@vkontakte/vk-bridge";
+import {doHaptic} from "../../../utils/device";
 
 interface Props {
   yesNoItem: YesNoItem;
@@ -29,7 +29,7 @@ export const ViewOne = (props: Props) => {
       <Separator wide/>
       <Div>
         <Button stretched mode="secondary" size="l" onClick={() => {
-          bridge.send("VKWebAppTapticSelectionChanged", {});
+          doHaptic();
           setFlipped(!flipped)
         }}>
           {flipped ? lang('games_yesno_hide_answer') : lang('games_yesno_show_answer')}

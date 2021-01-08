@@ -3,7 +3,7 @@ import React, {SetStateAction} from "react";
 import {defaultProps, WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
 import {ListItemComponent} from "../../../components/ListItemComponent/ListItemComponent";
-import bridge from "@vkontakte/vk-bridge";
+import {doHaptic} from "../../../utils/device";
 
 interface Props extends defaultProps {
   startGame: () => void;
@@ -31,7 +31,7 @@ export const GameSettings = (props: Props) => {
             value={playersCount}
             onChange={value => {
               if (value !== playersCount) {
-                bridge.send("VKWebAppTapticSelectionChanged", {});
+                doHaptic();
               }
               setPlayersCount(value)}
             }
@@ -47,7 +47,7 @@ export const GameSettings = (props: Props) => {
           size="l"
           stretched mode="secondary"
           onClick={() => {
-            bridge.send("VKWebAppTapticSelectionChanged", {});
+            doHaptic();
             props.startGame()
           }}
         >{lang('games_spyfall_start_game_full_button')}</Button>

@@ -8,7 +8,7 @@ import {lang} from "../../utils/langs";
 import {getQuestions} from "./questions";
 import './OpenQuestions.css';
 import {localStorage} from "@vkontakte/vkjs";
-import bridge from "@vkontakte/vk-bridge";
+import {doHaptic} from "../../utils/device";
 
 const osName = platform();
 
@@ -21,7 +21,7 @@ export const OpenQuestions = (props: panelProps) => {
   const [viewedQuestions, setViewedQuestions] = useState<number[]>(viewedFromLS);
 
   const clickQuestion = (num: number) => {
-    bridge.send("VKWebAppTapticSelectionChanged", {});
+    doHaptic();
     if (viewedQuestions.includes(num)) {
       const index = viewedQuestions.indexOf(num);
       if (index !== -1) {
