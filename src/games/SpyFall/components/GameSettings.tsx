@@ -1,9 +1,10 @@
-import {Button, CardGrid, CellButton, Div, FormItem, Group, Slider} from "@vkontakte/vkui";
+import {Button, CardGrid, Cell, CellButton, Div, FormItem, Group, Header, NativeSelect, Slider} from "@vkontakte/vkui";
 import React, {SetStateAction} from "react";
 import {defaultProps, WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
 import {ListItemComponent} from "../../../components/ListItemComponent/ListItemComponent";
 import {doHaptic} from "../../../utils/device";
+import {range} from "../../../utils/arrays";
 
 interface Props extends defaultProps {
   startGame: () => void;
@@ -23,20 +24,17 @@ export const GameSettings = (props: Props) => {
       </CellButton>
 
       <Group>
-        <FormItem top={lang('games_spyfall_players_count').replace('%s', playersCount.toString())}>
-          <Slider
-            step={1}
-            min={3}
-            max={8}
-            value={playersCount}
-            onChange={value => {
-              if (value !== playersCount) {
-                doHaptic();
-              }
-              setPlayersCount(value)}
-            }
-          />
-        </FormItem>
+        <Cell after={<NativeSelect
+          value={playersCount}
+          onChange={event => {
+            const value = parseInt(event.target.value);
+            setPlayersCount(value)
+          }}>
+          {range(3, 8).map(n => <option value={n}>{n}</option>)}
+        </NativeSelect>}>
+          {lang('games_spyfall_players_count')}
+        </Cell>
+        <Header>{lang('games_spyfall_themes_header')}</Header>
         <CardGrid size="m">
           {collections.map(item => <ListItemComponent key={'collection' + item.id} item={item} selected={selectedCollections} setSelected={setSelectedCollections}/>)}
         </CardGrid>

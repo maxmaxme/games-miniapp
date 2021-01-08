@@ -44,7 +44,7 @@ export type ListItem = {
 
 export interface WordsListItem extends ListItem {
   words: string[];
-  image_url?: string;
+  image_url: string;
   disabled?: boolean;
 }
 

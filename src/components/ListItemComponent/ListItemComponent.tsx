@@ -1,5 +1,5 @@
 import React, {SetStateAction} from "react";
-import {Caption, Card, Cell, Switch, Title} from "@vkontakte/vkui";
+import {Caption, Card, Title} from "@vkontakte/vkui";
 import './ListItemComponent.css';
 import {WordsListItem} from "../../utils/types";
 import {langNumeric} from "../../utils/langs";
