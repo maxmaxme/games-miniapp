@@ -2,8 +2,14 @@
   width: 80%;
   margin: 0 auto;
   text-align: center;
-  padding: 45px 5px 50px;
+  padding: 45px 5px 24px;
   font-size: 22px;
+}
+
+.NeverHateIEver__phraseHint {
+  color: var(--text_secondary);
+  text-align: center;
+  padding: 0 24px;
 }
 
 .NeverHateIEver__punishment {

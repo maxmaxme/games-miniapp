@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Div, Placeholder} from "@vkontakte/vkui";
+import {Div, Header, Placeholder, Subhead, Title} from "@vkontakte/vkui";
 import {GameButtons} from "./GameButtons";
 import {defaultProps} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
@@ -19,7 +19,10 @@ export const Game = (props: Props) => {
     {(punishment !== undefined || phrase !== undefined) ? <Div>
       {punishment ?
         <div className="NeverHateIEver__punishment">{punishment}</div> :
-        <div className="NeverHateIEver__phrase">{phrase}</div>
+        <>
+          <Title level="1" className="NeverHateIEver__phrase" weight="medium">{phrase}</Title>
+          <Subhead className="NeverHateIEver__phraseHint" weight="regular" dangerouslySetInnerHTML={{__html: lang('games_neverihaveever_phrase_hint')}}/>
+        </>
       }
     </Div> : <Placeholder stretched>
       {lang('games_neverihaveever_game_hint')}
