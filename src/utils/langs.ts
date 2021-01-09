@@ -7,6 +7,9 @@ export function lang(langKey: string): string {
     gamelist_search_not_found: 'Не найдено',
     gamelist_item_unavailable: 'Скоро',
 
+    search_placeholder: 'Поиск',
+    search_cancel: 'Отмена',
+
     modal_filters_header: 'Фильтры',
     modal_filters_players_count: 'Количество игроков',
     modal_filters_game_duration: 'Длительность игры',
@@ -45,7 +48,7 @@ export function lang(langKey: string): string {
                         - Не имеет значения<br>
                         И так далее...<br><br>
 
-                        Правила и данетки взяты с сайта <a href="https://yesnogame.net/">yesnogame.net</a>`,
+                        Правила и данетки взяты с сайта <a style="color: var(--text_link)" href="https://yesnogame.net/">yesnogame.net</a>`,
 
     games_openquestions_title: 'Открытые вопросы',
     games_openquestions_rules_button: 'Правила игры',

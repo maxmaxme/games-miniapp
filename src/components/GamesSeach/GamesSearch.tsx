@@ -30,7 +30,7 @@ export function GamesSearch(props: Props) {
     .replace('{filters}', filtersLabel);
 
   return (<div className="GamesSearch">
-    <Search onChange={(e) => props.search(e.currentTarget.value)}/>
+    <Search onChange={(e) => props.search(e.currentTarget.value)} placeholder={lang('search_placeholder')} after={lang('search_cancel')}/>
 
     <HorizontalScroll className="SearchFilters">
       <div style={{display: 'flex'}}>

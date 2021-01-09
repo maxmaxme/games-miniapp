@@ -28,18 +28,12 @@ export const GameSettings = (props: Props) => {
         <TabsItem
           selected={activeTab === 0}
           onClick={() => {
-            if (activeTab !== 0) {
-              doHaptic();
-            }
             setActiveTab(0)
           }}
         >{lang('games_neverihaveever_phrases_tab')}</TabsItem>
         <TabsItem
           selected={activeTab === 1}
           onClick={() => {
-            if (activeTab !== 1) {
-              doHaptic();
-            }
             setActiveTab(1)
           }}
         >{lang('games_neverihaveever_punishments_tab')}</TabsItem>

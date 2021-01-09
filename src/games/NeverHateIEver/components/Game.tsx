@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Div, Header, Placeholder, Subhead, Title} from "@vkontakte/vkui";
+import {Div, Placeholder, Subhead, Title} from "@vkontakte/vkui";
 import {GameButtons} from "./GameButtons";
 import {defaultProps} from "../../../utils/types";
 import {lang} from "../../../utils/langs";

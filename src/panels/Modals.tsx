@@ -1,4 +1,4 @@
-import {ANDROID, CellButton, Div, FormItem, Group, IOS, ModalPage, ModalPageHeader, ModalRoot, PanelHeaderButton, platform, Slider} from "@vkontakte/vkui";
+import {ANDROID, CellButton, Div, FormItem, IOS, ModalPage, ModalPageHeader, ModalRoot, PanelHeaderButton, platform, Slider} from "@vkontakte/vkui";
 import {Icon24Cancel, Icon24Done} from "@vkontakte/icons";
 import React, {SetStateAction} from "react";
 import {lang, langNumeric} from "../utils/langs";
