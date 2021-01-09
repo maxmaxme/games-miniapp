@@ -3,6 +3,8 @@ import bridge from "@vkontakte/vk-bridge";
 
 export function doHaptic(force = false) {
   if (force || platform() === IOS) {
-    bridge.send("VKWebAppTapticSelectionChanged", {});
+    if (bridge.supports('VKWebAppTapticSelectionChanged')) {
+      bridge.send("VKWebAppTapticSelectionChanged", {});
+    }
   }
 }
