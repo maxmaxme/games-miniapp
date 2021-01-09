@@ -64,8 +64,8 @@ export const Modals = (props: Props) => {
         onChange={(value) => {
           if ((props.filters.playersCount || 0) !== Math.round(value)) {
             doHaptic();
+            props.setFilters({...props.filters, playersCount: value > 0 ? value : null})
           }
-          props.setFilters({...props.filters, playersCount: value > 0 ? value : null})
         }}
       />
     </FormItem>
@@ -78,8 +78,8 @@ export const Modals = (props: Props) => {
         onChange={(value) => {
           if ((props.filters.gameDuration || 0) !== Math.round(value)) {
             doHaptic();
+            props.setFilters({...props.filters, gameDuration: value > 0 ? value : null})
           }
-          props.setFilters({...props.filters, gameDuration: value > 0 ? value : null})
         }}
       />
     </FormItem>

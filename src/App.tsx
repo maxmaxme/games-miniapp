@@ -37,35 +37,38 @@ const App = () => {
     }
   }
 
-  function changeScheme( scheme: string, needChange = false ) {
-    let isLight = lights.includes( scheme );
-
-    if( needChange ) {
-      isLight = !isLight;
-    }
-    SetStateScheme( isLight ? 'bright_light' : 'space_gray' );
-
-    bridge.send('VKWebAppSetViewSettings', {
-      'status_bar_style': isLight ? 'dark' : 'light',
-      'action_bar_color': isLight ? '#ffffff' : '#191919'
-    });
-  }
-
-  bridge.subscribe(({detail: {type, data}}) => {
-    if (type === 'VKWebAppUpdateConfig') {
-      // @ts-ignore
-      changeScheme( data.scheme )
-    }
-  });
-  bridge.send("VKWebAppInit");
-
   useEffect(() => {
+    function changeScheme( scheme: string, needChange = false ) {
+      let isLight = lights.includes( scheme );
+
+      if( needChange ) {
+        isLight = !isLight;
+      }
+      SetStateScheme( isLight ? 'bright_light' : 'space_gray' );
+
+      if (bridge.supports('VKWebAppSetViewSettings')) {
+        bridge.send('VKWebAppSetViewSettings', {
+          'status_bar_style': isLight ? 'dark' : 'light',
+          'action_bar_color': isLight ? '#ffffff' : '#191919'
+        });
+      }
+    }
+
     window.addEventListener('popstate', () => goBack());
 
     async function fetchData() {
       setGames(getGames())
     }
     fetchData().then(() => setPopout(null));
+
+    bridge.subscribe(({detail: {type, data}}) => {
+      if (type === 'VKWebAppUpdateConfig') {
+        // @ts-ignore
+        changeScheme( data.scheme )
+      }
+    });
+    bridge.send("VKWebAppInit");
+
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const go = (event: React.SyntheticEvent<EventTarget>) => {
