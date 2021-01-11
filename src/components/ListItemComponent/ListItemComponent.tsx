@@ -8,7 +8,6 @@ import {Icon24CheckCircleOn} from "@vkontakte/icons";
 import {classNames} from "@vkontakte/vkjs";
 
 interface Props {
-  key: string;
   item: WordsListItem;
   selected: number[];
   setSelected: SetStateAction<any>;
@@ -34,7 +33,6 @@ export const ListItemComponent = (props: Props) => {
   return <Card
     className={classNames("ListItem", {"ListItem--checked": checked})}
     onClick={onClickFunc}
-    key={props.key}
   >
     {checked && <div className="ListItem__checkbox"><Icon24CheckCircleOn/></div>}
     {item.image_url !== undefined && <>

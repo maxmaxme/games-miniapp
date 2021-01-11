@@ -24,13 +24,13 @@ export const GameSettings = (props: Props) => {
       </CellButton>
 
       <Group>
-        <Cell after={<NativeSelect
+        <Cell disabled after={<NativeSelect
           value={playersCount}
           onChange={event => {
             const value = parseInt(event.target.value);
             setPlayersCount(value)
           }}>
-          {range(3, 8).map(n => <option value={n}>{n}</option>)}
+          {range(3, 8).map(n => <option key={'option' + n} value={n}>{n}</option>)}
         </NativeSelect>}>
           {lang('games_spyfall_players_count')}
         </Cell>
