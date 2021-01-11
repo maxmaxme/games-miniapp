@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {Panel, PanelHeader, PanelHeaderButton} from "@vkontakte/vkui";
 import {platform, IOS} from '@vkontakte/vkui';
@@ -29,7 +29,9 @@ export const YesNo = (props: panelProps) => {
     setViewType(YesNoViewTypes.VIEW_ONE);
   }
 
-  props.setDisableSwipeBack(viewType !== YesNoViewTypes.INTRO);
+  useEffect(() => {
+    props.setDisableSwipeBack(viewType !== YesNoViewTypes.INTRO);
+  });
 
   const onBackClick = viewType !== YesNoViewTypes.INTRO ? () => {
     setViewType(YesNoViewTypes.INTRO)

@@ -18,7 +18,7 @@ const App = () => {
   const lights = ['bright_light', 'client_light'];
   const [activePanel, setActivePanel] = useState('home');
   // @ts-ignore
-  const [popout, setPopout] = useState<Element | null>(<ScreenSpinner size='large'/>);
+  const [popout, setPopout] = useState<Element | null>(<ScreenSpinner />);
   const [games, setGames] = useState<Game[] | null>(null);
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const [history] = useState(['home']);

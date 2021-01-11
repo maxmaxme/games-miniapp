@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {
   Panel,
@@ -48,7 +48,9 @@ export const NeverHateIEver = (props: panelProps) => {
     setIsActiveGame(true);
   }
 
-  props.setDisableSwipeBack(isActiveGame);
+  useEffect(() => {
+    props.setDisableSwipeBack(isActiveGame);
+  });
   const onBackClick = isActiveGame ? () => {
     setIsActiveGame(false);
   } : () => window.history.back();
