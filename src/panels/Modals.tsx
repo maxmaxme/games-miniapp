@@ -84,6 +84,7 @@ export const Modals = (props: Props) => {
       />
     </FormItem>
     <CellButton
+      disabled={props.filters.playersCount === null && props.filters.gameDuration === null}
       onClick={() => props.setFilters({playersCount: null, gameDuration: null})}
     >Сбросить фильтры</CellButton>
     <Div/>
