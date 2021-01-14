@@ -12,6 +12,7 @@ import {lang} from "../utils/langs";
 interface Props extends panelProps {
   games: Game[] | null;
   filters: Filters;
+  isFavorite: boolean;
 }
 
 const Home = (props: Props) => {
@@ -27,7 +28,7 @@ const Home = (props: Props) => {
     </PanelHeader>
     <Group>
       <GamesSearch search={onSearch} openModal={props.openModal} filters={props.filters}/>
-      <GamesList searchQuery={searchQuery} filters={props.filters} go={props.go} games={props.games} openModal={props.openModal}/>
+      <GamesList searchQuery={searchQuery} filters={props.filters} go={props.go} games={props.games} openModal={props.openModal} isFavoriteApp={props.isFavorite}/>
     </Group>
   </Panel>
 };

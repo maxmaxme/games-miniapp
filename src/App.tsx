@@ -14,6 +14,7 @@ import bridge from "@vkontakte/vk-bridge";
 import {AppearanceScheme} from "@vkontakte/vkui/src/components/ConfigProvider/ConfigProviderContext";
 
 const App = () => {
+  const urlParams = new URLSearchParams(window.location.search);
   const [scheme, SetStateScheme] = useState<AppearanceScheme>('bright_light');
   const lights = ['bright_light', 'client_light'];
   const [activePanel, setActivePanel] = useState('home');
@@ -21,6 +22,7 @@ const App = () => {
   const [popout, setPopout] = useState<Element | null>(<ScreenSpinner />);
   const [games, setGames] = useState<Game[] | null>(null);
   const [activeModal, setActiveModal] = useState<string | null>(null);
+  const [isFavorite, setIsFavorite] = useState(urlParams.get('vk_is_favorite') === '1');
   const [history] = useState(['home']);
   const [disableSwipeBack, setDisableSwipeBack] = useState(false);
   const openModal = (name: string) => setActiveModal(name);
@@ -65,6 +67,9 @@ const App = () => {
       if (type === 'VKWebAppUpdateConfig') {
         // @ts-ignore
         changeScheme( data.scheme )
+      } else if (type === 'VKWebAppAddToFavoritesResult') {
+        // @ts-ignore
+        setIsFavorite(data.result);
       }
     });
     bridge.send("VKWebAppInit");
@@ -95,7 +100,7 @@ const App = () => {
         history={history} // Ставим историю из массива панелей.
         onSwipeBack={disableSwipeBack ? undefined : goBack} // При свайпе выполняется данная функция.
       >
-        <Home id='home' go={go} games={games} openModal={openModal} setDisableSwipeBack={setDisableSwipeBack} filters={filters}/>
+        <Home id='home' go={go} games={games} openModal={openModal} setDisableSwipeBack={setDisableSwipeBack} filters={filters} isFavorite={isFavorite}/>
         <NeverHateIEver id={GameNames.NeverHateIEver} go={go} openModal={openModal} setDisableSwipeBack={setDisableSwipeBack}/>
         <SpyFall id={GameNames.SpyFall} go={go} openModal={openModal} setDisableSwipeBack={setDisableSwipeBack}/>
         <OpenQuestions id={GameNames.OpenQuestions} go={go} openModal={openModal} setDisableSwipeBack={setDisableSwipeBack}/>

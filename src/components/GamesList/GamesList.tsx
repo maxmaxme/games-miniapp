@@ -11,6 +11,7 @@ interface Props extends defaultProps {
   games: Game[] | null;
   searchQuery: string;
   filters: Filters;
+  isFavoriteApp: boolean;
 }
 
 export function GamesList(props: Props) {
@@ -64,10 +65,8 @@ export function GamesList(props: Props) {
         />)}
       </CardGrid>);
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const isFavorite = urlParams.get('vk_is_favorite') === '1';
       let favoriteButton;
-      if (isFavorite) {
+      if (props.isFavoriteApp) {
         favoriteButton = <Card className="GamesList__subscribeBlock GamesList__subscribeBlock--orange"><Icon24Favorite/>{lang('card_added_to_favorite')}</Card>
       } else {
         favoriteButton = <Card onClick={() => {
