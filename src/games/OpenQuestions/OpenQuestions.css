@@ -1,4 +1,5 @@
 .OpenQuestions__header {
+  user-select: none;
   padding-bottom: 12px;
   font-weight: bold;
   text-transform: uppercase;
