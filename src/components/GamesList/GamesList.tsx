@@ -66,11 +66,9 @@ export function GamesList(props: Props) {
 
       const urlParams = new URLSearchParams(window.location.search);
       const isFavorite = urlParams.get('vk_is_favorite') === '1';
-      let favoriteButton = null;
+      let favoriteButton;
       if (isFavorite) {
-        favoriteButton = <Card onClick={() => {
-          bridge.send("VKWebAppAddToFavorites");
-        }} className="GamesList__subscribeBlock GamesList__subscribeBlock--orange"><Icon24Favorite/>{lang('card_added_to_favorite')}</Card>
+        favoriteButton = <Card className="GamesList__subscribeBlock GamesList__subscribeBlock--orange"><Icon24Favorite/>{lang('card_added_to_favorite')}</Card>
       } else {
         favoriteButton = <Card onClick={() => {
           bridge.send("VKWebAppAddToFavorites");

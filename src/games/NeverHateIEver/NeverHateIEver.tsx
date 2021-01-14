@@ -14,7 +14,6 @@ import {getPhrases} from "./phrases";
 import {getPunishments} from "./punishments";
 import './NeverHateIEver.css';
 import {lang} from "../../utils/langs";
-import {localStorage} from "@vkontakte/vkjs";
 import {LocalStorage, LocalStorageKeys} from "../../utils/localstorage";
 
 const osName = platform();
