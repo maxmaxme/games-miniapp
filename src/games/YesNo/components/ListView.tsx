@@ -12,7 +12,7 @@ export const ListView = (props: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
   const filtered = props.yesNoBase.filter(item => !searchQuery.length || item.title.toLowerCase().includes(searchQuery.toLowerCase()))
   return <>
-    <Search onChange={(e) => setSearchQuery(e.currentTarget.value)} placeholder={lang('search_placeholder')} after={lang('search_cancel')}/>
+    <Search onChange={(e) => setSearchQuery(e.currentTarget.value.trim())} placeholder={lang('search_placeholder')} after={lang('search_cancel')}/>
     {filtered.length > 0 ? <List>
       {filtered.map((item, num) => <Cell className="YesNo__rowItem" key={'yesno' + num} multiline onClick={() => props.openYesNo(item)}>{item.title}</Cell>)}
     </List> : <Placeholder>{lang('games_yesno_search_not_found')}</Placeholder>}
