@@ -34,8 +34,8 @@ export function GamesSearch(props: Props) {
 
     <HorizontalScroll className="SearchFilters">
       <div style={{display: 'flex'}}>
-        <HorizontalCell size='l'>
-          <Button onClick={() => props.openModal('games_filters')} mode="outline">{filtersButtonLabel}</Button>
+        <HorizontalCell size='l' onClick={() => props.openModal('games_filters')}>
+          <Button mode="outline">{filtersButtonLabel}</Button>
         </HorizontalCell>
       </div>
     </HorizontalScroll>
