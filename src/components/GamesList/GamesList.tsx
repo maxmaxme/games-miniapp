@@ -43,7 +43,7 @@ export function GamesList(props: Props) {
     });
   // games = games.sort((a) => a.unavailable ? 1 : -1); // todo при открытии второй игры она встает на первое место
 
-  const twoCardsPerRow = window.innerWidth > 520 // todo заменить на platform(), когда там появится VKCOM
+  const twoCardsPerRow = window.innerWidth > 520;
   let gamesBlock = [];
 
   const needShareButtons = true;

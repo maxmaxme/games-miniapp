@@ -71,6 +71,7 @@ export function lang(langKey: string): string {
     games_spyfall_end_game_button: 'Закончить игру',
     games_spyfall_timer_label: 'Прошло ',
     games_spyfall_next_player: 'Передайте телефон игроку %s',
+    games_spyfall_next_player_web: 'Передайте ход игроку %s',
     games_spyfall_you_spy_text: 'Вы — Шпион',
     games_spyfall_spy_text: 'Шпион — игрок %s',
     games_spyfall_rules: `В игре участвуют местные и шпионы. Передавайте друг другу телефон, чтобы узнать свою роль. 
