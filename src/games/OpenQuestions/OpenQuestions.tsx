@@ -7,16 +7,14 @@ import {panelProps} from "../../utils/types";
 import {lang} from "../../utils/langs";
 import {getQuestions} from "./questions";
 import './OpenQuestions.css';
-import {localStorage} from "@vkontakte/vkjs";
 import {doHaptic} from "../../utils/device";
+import {LocalStorage, LocalStorageKeys} from "../../utils/localstorage";
 
 const osName = platform();
 
 export const OpenQuestions = (props: panelProps) => {
   const questions = getQuestions();
-  const LSKey = 'games_openquestions_viewedQuestions';
-  const viewedFromLS = localStorage.getItem(LSKey) ?
-    String(localStorage.getItem(LSKey)).split(',').map(num => parseInt(num)) : [];
+  const viewedFromLS = LocalStorage.getNumberArray(LocalStorageKeys.OPENQUESTIONS_VIEWED_QUESTIONS, []);
 
   const [viewedQuestions, setViewedQuestions] = useState<number[]>(viewedFromLS);
 
@@ -31,12 +29,12 @@ export const OpenQuestions = (props: panelProps) => {
       viewedQuestions.push(num)
     }
     setViewedQuestions([...viewedQuestions]);
-    localStorage.setItem(LSKey, viewedQuestions.join(','))
+    LocalStorage.setNumberArray(LocalStorageKeys.OPENQUESTIONS_VIEWED_QUESTIONS, viewedQuestions);
   }
 
   const resetViewed = () => {
     setViewedQuestions([]);
-    localStorage.setItem(LSKey, '')
+    LocalStorage.setNumberArray(LocalStorageKeys.OPENQUESTIONS_VIEWED_QUESTIONS, []);
   }
 
   return (

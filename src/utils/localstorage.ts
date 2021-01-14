@@ -3,30 +3,33 @@ import {localStorage} from "@vkontakte/vkjs";
 export enum LocalStorageKeys {
   SPYFALL_PLAYERS_COUNT = 'spyfall_players_count',
   SPYFALL_DEFAULT_SELECTED = 'spyfall_defaultSelected',
+
+  OPENQUESTIONS_VIEWED_QUESTIONS = 'games_openquestions_viewedQuestions',
 }
 
-export function getNumberFromLocalStorage(key: string, defaultValue: number): number {
-  const valueFromLC = localStorage.getItem(key);
-  const number = parseInt(String(valueFromLC));
+export class LocalStorage {
+  static getNumber(key: string, defaultValue: number): number {
+    const valueFromLC = localStorage.getItem(key);
+    const number = parseInt(String(valueFromLC));
 
-  return valueFromLC !== null && !isNaN(number) ? number : defaultValue;
-}
+    return valueFromLC !== null && !isNaN(number) ? number : defaultValue;
+  }
 
-export function setNumberToLocalStorage(key: string, value: number) {
-  localStorage.setItem(key, String(value))
-}
+  static setNumber(key: string, value: number) {
+    localStorage.setItem(key, String(value))
+  }
 
-export function getNumberArrayFromLocalStorage(key: string, defaultValue: number[]): number[] {
-  const valueFromLC = localStorage.getItem(key);
+  static getNumberArray(key: string, defaultValue: number[]): number[] {
+    const valueFromLC = localStorage.getItem(key);
 
-  if (valueFromLC !== null) {
-    return valueFromLC.split(',').map(itemId => parseInt(itemId));
-  } else {
-    return defaultValue;
+    if (valueFromLC !== null) {
+      return valueFromLC.split(',').map(itemId => parseInt(itemId));
+    } else {
+      return defaultValue;
+    }
+  }
+
+  static setNumberArray(key: string, value: number[]) {
+    localStorage.setItem(key, value.join(','));
   }
 }
-
-export function setNumberArrayToLocalStorage(key: string, value: number[]) {
-  localStorage.setItem(key, value.join(','));
-}
-
