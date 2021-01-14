@@ -5,6 +5,9 @@ export enum LocalStorageKeys {
   SPYFALL_DEFAULT_SELECTED = 'spyfall_defaultSelected',
 
   OPENQUESTIONS_VIEWED_QUESTIONS = 'games_openquestions_viewedQuestions',
+
+  NEVERHATEIEVER_DEFAULT_SELECTED_PHRASES = 'spyfall_defaultSelectedPhrases',
+  NEVERHATEIEVER_DEFAULT_SELECTED_PUNISHMENTS = 'spyfall_defaultSelectedPunishments',
 }
 
 export class LocalStorage {

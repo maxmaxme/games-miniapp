@@ -15,6 +15,7 @@ import {getPunishments} from "./punishments";
 import './NeverHateIEver.css';
 import {lang} from "../../utils/langs";
 import {localStorage} from "@vkontakte/vkjs";
+import {LocalStorage, LocalStorageKeys} from "../../utils/localstorage";
 
 const osName = platform();
 
@@ -22,27 +23,22 @@ export const NeverHateIEver = (props: panelProps) => {
   const phrases: WordsListItem[] = getPhrases();
   const punishments: WordsListItem[] = getPunishments();
 
-  let defaultSelectedPhrases
-  let defaultSelectedPhrasesLS = localStorage.getItem('spyfall_defaultSelectedPhrases');
-  if (defaultSelectedPhrasesLS !== null) {
-    defaultSelectedPhrases = defaultSelectedPhrasesLS.split(',').map(itemId => parseInt(itemId)).filter(itemId => itemId >= 0);
-  } else {
-    defaultSelectedPhrases = phrases.filter(item => item.defaultSelected).map(item => item.id);
-  }
+  const defaultSelectedPhrases = LocalStorage.getNumberArray(
+    LocalStorageKeys.NEVERHATEIEVER_DEFAULT_SELECTED_PHRASES,
+    phrases.filter(item => item.defaultSelected).map(item => item.id))
+      .filter(itemId => itemId >= 0);
 
-  let defaultSelectedPunishments
-  let defaultSelectedPunishmentsLS = localStorage.getItem('spyfall_defaultSelectedPunishments');
-  if (defaultSelectedPunishmentsLS !== null) {
-    defaultSelectedPunishments = defaultSelectedPunishmentsLS.split(',').map(itemId => parseInt(itemId)).filter(itemId => itemId >= 0);
-  } else {
-    defaultSelectedPunishments = punishments.filter(item => item.defaultSelected).map(item => item.id);
-  }
+
+  const defaultSelectedPunishments = LocalStorage.getNumberArray(
+    LocalStorageKeys.NEVERHATEIEVER_DEFAULT_SELECTED_PUNISHMENTS,
+    punishments.filter(item => item.defaultSelected).map(item => item.id))
+      .filter(itemId => itemId >= 0);
 
   const [isActiveGame, setIsActiveGame] = useState<boolean>(false);
   const [selectedPhrases, setSelectedPhrases] = useState<number[]>(defaultSelectedPhrases);
   const [selectedPunishments, setSelectedPunishments] = useState<number[]>(defaultSelectedPunishments);
-  localStorage.setItem('spyfall_defaultSelectedPhrases', selectedPhrases.join(','));
-  localStorage.setItem('spyfall_defaultSelectedPunishments', selectedPunishments.join(','));
+  LocalStorage.setNumberArray(LocalStorageKeys.NEVERHATEIEVER_DEFAULT_SELECTED_PHRASES, selectedPhrases);
+  LocalStorage.setNumberArray(LocalStorageKeys.NEVERHATEIEVER_DEFAULT_SELECTED_PUNISHMENTS, selectedPunishments);
 
   const startGame = () => {
     setIsActiveGame(true);
