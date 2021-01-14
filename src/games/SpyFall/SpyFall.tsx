@@ -13,8 +13,8 @@ import {Game} from "./components/Game";
 import {lang} from "../../utils/langs";
 import {getCollections} from "./collections";
 import {randomInteger} from "../../utils/numbers";
-import {localStorage} from "@vkontakte/vkjs";
 import './SpyFall.css';
+import {getNumberArrayFromLocalStorage, getNumberFromLocalStorage, LocalStorageKeys, setNumberArrayToLocalStorage, setNumberToLocalStorage} from "../../utils/localstorage";
 
 const osName = platform();
 
@@ -24,22 +24,16 @@ export const SpyFall = (props: panelProps) => {
 
   const collections = getCollections();
 
-  let defaultSelected
-  let defaultSelectedLS = localStorage.getItem('spyfall_defaultSelected');
-  if (defaultSelectedLS !== null) {
-    defaultSelected = defaultSelectedLS.split(',').map(itemId => parseInt(itemId)).filter(itemId => itemId >= 0);
-  } else {
-    defaultSelected = collections.filter(item => item.defaultSelected).map(item => item.id);
-  }
-
-  const defaultPlayersCount = localStorage.getItem('spyfall_players_count') !== null ?
-    parseInt(String(localStorage.getItem('spyfall_players_count')))
-    : 4;
+  const defaultPlayersCount = getNumberFromLocalStorage(LocalStorageKeys.SPYFALL_PLAYERS_COUNT, 4);
+  const defaultSelected = getNumberArrayFromLocalStorage(
+    LocalStorageKeys.SPYFALL_DEFAULT_SELECTED,
+    collections.filter(item => item.defaultSelected)
+      .map(item => item.id)).filter(itemId => itemId >= 0);
 
   const [playersCount, setPlayersCount] = useState<number>(defaultPlayersCount)
   const [selectedCollections, setSelectedCollections] = useState<number[]>(defaultSelected);
-  localStorage.setItem('spyfall_defaultSelected', selectedCollections.join(','));
-  localStorage.setItem('spyfall_players_count', playersCount.toString());
+  setNumberArrayToLocalStorage(LocalStorageKeys.SPYFALL_DEFAULT_SELECTED, selectedCollections);
+  setNumberToLocalStorage(LocalStorageKeys.SPYFALL_PLAYERS_COUNT, playersCount);
 
   const startGame = () => {
     setIsActiveGame(true);
