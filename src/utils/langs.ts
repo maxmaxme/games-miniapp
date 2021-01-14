@@ -49,7 +49,7 @@ export function lang(langKey: string): string {
                         - Не имеет значения<br>
                         И так далее...<br><br>
 
-                        Правила и данетки взяты с сайта <a style="color: var(--text_link)" href="https://yesnogame.net/">yesnogame.net</a>`,
+                        Правила и данетки взяты с сайта <a target="_blank" style="color: var(--text_link)" href="https://yesnogame.net/">yesnogame.net</a>`,
 
     games_openquestions_title: 'Открытые вопросы',
     games_openquestions_rules_button: 'Правила игры',
