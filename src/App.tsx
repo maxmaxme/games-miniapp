@@ -98,7 +98,7 @@ const App = () => {
         popout={popout}
         modal={modals}
         history={history} // Ставим историю из массива панелей.
-        onSwipeBack={disableSwipeBack ? undefined : goBack} // При свайпе выполняется данная функция.
+        onSwipeBack={disableSwipeBack || activeModal ? undefined : goBack} // При свайпе выполняется данная функция.
       >
         <Home id='home' go={go} games={games} openModal={openModal} setDisableSwipeBack={setDisableSwipeBack} filters={filters} isFavorite={isFavorite}/>
         <NeverHateIEver id={GameNames.NeverHateIEver} go={go} openModal={openModal} setDisableSwipeBack={setDisableSwipeBack}/>
