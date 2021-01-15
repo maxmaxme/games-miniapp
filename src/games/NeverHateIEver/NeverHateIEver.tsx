@@ -6,7 +6,7 @@ import {
   PanelHeaderButton,
 } from "@vkontakte/vkui";
 import {platform, IOS} from '@vkontakte/vkui';
-import {Icon24Back, Icon28ChevronBack} from "@vkontakte/icons";
+import {Icon24Back, Icon24Cancel, Icon28CancelOutline, Icon28ChevronBack} from "@vkontakte/icons";
 import {panelProps, WordsListItem} from "../../utils/types";
 import {GameSettings} from "./components/GameSettings";
 import {Game} from "./components/Game";
@@ -49,6 +49,9 @@ export const NeverHateIEver = (props: panelProps) => {
   const onBackClick = isActiveGame ? () => {
     setIsActiveGame(false);
   } : () => window.history.back();
+  const backIcon = isActiveGame ?
+    (osName === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>) :
+    (osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>);
 
   let phrasesForGame: string[] = [];
   phrases.filter(item => selectedPhrases.includes(item.id)).map(item => item.words).forEach(ph => phrasesForGame = phrasesForGame.concat(ph))
@@ -59,11 +62,7 @@ export const NeverHateIEver = (props: panelProps) => {
 
   return (
     <Panel id={props.id} className="NeverHateIEver__panel">
-      <PanelHeader
-        left={<PanelHeaderButton onClick={onBackClick} data-to="home">
-          {osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
-        </PanelHeaderButton>}
-      >
+      <PanelHeader left={<PanelHeaderButton onClick={onBackClick} data-to="home">{backIcon}</PanelHeaderButton>}>
         {lang('games_neverihaveever_title')}
       </PanelHeader>
       {isActiveGame ?

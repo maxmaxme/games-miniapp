@@ -6,7 +6,7 @@ import {
   PanelHeaderButton,
 } from "@vkontakte/vkui";
 import {platform, IOS} from '@vkontakte/vkui';
-import {Icon24Back, Icon28ChevronBack} from "@vkontakte/icons";
+import {Icon24Back, Icon24Cancel, Icon28CancelOutline, Icon28ChevronBack} from "@vkontakte/icons";
 import {panelProps} from "../../utils/types";
 import {GameSettings} from "./components/GameSettings";
 import {Game} from "./components/Game";
@@ -45,6 +45,9 @@ export const SpyFall = (props: panelProps) => {
   const onBackClick = isActiveGame ? () => {
     setIsActiveGame(false);
   } : () => window.history.back();
+  const backIcon = isActiveGame ?
+    (osName === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>) :
+    (osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>);
 
   let wordsForGame: string[] = [];
   collections.filter(item => selectedCollections.includes(item.id)).map(item => item.words).forEach(words => wordsForGame = wordsForGame.concat(words))
@@ -54,9 +57,7 @@ export const SpyFall = (props: panelProps) => {
   return (
     <Panel id={props.id}>
       <PanelHeader
-        left={<PanelHeaderButton onClick={onBackClick} data-to="home">
-          {osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
-        </PanelHeaderButton>}
+        left={<PanelHeaderButton onClick={onBackClick} data-to="home">{backIcon}</PanelHeaderButton>}
       >
         {lang('games_spyfall_title')}
       </PanelHeader>
