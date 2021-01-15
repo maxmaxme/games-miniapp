@@ -73,11 +73,14 @@ export const Game = (props: Props) => {
   const nextPlayerLang = isWeb() ? 'games_spyfall_next_player_web' : 'games_spyfall_next_player';
 
   return (<>
-    <Placeholder stretched icon={icon ? <div className="SpyFall__spyIcon"><ReactSVG src={`/icons/${icon}.svg`} /></div> : undefined}>
-      {viewStatus === ViewStatus.RULES && lang(nextPlayerLang).replace('%s', playerNum.toString())}
-      {viewStatus === ViewStatus.WORD && (playerNum === spyPlayerNum ? lang('games_spyfall_you_spy_text') : word)}
-      {viewStatus === ViewStatus.RESULTS && lang('games_spyfall_spy_text').replace('%s', spyPlayerNum.toString())}
-      {viewStatus === ViewStatus.GAME && <Timer checkpoints={timerCheckpoints} formatValue={(n) => String(n < 10 ? '0' + n : n)}>{lang('games_spyfall_timer_label')} <Timer.Minutes/>:<Timer.Seconds/></Timer>}
+    <Placeholder stretched icon={icon ? <div className="SpyFall__spyIcon"><ReactSVG src={`/icons/${icon}.svg`}/></div> : undefined}>
+      <div className="SpyFall__placeholderIn">
+        {viewStatus === ViewStatus.RULES && lang(nextPlayerLang).replace('%s', playerNum.toString())}
+        {viewStatus === ViewStatus.WORD && (playerNum === spyPlayerNum ? lang('games_spyfall_you_spy_text') : word)}
+        {viewStatus === ViewStatus.RESULTS && lang('games_spyfall_spy_text').replace('%s', spyPlayerNum.toString())}
+        {viewStatus === ViewStatus.GAME &&
+        <Timer checkpoints={timerCheckpoints} formatValue={(n) => String(n < 10 ? '0' + n : n)}>{lang('games_spyfall_timer_label')} <Timer.Minutes/>:<Timer.Seconds/></Timer>}
+      </div>
     </Placeholder>
     {button && <FixedLayout vertical="bottom">
       <Separator wide/>
