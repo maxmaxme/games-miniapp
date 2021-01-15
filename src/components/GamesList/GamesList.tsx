@@ -74,7 +74,8 @@ export function GamesList(props: Props) {
         }} className="GamesList__subscribeBlock GamesList__subscribeBlock--orange"><Icon24FavoriteOutline/>{lang('card_add_to_favorite')}</Card>
       }
 
-      gamesBlock.push(<CardGrid key="shareRow" size='m'>
+      const shareButtonsCardGridSize = window.innerWidth > 370 ? 'm' : 'l';
+      gamesBlock.push(<CardGrid key="shareRow" size={shareButtonsCardGridSize}>
         <Card onClick={() => {
           // bridge.send("VKWebAppShowWallPostBox", {"message": lang('card_share_app_text'), "attachments": 'https://vk.com/app7718732'});
           bridge.send("VKWebAppShare", {"link": "https://vk.com/app7718732"});
