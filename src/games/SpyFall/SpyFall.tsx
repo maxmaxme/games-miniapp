@@ -1,26 +1,30 @@
 import React, {useEffect, useState} from 'react';
 
 import {
-  Panel,
-  PanelHeader,
-  PanelHeaderButton,
+  View,
 } from "@vkontakte/vkui";
-import {platform, IOS} from '@vkontakte/vkui';
-import {Icon24Back, Icon24Cancel, Icon28CancelOutline, Icon28ChevronBack} from "@vkontakte/icons";
-import {panelProps} from "../../utils/types";
-import {GameSettings} from "./components/GameSettings";
-import {Game} from "./components/Game";
-import {lang} from "../../utils/langs";
+import {GoFunc} from "../../utils/types";
 import {getCollections} from "./collections";
 import {randomInteger} from "../../utils/numbers";
 import './SpyFall.css';
-import {LocalStorageKeys, LocalStorage } from "../../utils/localstorage";
+import {LocalStorageKeys, LocalStorage} from "../../utils/localstorage";
+import {GameSettings} from "./panels/GameSettings";
+import {Game} from "./panels/Game";
+import {RulesModal} from "../../components/RulesModal/RulesModal";
+import {lang} from "../../utils/langs";
 
-const osName = platform();
+interface Props {
+  id: string;
+  go: GoFunc;
+}
 
-export const SpyFall = (props: panelProps) => {
+export const SpyFall = (props: Props) => {
+  enum Panels {
+    SETTINGS = 'settings',
+    GAME = 'game',
+  }
 
-  const [isActiveGame, setIsActiveGame] = useState<boolean>(false);
+  const [activePanel, setActivePanel] = useState<string>(Panels.SETTINGS);
 
   const collections = getCollections();
 
@@ -35,52 +39,41 @@ export const SpyFall = (props: panelProps) => {
   LocalStorage.setNumberArray(LocalStorageKeys.SPYFALL_DEFAULT_SELECTED, selectedCollections);
   LocalStorage.setNumber(LocalStorageKeys.SPYFALL_PLAYERS_COUNT, playersCount);
 
-  const startGame = () => {
-    setIsActiveGame(true);
-  }
-
-  useEffect(() => {
-    props.setDisableSwipeBack(isActiveGame);
-  });
-  const onBackClick = isActiveGame ? () => {
-    setIsActiveGame(false);
-  } : () => window.history.back();
-  const backIcon = isActiveGame ?
-    (osName === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>) :
-    (osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>);
 
   let wordsForGame: string[] = [];
   collections.filter(item => selectedCollections.includes(item.id)).map(item => item.words).forEach(words => wordsForGame = wordsForGame.concat(words))
   wordsForGame.sort(() => Math.random() - 0.5)
   const wordForGame = wordsForGame.shift() || '';
 
-  return (
-    <Panel id={props.id}>
-      <PanelHeader
-        left={<PanelHeaderButton onClick={onBackClick} data-to="home">{backIcon}</PanelHeaderButton>}
-      >
-        {lang('games_spyfall_title')}
-      </PanelHeader>
-      {isActiveGame ?
-        <Game
-          go={props.go}
-          openModal={props.openModal}
-          playersCount={playersCount}
-          spyPlayerNum={randomInteger(1, playersCount)}
-          word={wordForGame}
-        /> :
-        <GameSettings
-          go={props.go}
-          openModal={props.openModal}
-          startGame={startGame}
-          playersCount={playersCount}
-          setPlayersCount={setPlayersCount}
-          selectedCollections={selectedCollections}
-          setSelectedCollections={setSelectedCollections}
-          collections={collections}
-        />}
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+  console.log('activeModal', activeModal)
+  const modals = <RulesModal activeModal={activeModal} setActiveModal={setActiveModal} text={lang('games_spyfall_rules')}/>;
+  const openRules = () => {
+    setActiveModal('rules');
+  };
 
-    </Panel>
-  );
+  return <View
+    id={props.id}
+    activePanel={activePanel}
+    modal={modals}
+  >
+    <GameSettings
+      startGame={() => setActivePanel(Panels.GAME)}
+      playersCount={playersCount}
+      setPlayersCount={setPlayersCount}
+      collections={collections}
+      selectedCollections={selectedCollections}
+      setSelectedCollections={setSelectedCollections}
+      openRules={openRules}
+      id={Panels.SETTINGS}
+    />
+    <Game
+      id={Panels.GAME}
+      playersCount={playersCount}
+      spyPlayerNum={randomInteger(1, playersCount)}
+      word={wordForGame}
+      backClick={() => setActivePanel(Panels.SETTINGS)}
+    />
+  </View>;
 }
 

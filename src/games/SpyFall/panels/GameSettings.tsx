@@ -1,25 +1,34 @@
-import {Button, CardGrid, Cell, CellButton, Div, Group, Header, NativeSelect} from "@vkontakte/vkui";
-import React, {SetStateAction} from "react";
-import {defaultProps, WordsListItem} from "../../../utils/types";
+import {Button, CardGrid, Cell, CellButton, Div, Group, Header, IOS, NativeSelect, Panel, PanelHeader, PanelHeaderButton, platform} from "@vkontakte/vkui";
+import {Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
 import {lang} from "../../../utils/langs";
+import React, {SetStateAction} from "react";
+import {WordsListItem} from "../../../utils/types";
+import {range} from "../../../utils/arrays";
 import {ListItemComponent} from "../../../components/ListItemComponent/ListItemComponent";
 import {doHaptic} from "../../../utils/device";
-import {range} from "../../../utils/arrays";
 
-interface Props extends defaultProps {
+interface Props {
+  id: string;
+  openRules: () => void;
   startGame: () => void;
   playersCount: number;
   setPlayersCount: SetStateAction<any>;
-  collections: WordsListItem[];
   selectedCollections: number[];
   setSelectedCollections: SetStateAction<any>;
+  collections: WordsListItem[];
 }
 
 export const GameSettings = (props: Props) => {
   const {playersCount, setPlayersCount, collections, selectedCollections, setSelectedCollections} = props;
-  return (
+
+  return <Panel id={props.id}>
+    <PanelHeader
+      left={<PanelHeaderButton onClick={window.history.back} data-to="home">{(platform() === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>)}</PanelHeaderButton>}
+    >
+      {lang('games_spyfall_title')}
+    </PanelHeader>
     <Group>
-      <CellButton onClick={() => props.openModal('SpyFall_rules')}>
+      <CellButton onClick={() => props.openRules()}>
         {lang('games_spyfall_rules_button')}
       </CellButton>
 
@@ -52,5 +61,6 @@ export const GameSettings = (props: Props) => {
           }}
         >{lang('games_spyfall_start_game_full_button')}</Button>
       </Div>
-    </Group>);
+    </Group>
+  </Panel>
 }

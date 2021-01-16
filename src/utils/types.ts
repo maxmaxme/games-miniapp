@@ -21,16 +21,6 @@ export interface Filters {
 
 export type GoFunc = (event: React.SyntheticEvent<EventTarget>) => void
 
-export interface defaultProps {
-  go: GoFunc;
-  openModal: (name: string) => void;
-}
-
-export interface panelProps extends defaultProps {
-  id: string;
-  setDisableSwipeBack: SetStateAction<any>;
-}
-
 export enum GameNames {
   NeverHateIEver = 'NeverHateIEver',
   TruthOrDare = 'TruthOrDare',

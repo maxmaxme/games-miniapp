@@ -3,16 +3,22 @@ import React, {useState} from 'react';
 import {Div, CellButton, Group, Panel, PanelHeader, PanelHeaderButton, Cell, List} from "@vkontakte/vkui";
 import {platform, IOS} from '@vkontakte/vkui';
 import {Icon24Back, Icon28ChevronBack, Icon20Check} from "@vkontakte/icons";
-import {panelProps} from "../../utils/types";
 import {lang} from "../../utils/langs";
 import {getQuestions} from "./questions";
 import './OpenQuestions.css';
 import {doHaptic} from "../../utils/device";
 import {LocalStorage, LocalStorageKeys} from "../../utils/localstorage";
+import {GoFunc} from "../../utils/types";
 
 const osName = platform();
 
-export const OpenQuestions = (props: panelProps) => {
+interface Props {
+  id: string;
+  go: GoFunc;
+  openModal: (name: string) => void;
+}
+
+export const OpenQuestions = (props: Props) => {
   const questions = getQuestions();
   const viewedFromLS = LocalStorage.getNumberArray(LocalStorageKeys.OPENQUESTIONS_VIEWED_QUESTIONS, []);
 

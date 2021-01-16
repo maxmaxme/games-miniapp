@@ -7,7 +7,7 @@ import {
 } from "@vkontakte/vkui";
 import {platform, IOS} from '@vkontakte/vkui';
 import {Icon24Back, Icon24Cancel, Icon28CancelOutline, Icon28ChevronBack} from "@vkontakte/icons";
-import {panelProps, WordsListItem} from "../../utils/types";
+import {GoFunc, WordsListItem} from "../../utils/types";
 import {GameSettings} from "./components/GameSettings";
 import {Game} from "./components/Game";
 import {getPhrases} from "./phrases";
@@ -18,7 +18,13 @@ import {LocalStorage, LocalStorageKeys} from "../../utils/localstorage";
 
 const osName = platform();
 
-export const NeverHateIEver = (props: panelProps) => {
+interface Props {
+  id: string;
+  go: GoFunc;
+  openModal: (name: string) => void;
+}
+
+export const NeverHateIEver = (props: Props) => {
   const phrases: WordsListItem[] = getPhrases();
   const punishments: WordsListItem[] = getPunishments();
 
@@ -44,7 +50,7 @@ export const NeverHateIEver = (props: panelProps) => {
   }
 
   useEffect(() => {
-    props.setDisableSwipeBack(isActiveGame);
+    // props.setDisableSwipeBack(isActiveGame);
   });
   const onBackClick = isActiveGame ? () => {
     setIsActiveGame(false);
@@ -69,8 +75,8 @@ export const NeverHateIEver = (props: panelProps) => {
         <Game
           phrases={phrasesForGame}
           punishments={punishmentsForGame}
-          go={props.go}
-          openModal={props.openModal}
+          // go={props.go}
+          // openModal={props.openModal}
         /> :
         <GameSettings
           go={props.go}

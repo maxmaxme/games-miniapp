@@ -1,11 +1,13 @@
 import {Button, CellButton, Div, Group, Title} from "@vkontakte/vkui";
 import {lang, langNumeric} from "../../../utils/langs";
 import React, {SetStateAction} from "react";
-import {defaultProps, YesNoItem} from "../../../utils/types";
+import {GoFunc, YesNoItem} from "../../../utils/types";
 import {YesNoViewTypes} from "../YesNo";
 import {shuffleArray} from "@vkontakte/vkjs";
 
-interface Props extends defaultProps {
+interface Props {
+  go: GoFunc;
+  openModal: (name: string) => void;
   yesNoBase: YesNoItem[];
   setViewType: SetStateAction<any>;
   openYesNo: (yesNo: YesNoItem) => void;

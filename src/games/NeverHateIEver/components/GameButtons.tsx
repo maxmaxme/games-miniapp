@@ -1,10 +1,9 @@
 import React, {SetStateAction} from "react";
 import {Div, Button, FixedLayout, Separator, Footer} from "@vkontakte/vkui";
-import {defaultProps} from "../../../utils/types";
 import {lang, langNumeric} from "../../../utils/langs";
 import {doHaptic} from "../../../utils/device";
 
-interface Props extends defaultProps {
+interface Props {
   phrases: string[],
   punishments: string[],
   setPhrase: SetStateAction<any>

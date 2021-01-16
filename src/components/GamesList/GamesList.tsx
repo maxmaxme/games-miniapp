@@ -1,13 +1,14 @@
 import React from 'react';
 import {GamesListItem} from '../GamesListItem/GamesListItem';
 import {Card, CardGrid, Footer, Placeholder, Spinner} from '@vkontakte/vkui';
-import {defaultProps, Filters, Game} from "../../utils/types";
+import {Filters, Game, GoFunc} from "../../utils/types";
 import {lang, langNumeric} from "../../utils/langs";
 import {Icon24ShareOutline, Icon24FavoriteOutline, Icon24Favorite} from "@vkontakte/icons";
 import './GameList.css';
 import bridge from "@vkontakte/vk-bridge";
 
-interface Props extends defaultProps {
+interface Props {
+  go: GoFunc;
   games: Game[] | null;
   searchQuery: string;
   filters: Filters;
@@ -61,7 +62,6 @@ export function GamesList(props: Props) {
           key={i}
           go={props.go}
           game={game}
-          openModal={props.openModal}
         />)}
       </CardGrid>);
 
@@ -91,13 +91,12 @@ export function GamesList(props: Props) {
           key={i}
           go={props.go}
           game={game}
-          openModal={props.openModal}
         />)}
       </CardGrid>);
 
     }
   } else {
-    gamesBlock.push(<CardGrid size={twoCardsPerRow ? 'm' : 'l'}>{games.map((game, i) => <GamesListItem key={i} go={props.go} game={game} openModal={props.openModal}/>)}</CardGrid>);
+    gamesBlock.push(<CardGrid size={twoCardsPerRow ? 'm' : 'l'}>{games.map((game, i) => <GamesListItem key={i} go={props.go} game={game} />)}</CardGrid>);
   }
 
   return <>

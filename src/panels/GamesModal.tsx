@@ -4,6 +4,7 @@ import React, {SetStateAction} from "react";
 import {lang, langNumeric} from "../utils/langs";
 import './Modals.css';
 import {Filters} from "../utils/types";
+import {doHaptic} from "../utils/device";
 
 interface Props {
   activeModal: string | null;

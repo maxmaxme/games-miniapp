@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {Panel, PanelHeader, PanelHeaderButton} from "@vkontakte/vkui";
 import {platform, IOS} from '@vkontakte/vkui';
 import {Icon24Back, Icon24Cancel, Icon28CancelOutline, Icon28ChevronBack} from "@vkontakte/icons";
-import {panelProps, YesNoItem} from "../../utils/types";
+import {GoFunc, YesNoItem} from "../../utils/types";
 import {lang} from "../../utils/langs";
 import {getYesNoBase} from "./yesnobase";
 import {Intro} from "./components/Intro";
@@ -19,7 +19,13 @@ export enum YesNoViewTypes {
   VIEW_ONE,
 }
 
-export const YesNo = (props: panelProps) => {
+interface Props {
+  id: string;
+  go: GoFunc;
+  openModal: (name: string) => void;
+}
+
+export const YesNo = (props: Props) => {
 
   const [selectedYesNo, setSelectedYesNo] = useState<YesNoItem|null>(null)
   const [viewType, setViewType] = useState<YesNoViewTypes>(YesNoViewTypes.INTRO);
@@ -31,7 +37,7 @@ export const YesNo = (props: panelProps) => {
   }
 
   useEffect(() => {
-    props.setDisableSwipeBack(isActiveGame);
+    // props.setDisableSwipeBack(isActiveGame);
   });
 
   const onBackClick = isActiveGame ? () => {

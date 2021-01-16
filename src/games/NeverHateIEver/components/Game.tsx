@@ -1,17 +1,17 @@
 import React, {useState} from "react";
 import {Div, Placeholder, Subhead, Title} from "@vkontakte/vkui";
 import {GameButtons} from "./GameButtons";
-import {defaultProps} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
 import {ReactSVG} from "react-svg";
+import {GoFunc} from "../../../utils/types";
 
-interface Props extends defaultProps {
+interface Props {
   phrases: string[],
   punishments: string[]
 }
 
 export const Game = (props: Props) => {
-  const {phrases, punishments, go, openModal} = props;
+  const {phrases, punishments} = props;
   const [phrase, setPhrase] = useState<string | undefined>(undefined);
   const [punishment, setPunishment] = useState<string | undefined>(undefined);
 
@@ -29,8 +29,8 @@ export const Game = (props: Props) => {
       <div className="NeverHateIEver__placeholderIcon"><ReactSVG src="/icons/down-chevron.svg" /></div>
     </Placeholder>}
     <GameButtons
-      go={go}
-      openModal={openModal}
+      // go={go}
+      // openModal={openModal}
       phrases={phrases}
       punishments={punishments}
       phrase={phrase}

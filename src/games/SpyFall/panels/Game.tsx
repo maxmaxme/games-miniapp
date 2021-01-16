@@ -1,16 +1,18 @@
 import React, {useState} from "react";
-import {Button, Div, FixedLayout, Placeholder, Separator} from "@vkontakte/vkui";
-import {defaultProps} from "../../../utils/types";
+import {Button, Div, FixedLayout, IOS, Panel, PanelHeader, PanelHeaderButton, Placeholder, platform, Separator} from "@vkontakte/vkui";
 import Timer from "react-compound-timer";
 import {lang} from "../../../utils/langs";
 import {doHaptic} from "../../../utils/device";
 import {ReactSVG} from "react-svg";
 import {isWeb} from "../../../utils/platform";
+import {Icon24Back, Icon28ChevronBack} from "@vkontakte/icons";
 
-interface Props extends defaultProps {
+interface Props {
+  id: string;
   spyPlayerNum: number;
   playersCount: number;
   word: string;
+  backClick: () => void;
 }
 
 export const Game = (props: Props) => {
@@ -72,7 +74,12 @@ export const Game = (props: Props) => {
 
   const nextPlayerLang = isWeb() ? 'games_spyfall_next_player_web' : 'games_spyfall_next_player';
 
-  return (<>
+  return (<Panel id={props.id}>
+    <PanelHeader
+      left={<PanelHeaderButton onClick={props.backClick} data-to="home">{platform() === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
+    >
+      {lang('games_spyfall_title')}
+    </PanelHeader>
     <Placeholder stretched icon={icon ? <div className="SpyFall__spyIcon"><ReactSVG src={`/icons/${icon}.svg`}/></div> : undefined}>
       <div className="SpyFall__placeholderIn">
         {viewStatus === ViewStatus.RULES && lang(nextPlayerLang).replace('%s', playerNum.toString())}
@@ -86,5 +93,5 @@ export const Game = (props: Props) => {
       <Separator wide/>
       <Div>{button}</Div>
     </FixedLayout>}
-  </>);
+  </Panel>);
 }
