@@ -7,6 +7,7 @@ import Home from './panels/Home'
 import bridge from "@vkontakte/vk-bridge";
 import {AppearanceScheme} from "@vkontakte/vkui/src/components/ConfigProvider/ConfigProviderContext";
 import {Views} from "./utils/views";
+import {NeverHateIEver} from "./games/NeverHateIEver/NeverHateIEver";
 
 const App = () => {
   const defaultView = Views.HOME;
@@ -64,6 +65,7 @@ const App = () => {
       <Root activeView={activeView}>
         <Home id={Views.HOME} changeView={changeView} />
         <SpyFall id={Views.SPYFALL} />
+        <NeverHateIEver id={Views.NEVER_HATE_I_EVER} />
       </Root>
     </ConfigProvider>
   );

@@ -3,4 +3,5 @@ export enum Views {
 
   /** Games */
   SPYFALL = 'SpyFall',
+  NEVER_HATE_I_EVER = 'NeverHateIEver',
 }

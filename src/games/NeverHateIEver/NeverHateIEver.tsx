@@ -3,28 +3,33 @@ import React, {useEffect, useState} from 'react';
 import {
   Panel,
   PanelHeader,
-  PanelHeaderButton,
+  PanelHeaderButton, View,
 } from "@vkontakte/vkui";
 import {platform, IOS} from '@vkontakte/vkui';
 import {Icon24Back, Icon24Cancel, Icon28CancelOutline, Icon28ChevronBack} from "@vkontakte/icons";
 import {GoFunc, WordsListItem} from "../../utils/types";
-import {GameSettings} from "./components/GameSettings";
-import {Game} from "./components/Game";
+import {GameSettings} from "./panels/GameSettings";
+import {Game} from "./panels/Game";
 import {getPhrases} from "./phrases";
 import {getPunishments} from "./punishments";
 import './NeverHateIEver.css';
 import {lang} from "../../utils/langs";
 import {LocalStorage, LocalStorageKeys} from "../../utils/localstorage";
+import {RulesModal} from "../../components/RulesModal/RulesModal";
 
 const osName = platform();
 
 interface Props {
   id: string;
-  go: GoFunc;
-  openModal: (name: string) => void;
 }
 
 export const NeverHateIEver = (props: Props) => {
+  enum Panels {
+    SETTINGS = 'settings',
+    GAME = 'game',
+  }
+
+  const [activePanel, setActivePanel] = useState<string>(Panels.SETTINGS);
   const phrases: WordsListItem[] = getPhrases();
   const punishments: WordsListItem[] = getPunishments();
 
@@ -45,10 +50,6 @@ export const NeverHateIEver = (props: Props) => {
   LocalStorage.setNumberArray(LocalStorageKeys.NEVERHATEIEVER_DEFAULT_SELECTED_PHRASES, selectedPhrases);
   LocalStorage.setNumberArray(LocalStorageKeys.NEVERHATEIEVER_DEFAULT_SELECTED_PUNISHMENTS, selectedPunishments);
 
-  const startGame = () => {
-    setIsActiveGame(true);
-  }
-
   useEffect(() => {
     // props.setDisableSwipeBack(isActiveGame);
   });
@@ -66,31 +67,48 @@ export const NeverHateIEver = (props: Props) => {
   phrasesForGame.sort(() => Math.random() - 0.5)
   punishmentsForGame.sort(() => Math.random() - 0.5)
 
-  return (
-    <Panel id={props.id} className="NeverHateIEver__panel">
-      <PanelHeader left={<PanelHeaderButton onClick={onBackClick} data-to="home">{backIcon}</PanelHeaderButton>}>
-        {lang('games_neverihaveever_title')}
-      </PanelHeader>
-      {isActiveGame ?
-        <Game
-          phrases={phrasesForGame}
-          punishments={punishmentsForGame}
-          // go={props.go}
-          // openModal={props.openModal}
-        /> :
-        <GameSettings
-          go={props.go}
-          openModal={props.openModal}
-          startGame={startGame}
-          selectedPhrases={selectedPhrases}
-          selectedPunishments={selectedPunishments}
-          setSelectedPhrases={setSelectedPhrases}
-          setSelectedPunishments={setSelectedPunishments}
-          punishments={punishments}
-          phrases={phrases}
-        />}
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+  console.log('activeModal', activeModal)
+  const modals = <RulesModal activeModal={activeModal} setActiveModal={setActiveModal} text={lang('games_neverihaveever_rules')}/>;
 
-    </Panel>
-  );
+  const goBack = () => {
+    history.pop()
+    setActivePanel(history[history.length - 1])
+  }
+  const go = (to: string) => {
+    window.history.pushState( {panel: to}, to ); // Создаём новую запись в истории браузера
+    setActivePanel(to); // Меняем активную view
+    // @ts-ignore
+    history.push(to); // Добавляем панель в историю
+  };
+
+  const [history] = useState([Panels.SETTINGS]);
+
+  return <View
+    id={props.id}
+    activePanel={activePanel}
+    modal={modals}
+    history={history}
+    onSwipeBack={goBack}
+  >
+      <GameSettings
+        id={Panels.SETTINGS}
+        openRules={() => setActiveModal('rules')}
+        startGame={() => go(Panels.GAME)}
+        selectedPhrases={selectedPhrases}
+        selectedPunishments={selectedPunishments}
+        setSelectedPhrases={setSelectedPhrases}
+        setSelectedPunishments={setSelectedPunishments}
+        punishments={punishments}
+        phrases={phrases}
+      />
+
+      <Game
+        backClick={() => go(Panels.SETTINGS)}
+        id={Panels.GAME}
+        phrases={phrasesForGame}
+        punishments={punishmentsForGame}
+      />
+  </View>;
 }
 

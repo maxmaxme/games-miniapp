@@ -23,7 +23,7 @@ export const GameSettings = (props: Props) => {
 
   return <Panel id={props.id}>
     <PanelHeader
-      left={<PanelHeaderButton onClick={window.history.back} data-to="home">{(platform() === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>)}</PanelHeaderButton>}
+      left={<PanelHeaderButton onClick={() => window.history.back()} data-to="home">{(platform() === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>)}</PanelHeaderButton>}
     >
       {lang('games_spyfall_title')}
     </PanelHeader>

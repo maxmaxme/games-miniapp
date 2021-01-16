@@ -1,13 +1,14 @@
-import {Button, CardGrid, CellButton, Div, Group, Tabs, TabsItem} from "@vkontakte/vkui";
+import {Button, CardGrid, CellButton, Div, Group, IOS, Panel, PanelHeader, PanelHeaderButton, platform, Tabs, TabsItem, View} from "@vkontakte/vkui";
 import React, {SetStateAction, useState} from "react";
 import {GoFunc, WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
 import {ListItemComponent} from "../../../components/ListItemComponent/ListItemComponent";
 import {doHaptic} from "../../../utils/device";
+import {Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
 
 interface Props {
-  go: GoFunc;
-  openModal: (name: string) => void;
+  id: string;
+  openRules: () => void;
   startGame: () => void;
   selectedPhrases: number[];
   setSelectedPhrases: SetStateAction<any>;
@@ -21,9 +22,14 @@ export const GameSettings = (props: Props) => {
   const [activeTab, setActiveTab] = useState(0);
   const {phrases, punishments, selectedPhrases, selectedPunishments, setSelectedPhrases, setSelectedPunishments} = props;
 
-  return (
+  return <Panel id={props.id} className="NeverHateIEver__panel">
+    <PanelHeader
+      left={<PanelHeaderButton onClick={() => window.history.back()}>{(platform() === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>)}</PanelHeaderButton>}
+    >
+      {lang('games_neverihaveever_title')}
+    </PanelHeader>
     <Group>
-      <CellButton onClick={() => props.openModal('NeverHateIEver_rules')}>
+      <CellButton onClick={() => props.openRules()}>
         {lang('games_neverihaveever_rules_button')}
       </CellButton>
       <Tabs>
@@ -54,5 +60,6 @@ export const GameSettings = (props: Props) => {
         }}
         >{lang('games_neverihaveever_start_game_full_button')}</Button>
       </Div>
-    </Group>);
+    </Group>
+  </Panel>;
 }

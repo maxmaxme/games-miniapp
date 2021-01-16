@@ -1,13 +1,15 @@
 import React, {useState} from "react";
-import {Div, Placeholder, Subhead, Title} from "@vkontakte/vkui";
-import {GameButtons} from "./GameButtons";
+import {Div, IOS, Panel, PanelHeader, PanelHeaderButton, Placeholder, platform, Subhead, Title} from "@vkontakte/vkui";
+import {GameButtons} from "../components/GameButtons";
 import {lang} from "../../../utils/langs";
 import {ReactSVG} from "react-svg";
-import {GoFunc} from "../../../utils/types";
+import {Icon24Back, Icon28ChevronBack} from "@vkontakte/icons";
 
 interface Props {
-  phrases: string[],
-  punishments: string[]
+  id: string;
+  phrases: string[];
+  punishments: string[];
+  backClick: () => void;
 }
 
 export const Game = (props: Props) => {
@@ -15,7 +17,12 @@ export const Game = (props: Props) => {
   const [phrase, setPhrase] = useState<string | undefined>(undefined);
   const [punishment, setPunishment] = useState<string | undefined>(undefined);
 
-  return (<>
+  return (<Panel id={props.id} className="NeverHateIEver__panel">
+    <PanelHeader
+      left={<PanelHeaderButton onClick={props.backClick}>{platform() === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
+    >
+      {lang('games_neverihaveever_title')}
+    </PanelHeader>
     {(punishment !== undefined || phrase !== undefined) ? <Div>
       {punishment ?
         <div className="NeverHateIEver__punishment">{punishment}</div> :
@@ -37,5 +44,5 @@ export const Game = (props: Props) => {
       setPhrase={setPhrase}
       setPunishment={setPunishment}
     />
-  </>);
+  </Panel>);
 }

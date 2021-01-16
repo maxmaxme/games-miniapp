@@ -76,7 +76,7 @@ export const Game = (props: Props) => {
 
   return (<Panel id={props.id}>
     <PanelHeader
-      left={<PanelHeaderButton onClick={props.backClick} data-to="home">{platform() === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
+      left={<PanelHeaderButton onClick={props.backClick}>{platform() === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
     >
       {lang('games_spyfall_title')}
     </PanelHeader>
