@@ -19,7 +19,7 @@ export interface Filters {
   gameDuration: number | null;
 }
 
-export type GoFunc = (event: React.SyntheticEvent<EventTarget>) => void
+export type GoFunc = (to: string) => void
 
 export enum GameNames {
   NeverHateIEver = 'NeverHateIEver',

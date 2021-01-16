@@ -8,7 +8,7 @@ import {lang, langNumeric} from "../../utils/langs";
 import {classNames} from "@vkontakte/vkjs";
 
 interface Props {
-  go: GoFunc;
+  changeView: GoFunc;
   game: Game;
 }
 
@@ -27,9 +27,9 @@ export const GamesListItem = (props: Props) => {
   tags.push(<div key="duration" className="GamesListItem__tag"><Icon12Clock /> {minMaxFormatter(game.duration, 'gamelist_item_tag_minutes')}</div>)
   tags.push(<div key="players" className="GamesListItem__tag"><Icon16Users width={12} height={12} /> {minMaxFormatter(game.players, 'gamelist_item_tag_players')}</div>)
 
-  const onClick = game.unavailable ? undefined : props.go;
+  const onClick = game.unavailable ? undefined : () => props.changeView(game.id);
 
-  return <Card mode="outline" onClick={onClick} data-to={game.id}>
+  return <Card mode="outline" onClick={onClick}>
     <div className={classNames('GamesListItem', {'GamesListItem--disabled': game.unavailable})}>
       <div className="GamesListItem__image" style={{backgroundImage: `url(${game.image_url})`}}/>
       <div className="GamesListItem__info">

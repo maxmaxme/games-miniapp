@@ -15,7 +15,6 @@ import {lang} from "../../utils/langs";
 
 interface Props {
   id: string;
-  go: GoFunc;
 }
 
 export const SpyFall = (props: Props) => {
@@ -52,13 +51,28 @@ export const SpyFall = (props: Props) => {
     setActiveModal('rules');
   };
 
+  const goBack = () => {
+    history.pop()
+    setActivePanel(history[history.length - 1])
+  }
+  const go = (to: string) => {
+    window.history.pushState( {panel: to}, to ); // Создаём новую запись в истории браузера
+    setActivePanel(to); // Меняем активную view
+    // @ts-ignore
+    history.push(to); // Добавляем панель в историю
+  };
+
+  const [history] = useState([Panels.SETTINGS]);
+
   return <View
     id={props.id}
     activePanel={activePanel}
     modal={modals}
+    history={history}
+    onSwipeBack={goBack}
   >
     <GameSettings
-      startGame={() => setActivePanel(Panels.GAME)}
+      startGame={() => go(Panels.GAME)}
       playersCount={playersCount}
       setPlayersCount={setPlayersCount}
       collections={collections}
@@ -72,7 +86,7 @@ export const SpyFall = (props: Props) => {
       playersCount={playersCount}
       spyPlayerNum={randomInteger(1, playersCount)}
       word={wordForGame}
-      backClick={() => setActivePanel(Panels.SETTINGS)}
+      backClick={() => go(Panels.SETTINGS)}
     />
   </View>;
 }

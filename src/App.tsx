@@ -16,15 +16,6 @@ const App = () => {
   const [activeView, setActiveView] = useState<string>(defaultView);
   const [history] = useState([defaultView]);
 
-  const goBack = () => {
-    if( history.length === 1 ) {  // Если в массиве одно значение:
-      bridge.send("VKWebAppClose", {"status": "success"}); // Отправляем bridge на закрытие сервиса.
-    } else if( history.length > 1 ) { // Если в массиве больше одного значения:
-      history.pop() // удаляем последний элемент в массиве.
-      setActiveView( history[history.length - 1] ) // Изменяем массив с иторией и меняем активную панель.
-    }
-  }
-
   useEffect(() => {
     function changeScheme( scheme: string, needChange = false ) {
       let isLight = lights.includes( scheme );
@@ -57,20 +48,22 @@ const App = () => {
 
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const go = (event: React.SyntheticEvent<EventTarget>) => {
+  const goBack = () => {
+    history.pop()
+    setActiveView(history[history.length - 1])
+  }
+  const changeView = (to: string) => {
+    window.history.pushState( {panel: to}, to ); // Создаём новую запись в истории браузера
+    setActiveView(to); // Меняем активную view
     // @ts-ignore
-    const name = event.currentTarget.dataset.to;
-    window.history.pushState( {panel: name}, name ); // Создаём новую запись в истории браузера
-    setActiveView(name); // Меняем активную view
-    history.push(name); // Добавляем панель в историю
+    history.push(to); // Добавляем панель в историю
   };
-
 
   return (
     <ConfigProvider scheme={scheme}>
       <Root activeView={activeView}>
-        <Home id={Views.HOME} go={go} />
-        <SpyFall id={Views.SPYFALL} go={go} />
+        <Home id={Views.HOME} changeView={changeView} />
+        <SpyFall id={Views.SPYFALL} />
       </Root>
     </ConfigProvider>
   );

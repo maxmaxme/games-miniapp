@@ -28,7 +28,7 @@ import {getGames} from "../games/gameslist";
 
 interface Props {
   id: string;
-  go: GoFunc;
+  changeView: GoFunc;
 }
 
 const Home = (props: Props) => {
@@ -48,7 +48,6 @@ const Home = (props: Props) => {
   const onSearch = (query: string) => {
     setSearchQuery(query);
   }
-
 
   useEffect(() => {
     async function fetchData() {
@@ -125,7 +124,7 @@ const Home = (props: Props) => {
       </PanelHeader>
       <Group>
         <GamesSearch search={onSearch} openModal={openModal} filters={filters}/>
-        <GamesList searchQuery={searchQuery} filters={filters} go={props.go} games={games} isFavoriteApp={isFavorite}/>
+        <GamesList searchQuery={searchQuery} filters={filters} changeView={props.changeView} games={games} isFavoriteApp={isFavorite}/>
       </Group>
     </Panel>
   </View>
