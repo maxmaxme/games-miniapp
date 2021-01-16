@@ -8,7 +8,6 @@ export interface Game {
   image_url: string;
   duration: MinMax;
   players: MinMax;
-  unavailable?: boolean;
   view?: Views;
 }
 

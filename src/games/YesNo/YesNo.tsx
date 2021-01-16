@@ -31,10 +31,6 @@ export const YesNo = (props: Props) => {
     go(Panels.ONE_VIEW);
   }
 
-  useEffect(() => {
-    // props.setDisableSwipeBack(isActiveGame);
-  });
-
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const modals = <RulesModal activeModal={activeModal} setActiveModal={setActiveModal} text={lang('games_yesno_rules')}/>;
 

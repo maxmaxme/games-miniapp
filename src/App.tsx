@@ -9,6 +9,7 @@ import {AppearanceScheme} from "@vkontakte/vkui/src/components/ConfigProvider/Co
 import {Views} from "./utils/views";
 import {NeverHateIEver} from "./games/NeverHateIEver/NeverHateIEver";
 import {YesNo} from "./games/YesNo/YesNo";
+import {OpenQuestions} from "./games/OpenQuestions/OpenQuestions";
 
 const App = () => {
   const defaultView = Views.HOME;
@@ -67,6 +68,7 @@ const App = () => {
         <SpyFall id={Views.SPYFALL} />
         <NeverHateIEver id={Views.NEVER_HATE_I_EVER} />
         <YesNo id={Views.YES_OR_NO} />
+        <OpenQuestions id={Views.OPEN_QUESTIONS} />
       </Root>
     </ConfigProvider>
   );

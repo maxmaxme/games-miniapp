@@ -34,9 +34,9 @@ export function getGames(): Game[] {
       duration: {min: 10},
       players: {min: 2},
       image_url: '/img/games/open-questions.jpeg',
+      view: Views.OPEN_QUESTIONS,
     },
     {
-      unavailable: true,
       id: GameNames.TruthOrDare,
       title: lang('games_truthordare_title'),
       duration: {min: 10},
@@ -44,7 +44,6 @@ export function getGames(): Game[] {
       image_url: '/img/games/truth-or-dare.jpg',
     },
     {
-      unavailable: true,
       id: GameNames.Twister,
       title: lang('games_twister_title'),
       duration: {min: 10},
@@ -52,7 +51,6 @@ export function getGames(): Game[] {
       image_url: '/img/games/twister.jpg',
     },
     {
-      unavailable: true,
       id: GameNames.Alias,
       title: lang('games_alias_title'),
       duration: {min: 5},

@@ -27,17 +27,17 @@ export const GamesListItem = (props: Props) => {
 
   tags.push(<div key="duration" className="GamesListItem__tag"><Icon12Clock /> {minMaxFormatter(game.duration, 'gamelist_item_tag_minutes')}</div>)
   tags.push(<div key="players" className="GamesListItem__tag"><Icon16Users width={12} height={12} /> {minMaxFormatter(game.players, 'gamelist_item_tag_players')}</div>)
-
-  const onClick = game.unavailable || game.view === undefined ? undefined : () => props.changeView(game.view as string);
+  const unavailable = game.view === undefined;
+  const onClick = unavailable ? undefined : () => props.changeView(game.view as string);
 
   return <Card mode="outline" onClick={onClick}>
-    <div className={classNames('GamesListItem', {'GamesListItem--disabled': game.unavailable})}>
+    <div className={classNames('GamesListItem', {'GamesListItem--disabled': unavailable})}>
       <div className="GamesListItem__image" style={{backgroundImage: `url(${game.image_url})`}}/>
       <div className="GamesListItem__info">
         <div className="GamesListItem__title">{game.title}</div>
         <div className="GamesListItem__tags">{tags}</div>
       </div>
     </div>
-    {game.unavailable && <div className="GamesListItem__disabledPlaceholder"><div className="GamesListItem__disabledPlaceholderIn">{lang('gamelist_item_unavailable')}</div></div>}
+    {unavailable && <div className="GamesListItem__disabledPlaceholder"><div className="GamesListItem__disabledPlaceholderIn">{lang('gamelist_item_unavailable')}</div></div>}
   </Card>;
 }
