@@ -8,6 +8,7 @@ import bridge from "@vkontakte/vk-bridge";
 import {AppearanceScheme} from "@vkontakte/vkui/src/components/ConfigProvider/ConfigProviderContext";
 import {Views} from "./utils/views";
 import {NeverHateIEver} from "./games/NeverHateIEver/NeverHateIEver";
+import {YesNo} from "./games/YesNo/YesNo";
 
 const App = () => {
   const defaultView = Views.HOME;
@@ -56,8 +57,7 @@ const App = () => {
   const changeView = (to: string) => {
     window.history.pushState( {panel: to}, to ); // Создаём новую запись в истории браузера
     setActiveView(to); // Меняем активную view
-    // @ts-ignore
-    history.push(to); // Добавляем панель в историю
+    history.push(to as Views); // Добавляем панель в историю
   };
 
   return (
@@ -66,6 +66,7 @@ const App = () => {
         <Home id={Views.HOME} changeView={changeView} />
         <SpyFall id={Views.SPYFALL} />
         <NeverHateIEver id={Views.NEVER_HATE_I_EVER} />
+        <YesNo id={Views.YES_OR_NO} />
       </Root>
     </ConfigProvider>
   );

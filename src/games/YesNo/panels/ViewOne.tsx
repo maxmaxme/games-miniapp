@@ -1,18 +1,26 @@
-import {Button, Card, Div, FixedLayout, Separator, Title} from "@vkontakte/vkui";
+import {Button, Card, Div, FixedLayout, IOS, Panel, PanelHeader, PanelHeaderButton, platform, Separator, Title} from "@vkontakte/vkui";
 import React, {useState} from "react";
 import {YesNoItem} from "../../../utils/types";
 import './ViewOne.css';
 import {classNames} from "@vkontakte/vkjs";
 import {lang} from "../../../utils/langs";
 import {doHaptic} from "../../../utils/device";
+import {Icon24Back, Icon28ChevronBack} from "@vkontakte/icons";
 
 interface Props {
+  id: string;
   yesNoItem: YesNoItem;
+  goBack: () => void;
 }
 
 export const ViewOne = (props: Props) => {
   const [flipped, setFlipped] = useState(false);
-  return <>
+  return <Panel id={props.id}>
+    <PanelHeader
+      left={<PanelHeaderButton onClick={() => props.goBack()}>{platform() === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
+    >
+      {lang('games_spyfall_title')}
+    </PanelHeader>
     <Div>
       <div className="YesNo__cards">
         <Card className={classNames('YesNo__card', 'YesNo__card--front', {'YesNo__card--flipped': flipped})}>
@@ -36,5 +44,5 @@ export const ViewOne = (props: Props) => {
         </Button>
       </Div>
     </FixedLayout>
-  </>
+  </Panel>
 }

@@ -1,64 +1,80 @@
 import React, {useEffect, useState} from 'react';
 
-import {Panel, PanelHeader, PanelHeaderButton} from "@vkontakte/vkui";
-import {platform, IOS} from '@vkontakte/vkui';
-import {Icon24Back, Icon24Cancel, Icon28CancelOutline, Icon28ChevronBack} from "@vkontakte/icons";
-import {GoFunc, YesNoItem} from "../../utils/types";
+import {View} from "@vkontakte/vkui";
+import {YesNoItem} from "../../utils/types";
 import {lang} from "../../utils/langs";
 import {getYesNoBase} from "./yesnobase";
-import {Intro} from "./components/Intro";
-import {ListView} from "./components/ListView";
-import {ViewOne} from "./components/ViewOne";
+import {Intro} from "./panels/Intro";
+import {ListView} from "./panels/ListView";
+import {ViewOne} from "./panels/ViewOne";
+import {RulesModal} from "../../components/RulesModal/RulesModal";
 
-const osName = platform();
 const yesNoBase = getYesNoBase();
 
-export enum YesNoViewTypes {
-  INTRO,
-  LIST_VIEW,
-  VIEW_ONE,
+export enum Panels {
+  INTRO = 'intro',
+  LIST_VIEW = 'list_view',
+  ONE_VIEW = 'one_view',
 }
 
 interface Props {
   id: string;
-  go: GoFunc;
-  openModal: (name: string) => void;
 }
 
 export const YesNo = (props: Props) => {
-
+  const [activePanel, setActivePanel] = useState<string>(Panels.INTRO);
   const [selectedYesNo, setSelectedYesNo] = useState<YesNoItem|null>(null)
-  const [viewType, setViewType] = useState<YesNoViewTypes>(YesNoViewTypes.INTRO);
-  const isActiveGame = viewType !== YesNoViewTypes.INTRO;
+  const [history] = useState([Panels.INTRO]);
 
   const openYesNo = (yesNo: YesNoItem) => {
     setSelectedYesNo(yesNo);
-    setViewType(YesNoViewTypes.VIEW_ONE);
+    go(Panels.ONE_VIEW);
   }
 
   useEffect(() => {
     // props.setDisableSwipeBack(isActiveGame);
   });
 
-  const onBackClick = isActiveGame ? () => {
-    setViewType(YesNoViewTypes.INTRO)
-  } : () => window.history.back();
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+  const modals = <RulesModal activeModal={activeModal} setActiveModal={setActiveModal} text={lang('games_yesno_rules')}/>;
 
-  const backIcon = isActiveGame ?
-    (osName === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>) :
-    (osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>);
+  const goBack = () => {
+    history.pop()
+    setActivePanel(history[history.length - 1])
+  }
+  const go = (to: string) => {
+    window.history.pushState( {panel: to}, to ); // Создаём новую запись в истории браузера
+    setActivePanel(to); // Меняем активную view
+    // @ts-ignore
+    history.push(to); // Добавляем панель в историю
+  };
 
-  return (
-    <Panel id={props.id}>
-      <PanelHeader
-        left={<PanelHeaderButton onClick={onBackClick} data-to="home">{backIcon}</PanelHeaderButton>}
-      >
-        {lang('games_yesno_title')}
-      </PanelHeader>
-      {viewType === YesNoViewTypes.INTRO && <Intro yesNoBase={yesNoBase} setViewType={setViewType} openYesNo={openYesNo} go={props.go} openModal={props.openModal} />}
-      {viewType === YesNoViewTypes.LIST_VIEW && <ListView yesNoBase={yesNoBase} openYesNo={openYesNo} />}
-      {(viewType === YesNoViewTypes.VIEW_ONE && selectedYesNo) && <ViewOne yesNoItem={selectedYesNo} />}
-    </Panel>
-  );
+  return <View
+    id={props.id}
+    activePanel={activePanel}
+    modal={modals}
+    history={history}
+    onSwipeBack={goBack}
+  >
+    <Intro
+      id={Panels.INTRO}
+      yesNoBase={yesNoBase}
+      openYesNo={openYesNo}
+      go={go}
+      openRules={() => setActiveModal('rules')}
+    />
+
+    <ListView
+      id={Panels.LIST_VIEW}
+      yesNoBase={yesNoBase}
+      goBack={goBack}
+      openYesNo={openYesNo}
+    />
+    <ViewOne
+      id={Panels.ONE_VIEW}
+      goBack={goBack}
+      yesNoItem={selectedYesNo as YesNoItem}
+    />
+  </View>
 }
 

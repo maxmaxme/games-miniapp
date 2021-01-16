@@ -6,6 +6,7 @@ import Icon16Users from '@vkontakte/icons/dist/16/users';
 import {Game, GoFunc, MinMax} from "../../utils/types";
 import {lang, langNumeric} from "../../utils/langs";
 import {classNames} from "@vkontakte/vkjs";
+import {Views} from "../../utils/views";
 
 interface Props {
   changeView: GoFunc;
@@ -27,7 +28,7 @@ export const GamesListItem = (props: Props) => {
   tags.push(<div key="duration" className="GamesListItem__tag"><Icon12Clock /> {minMaxFormatter(game.duration, 'gamelist_item_tag_minutes')}</div>)
   tags.push(<div key="players" className="GamesListItem__tag"><Icon16Users width={12} height={12} /> {minMaxFormatter(game.players, 'gamelist_item_tag_players')}</div>)
 
-  const onClick = game.unavailable ? undefined : () => props.changeView(game.id);
+  const onClick = game.unavailable || game.view === undefined ? undefined : () => props.changeView(game.view as string);
 
   return <Card mode="outline" onClick={onClick}>
     <div className={classNames('GamesListItem', {'GamesListItem--disabled': game.unavailable})}>

@@ -1,5 +1,6 @@
 import {Game, GameNames} from "../utils/types";
 import {lang} from "../utils/langs";
+import {Views} from "../utils/views";
 
 export function getGames(): Game[] {
   return [
@@ -9,6 +10,7 @@ export function getGames(): Game[] {
       duration: {min: 10},
       players: {min: 2, max: 10},
       image_url: '/img/games/never-have-i-ever.jpg',
+      view: Views.NEVER_HATE_I_EVER,
     },
     {
       id: GameNames.SpyFall,
@@ -16,6 +18,7 @@ export function getGames(): Game[] {
       duration: {min: 3},
       players: {min: 3, max: 8},
       image_url: '/img/games/spy-fall.jpg',
+      view: Views.SPYFALL,
     },
     {
       id: GameNames.YesNo,
@@ -23,6 +26,7 @@ export function getGames(): Game[] {
       duration: {min: 5},
       players: {min: 2},
       image_url: '/img/games/yesno.jpg',
+      view: Views.YES_OR_NO,
     },
     {
       id: GameNames.OpenQuestions,

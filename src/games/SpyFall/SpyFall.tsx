@@ -45,7 +45,6 @@ export const SpyFall = (props: Props) => {
   const wordForGame = wordsForGame.shift() || '';
 
   const [activeModal, setActiveModal] = useState<string | null>(null);
-  console.log('activeModal', activeModal)
   const modals = <RulesModal activeModal={activeModal} setActiveModal={setActiveModal} text={lang('games_spyfall_rules')}/>;
   const openRules = () => {
     setActiveModal('rules');

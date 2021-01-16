@@ -1,4 +1,6 @@
 import React, {SetStateAction} from "react";
+import {Panel} from "@vkontakte/vkui";
+import {Views} from "./views";
 
 export interface Game {
   id: GameNames;
@@ -7,6 +9,7 @@ export interface Game {
   duration: MinMax;
   players: MinMax;
   unavailable?: boolean;
+  view?: Views;
 }
 
 export interface MinMax {

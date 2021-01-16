@@ -1,22 +1,28 @@
-import {Button, CellButton, Div, Group, Title} from "@vkontakte/vkui";
+import {Button, CellButton, Div, Group, IOS, Panel, PanelHeader, PanelHeaderButton, platform, Title} from "@vkontakte/vkui";
 import {lang, langNumeric} from "../../../utils/langs";
-import React, {SetStateAction} from "react";
+import React from "react";
 import {GoFunc, YesNoItem} from "../../../utils/types";
-import {YesNoViewTypes} from "../YesNo";
+import {Panels} from "../YesNo";
 import {shuffleArray} from "@vkontakte/vkjs";
+import {Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
 
 interface Props {
+  id: string;
   go: GoFunc;
-  openModal: (name: string) => void;
+  openRules: () => void;
   yesNoBase: YesNoItem[];
-  setViewType: SetStateAction<any>;
   openYesNo: (yesNo: YesNoItem) => void;
 }
 
 export const Intro = (props: Props) => (
-  <>
+  <Panel id={props.id}>
+    <PanelHeader
+      left={<PanelHeaderButton onClick={() => window.history.back()} data-to="home">{(platform() === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>)}</PanelHeaderButton>}
+    >
+      {lang('games_spyfall_title')}
+    </PanelHeader>
     <Group separator="hide">
-      <CellButton onClick={() => props.openModal('YesNo_rules')}>
+      <CellButton onClick={() => props.openRules()}>
         {lang('games_yesno_rules_button')}
       </CellButton>
     </Group>
@@ -26,7 +32,7 @@ export const Intro = (props: Props) => (
       </Title>
       <Group separator="hide">
         <Button
-          onClick={() => props.setViewType(YesNoViewTypes.LIST_VIEW)}
+          onClick={() => props.go(Panels.LIST_VIEW)}
           stretched
           mode="secondary"
           size="l"
@@ -45,5 +51,5 @@ export const Intro = (props: Props) => (
         </Button>
       </Group>
     </Div>
-  </>
+  </Panel>
 )

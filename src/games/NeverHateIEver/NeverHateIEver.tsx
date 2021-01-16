@@ -68,7 +68,6 @@ export const NeverHateIEver = (props: Props) => {
   punishmentsForGame.sort(() => Math.random() - 0.5)
 
   const [activeModal, setActiveModal] = useState<string | null>(null);
-  console.log('activeModal', activeModal)
   const modals = <RulesModal activeModal={activeModal} setActiveModal={setActiveModal} text={lang('games_neverihaveever_rules')}/>;
 
   const goBack = () => {
