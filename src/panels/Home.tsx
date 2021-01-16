@@ -28,7 +28,6 @@ import {getGames} from "../games/gameslist";
 
 interface Props {
   id: string;
-  changeView: GoFunc;
 }
 
 const Home = (props: Props) => {
@@ -124,7 +123,7 @@ const Home = (props: Props) => {
       </PanelHeader>
       <Group>
         <GamesSearch search={onSearch} openModal={openModal} filters={filters}/>
-        <GamesList searchQuery={searchQuery} filters={filters} changeView={props.changeView} games={games} isFavoriteApp={isFavorite}/>
+        <GamesList searchQuery={searchQuery} filters={filters} games={games} isFavoriteApp={isFavorite}/>
       </Group>
     </Panel>
   </View>

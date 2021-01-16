@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './GamesListItem.css';
 import {Card} from '@vkontakte/vkui';
 import Icon12Clock from '@vkontakte/icons/dist/12/clock';
@@ -7,15 +7,16 @@ import {Game, GoFunc, MinMax} from "../../utils/types";
 import {lang, langNumeric} from "../../utils/langs";
 import {classNames} from "@vkontakte/vkjs";
 import {Views} from "../../utils/views";
+import {AppContext} from "../../AppContext";
 
 interface Props {
-  changeView: GoFunc;
   game: Game;
 }
 
 export const GamesListItem = (props: Props) => {
   let tags = [];
   const game = props.game;
+  const { changeView } = useContext(AppContext);
 
   const minMaxFormatter = (minMax: MinMax, langKey: string) => {
     if (!minMax.max) {
@@ -28,7 +29,7 @@ export const GamesListItem = (props: Props) => {
   tags.push(<div key="duration" className="GamesListItem__tag"><Icon12Clock /> {minMaxFormatter(game.duration, 'gamelist_item_tag_minutes')}</div>)
   tags.push(<div key="players" className="GamesListItem__tag"><Icon16Users width={12} height={12} /> {minMaxFormatter(game.players, 'gamelist_item_tag_players')}</div>)
   const unavailable = game.view === undefined;
-  const onClick = unavailable ? undefined : () => props.changeView(game.view as string);
+  const onClick = unavailable ? undefined : () => changeView(game.view as Views);
 
   return <Card mode="outline" onClick={onClick}>
     <div className={classNames('GamesListItem', {'GamesListItem--disabled': unavailable})}>

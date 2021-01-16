@@ -4,6 +4,7 @@ import '@vkontakte/vkui/dist/vkui.css';
 
 import {SpyFall} from './games/SpyFall/SpyFall';
 import Home from './panels/Home'
+import {AppContext} from './AppContext';
 import bridge from "@vkontakte/vk-bridge";
 import {AppearanceScheme} from "@vkontakte/vkui/src/components/ConfigProvider/ConfigProviderContext";
 import {Views} from "./utils/views";
@@ -55,22 +56,28 @@ const App = () => {
     history.pop()
     setActiveView(history[history.length - 1])
   }
-  const changeView = (to: string) => {
+  const changeView = (to: Views) => {
     window.history.pushState( {panel: to}, to ); // Создаём новую запись в истории браузера
     setActiveView(to); // Меняем активную view
     history.push(to as Views); // Добавляем панель в историю
   };
 
+  const appContextProvider = {
+    changeView: changeView,
+  };
+
   return (
-    <ConfigProvider scheme={scheme}>
-      <Root activeView={activeView}>
-        <Home id={Views.HOME} changeView={changeView} />
-        <SpyFall id={Views.SPYFALL} />
-        <NeverHateIEver id={Views.NEVER_HATE_I_EVER} />
-        <YesNo id={Views.YES_OR_NO} />
-        <OpenQuestions id={Views.OPEN_QUESTIONS} />
-      </Root>
-    </ConfigProvider>
+    <AppContext.Provider value={appContextProvider}>
+      <ConfigProvider scheme={scheme}>
+        <Root activeView={activeView}>
+          <Home id={Views.HOME} />
+          <SpyFall id={Views.SPYFALL} />
+          <NeverHateIEver id={Views.NEVER_HATE_I_EVER} />
+          <YesNo id={Views.YES_OR_NO} />
+          <OpenQuestions id={Views.OPEN_QUESTIONS} />
+        </Root>
+      </ConfigProvider>
+    </AppContext.Provider>
   );
 }
 

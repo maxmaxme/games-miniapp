@@ -8,7 +8,6 @@ import './GameList.css';
 import bridge from "@vkontakte/vk-bridge";
 
 interface Props {
-  changeView: GoFunc;
   games: Game[] | null;
   searchQuery: string;
   filters: Filters;
@@ -60,7 +59,6 @@ export function GamesList(props: Props) {
       >{firstRowGames.map((game, i) =>
         <GamesListItem
           key={i}
-          changeView={props.changeView}
           game={game}
         />)}
       </CardGrid>);
@@ -89,14 +87,13 @@ export function GamesList(props: Props) {
       >{otherRowsGames.map((game, i) =>
         <GamesListItem
           key={i}
-          changeView={props.changeView}
           game={game}
         />)}
       </CardGrid>);
 
     }
   } else {
-    gamesBlock.push(<CardGrid size={twoCardsPerRow ? 'm' : 'l'}>{games.map((game, i) => <GamesListItem key={i} changeView={props.changeView} game={game} />)}</CardGrid>);
+    gamesBlock.push(<CardGrid size={twoCardsPerRow ? 'm' : 'l'}>{games.map((game, i) => <GamesListItem key={i} game={game} />)}</CardGrid>);
   }
 
   return <>
