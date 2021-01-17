@@ -1,25 +1,26 @@
 import {Button, CellButton, Div, Group, IOS, Panel, PanelHeader, PanelHeaderButton, platform, Title} from "@vkontakte/vkui";
 import {lang, langNumeric} from "../../../utils/langs";
-import React from "react";
-import {GoFunc, YesNoItem} from "../../../utils/types";
+import React, {useContext} from "react";
+import {YesNoItem} from "../../../utils/types";
 import {Panels} from "../YesNo";
 import {shuffleArray} from "@vkontakte/vkjs";
 import {Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
+import {AppContext} from "../../../AppContext";
 
 interface Props {
   id: string;
-  go: GoFunc;
   openRules: () => void;
   yesNoBase: YesNoItem[];
   openYesNo: (yesNo: YesNoItem) => void;
 }
 
-export const Intro = (props: Props) => (
-  <Panel id={props.id}>
+export const Intro = (props: Props) => {
+  const { changePanel } = useContext(AppContext);
+  return <Panel id={props.id}>
     <PanelHeader
       left={<PanelHeaderButton onClick={() => window.history.back()} data-to="home">{(platform() === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>)}</PanelHeaderButton>}
     >
-      {lang('games_spyfall_title')}
+      {lang('games_yesno_title')}
     </PanelHeader>
     <Group separator="hide">
       <CellButton onClick={() => props.openRules()}>
@@ -32,7 +33,7 @@ export const Intro = (props: Props) => (
       </Title>
       <Group separator="hide">
         <Button
-          onClick={() => props.go(Panels.LIST_VIEW)}
+          onClick={() => changePanel(Panels.LIST_VIEW)}
           stretched
           mode="secondary"
           size="l"
@@ -52,4 +53,4 @@ export const Intro = (props: Props) => (
       </Group>
     </Div>
   </Panel>
-)
+}

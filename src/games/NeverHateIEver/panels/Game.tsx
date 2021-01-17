@@ -9,7 +9,6 @@ interface Props {
   id: string;
   phrases: string[];
   punishments: string[];
-  backClick: () => void;
 }
 
 export const Game = (props: Props) => {
@@ -19,7 +18,7 @@ export const Game = (props: Props) => {
 
   return (<Panel id={props.id} className="NeverHateIEver__panel">
     <PanelHeader
-      left={<PanelHeaderButton onClick={props.backClick}>{platform() === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
+      left={<PanelHeaderButton onClick={() => window.history.back()}>{platform() === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
     >
       {lang('games_neverihaveever_title')}
     </PanelHeader>

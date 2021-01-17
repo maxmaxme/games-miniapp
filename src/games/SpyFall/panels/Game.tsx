@@ -12,7 +12,6 @@ interface Props {
   spyPlayerNum: number;
   playersCount: number;
   word: string;
-  backClick: () => void;
 }
 
 export const Game = (props: Props) => {
@@ -76,7 +75,7 @@ export const Game = (props: Props) => {
 
   return (<Panel id={props.id}>
     <PanelHeader
-      left={<PanelHeaderButton onClick={props.backClick}>{platform() === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
+      left={<PanelHeaderButton onClick={() => window.history.back()}>{platform() === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
     >
       {lang('games_spyfall_title')}
     </PanelHeader>

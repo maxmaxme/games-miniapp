@@ -18,7 +18,8 @@ const App = () => {
   const [scheme, SetStateScheme] = useState<AppearanceScheme>('bright_light');
   const lights = ['bright_light', 'client_light'];
   const [activeView, setActiveView] = useState<string>(defaultView);
-  const [history] = useState([defaultView]);
+  const [activePanel, setActivePanel] = useState<string>('');
+  const [panelsHistory] = useState<string[]>([]);
 
   useEffect(() => {
     function changeScheme( scheme: string, needChange = false ) {
@@ -37,7 +38,13 @@ const App = () => {
       }
     }
 
-    window.addEventListener('popstate', () => goBack());
+    window.addEventListener('popstate', () => {
+      if (panelsHistory.length > 0) {
+        goBackPanel();
+      } else {
+        goBackView();
+      }
+    });
 
     bridge.subscribe(({detail: {type, data}}) => {
       if (type === 'VKWebAppUpdateConfig') {
@@ -52,25 +59,38 @@ const App = () => {
 
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const goBack = () => {
-    history.pop()
-    setActiveView(history[history.length - 1])
+
+  const changeView = (to: string) => {
+    setActiveView(to);
+  };
+  const goBackView = () => {
+    setActiveView(defaultView);
+  };
+
+  const goBackPanel = () => {
+    panelsHistory.pop()
+    setActivePanel(panelsHistory[panelsHistory.length - 1])
   }
-  const changeView = (to: Views) => {
-    window.history.pushState( {panel: to}, to ); // Создаём новую запись в истории браузера
-    setActiveView(to); // Меняем активную view
-    history.push(to as Views); // Добавляем панель в историю
+  const changePanel = (to: string) => {
+    window.history.pushState({panel: to}, to);
+    setActivePanel(to);
+    panelsHistory.push(to);
   };
 
   const appContextProvider = {
+    activeView: activeView,
+    activePanel: activePanel,
     changeView: changeView,
+    changePanel: changePanel,
+    goBackPanel: goBackPanel,
+    panelsHistory: panelsHistory,
   };
 
   return (
     <AppContext.Provider value={appContextProvider}>
       <ConfigProvider scheme={scheme}>
         <Root activeView={activeView}>
-          <Home id={Views.HOME} />
+          <Home id={Views.HOME}/>
           <SpyFall id={Views.SPYFALL} />
           <NeverHateIEver id={Views.NEVER_HATE_I_EVER} />
           <YesNo id={Views.YES_OR_NO} />

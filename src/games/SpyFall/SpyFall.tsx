@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 
 import {
   View,
 } from "@vkontakte/vkui";
-import {GoFunc} from "../../utils/types";
 import {getCollections} from "./collections";
 import {randomInteger} from "../../utils/numbers";
 import './SpyFall.css';
@@ -12,18 +11,21 @@ import {GameSettings} from "./panels/GameSettings";
 import {Game} from "./panels/Game";
 import {RulesModal} from "../../components/RulesModal/RulesModal";
 import {lang} from "../../utils/langs";
+import {AppContext} from "../../AppContext";
+import {transformActivePanel} from "../../utils/panels";
 
 interface Props {
   id: string;
 }
 
-export const SpyFall = (props: Props) => {
-  enum Panels {
-    SETTINGS = 'settings',
-    GAME = 'game',
-  }
+export enum Panels {
+  SETTINGS = 'settings',
+  GAME = 'game',
+}
 
-  const [activePanel, setActivePanel] = useState<string>(Panels.SETTINGS);
+export const SpyFall = (props: Props) => {
+  let {activePanel, panelsHistory, goBackPanel} = useContext(AppContext);
+  activePanel = transformActivePanel(activePanel, Panels.SETTINGS, Panels);
 
   const collections = getCollections();
 
@@ -50,28 +52,14 @@ export const SpyFall = (props: Props) => {
     setActiveModal('rules');
   };
 
-  const goBack = () => {
-    history.pop()
-    setActivePanel(history[history.length - 1])
-  }
-  const go = (to: string) => {
-    window.history.pushState( {panel: to}, to ); // Создаём новую запись в истории браузера
-    setActivePanel(to); // Меняем активную view
-    // @ts-ignore
-    history.push(to); // Добавляем панель в историю
-  };
-
-  const [history] = useState([Panels.SETTINGS]);
-
   return <View
     id={props.id}
     activePanel={activePanel}
     modal={modals}
-    history={history}
-    onSwipeBack={goBack}
+    history={panelsHistory}
+    onSwipeBack={goBackPanel}
   >
     <GameSettings
-      startGame={() => go(Panels.GAME)}
       playersCount={playersCount}
       setPlayersCount={setPlayersCount}
       collections={collections}
@@ -85,7 +73,6 @@ export const SpyFall = (props: Props) => {
       playersCount={playersCount}
       spyPlayerNum={randomInteger(1, playersCount)}
       word={wordForGame}
-      backClick={() => go(Panels.SETTINGS)}
     />
   </View>;
 }

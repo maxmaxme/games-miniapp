@@ -1,16 +1,17 @@
 import {Button, CardGrid, Cell, CellButton, Div, Group, Header, IOS, NativeSelect, Panel, PanelHeader, PanelHeaderButton, platform} from "@vkontakte/vkui";
 import {Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
 import {lang} from "../../../utils/langs";
-import React, {SetStateAction} from "react";
+import React, {SetStateAction, useContext} from "react";
 import {WordsListItem} from "../../../utils/types";
 import {range} from "../../../utils/arrays";
 import {ListItemComponent} from "../../../components/ListItemComponent/ListItemComponent";
 import {doHaptic} from "../../../utils/device";
+import {AppContext} from "../../../AppContext";
+import {Panels} from "../SpyFall";
 
 interface Props {
   id: string;
   openRules: () => void;
-  startGame: () => void;
   playersCount: number;
   setPlayersCount: SetStateAction<any>;
   selectedCollections: number[];
@@ -20,6 +21,7 @@ interface Props {
 
 export const GameSettings = (props: Props) => {
   const {playersCount, setPlayersCount, collections, selectedCollections, setSelectedCollections} = props;
+  const {changePanel} = useContext(AppContext);
 
   return <Panel id={props.id}>
     <PanelHeader
@@ -57,7 +59,7 @@ export const GameSettings = (props: Props) => {
           stretched mode="secondary"
           onClick={() => {
             doHaptic();
-            props.startGame()
+            changePanel(Panels.GAME);
           }}
         >{lang('games_spyfall_start_game_full_button')}</Button>
       </Div>

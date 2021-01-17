@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 
 import {View} from "@vkontakte/vkui";
 import {lang} from "../../utils/langs";
@@ -8,6 +8,8 @@ import {doHaptic} from "../../utils/device";
 import {LocalStorage, LocalStorageKeys} from "../../utils/localstorage";
 import {QuestionsList} from "./panels/QuestionsList";
 import {RulesModal} from "../../components/RulesModal/RulesModal";
+import {AppContext} from "../../AppContext";
+import {transformActivePanel} from "../../utils/panels";
 
 interface Props {
   id: string;
@@ -19,6 +21,9 @@ export const OpenQuestions = (props: Props) => {
   }
   const questions = getQuestions();
   const viewedFromLS = LocalStorage.getNumberArray(LocalStorageKeys.OPENQUESTIONS_VIEWED_QUESTIONS, []);
+
+  let {activePanel} = useContext(AppContext);
+  activePanel = transformActivePanel(activePanel, Panels.LIST, Panels);
 
   const [viewedQuestions, setViewedQuestions] = useState<number[]>(viewedFromLS);
 
@@ -40,8 +45,6 @@ export const OpenQuestions = (props: Props) => {
     setViewedQuestions([]);
     LocalStorage.setNumberArray(LocalStorageKeys.OPENQUESTIONS_VIEWED_QUESTIONS, []);
   }
-
-  const [activePanel, setActivePanel] = useState<string>(Panels.LIST);
 
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const modals = <RulesModal activeModal={activeModal} setActiveModal={setActiveModal} text={lang('games_openquestions_rules')}/>;
