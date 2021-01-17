@@ -22,6 +22,7 @@ const App = () => {
   const [activeView, setActiveView] = useState<string>(defaultView);
   const [activePanel, setActivePanel] = useState<string>('');
   const [activeModal, setActiveModal] = useState<string|null>(null);
+  const [viewsHistory] = useState<string[]>([defaultView]);
   const [panelsHistory] = useState<string[]>([]);
   const [modalsHistory] = useState<string[]>([]);
   const [filters, setFilters] = useState<Filters>({playersCount: null, gameDuration: null});
@@ -69,10 +70,13 @@ const App = () => {
 
 
   const changeView = (to: string) => {
+    window.history.pushState({panel: to}, to);
     setActiveView(to);
+    viewsHistory.push(to);
   };
   const goBackView = () => {
-    setActiveView(defaultView);
+    viewsHistory.pop()
+    setActiveView(viewsHistory[viewsHistory.length - 1])
   };
 
   const goBackPanel = () => {

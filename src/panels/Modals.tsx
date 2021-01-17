@@ -26,7 +26,7 @@ export const Modals = () => {
       header={
         <ModalPageHeader
           left={platform() === ANDROID && <PanelHeaderButton onClick={closeModal}><Icon24Cancel/></PanelHeaderButton>}
-          right={<PanelHeaderButton onClick={closeModal}>{platform() === IOS ? lang('modal_close_button') : <Icon24Done/>}</PanelHeaderButton>}
+          right={platform() === IOS && <PanelHeaderButton onClick={closeModal}>{lang('modal_close_button')}</PanelHeaderButton>}
         >
           {lang('rules_header')}
         </ModalPageHeader>
@@ -44,7 +44,7 @@ export const Modals = () => {
     header={
       <ModalPageHeader
         left={platform() === ANDROID && <PanelHeaderButton onClick={closeModal}><Icon24Cancel/></PanelHeaderButton>}
-        right={<PanelHeaderButton onClick={closeModal}>{platform() === IOS ? lang('modal_close_button') : <Icon24Done/>}</PanelHeaderButton>}
+        right={platform() === IOS && <PanelHeaderButton onClick={closeModal}>{lang('modal_close_button')}</PanelHeaderButton>}
       >
         {lang('modal_filters_header')}
       </ModalPageHeader>
