@@ -6,6 +6,7 @@ import {Panels} from "../YesNo";
 import {shuffleArray} from "@vkontakte/vkjs";
 import {Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
 import {AppContext} from "../../../AppContext";
+import {ModalNames} from "../../../panels/Modals";
 
 interface Props {
   id: string;
@@ -22,7 +23,7 @@ export const Intro = (props: Props) => {
       {lang('games_yesno_title')}
     </PanelHeader>
     <Group separator="hide">
-      <CellButton onClick={() => openModal('YesNo_rules')}>
+      <CellButton onClick={() => openModal(ModalNames.YesNo_rules)}>
         {lang('games_yesno_rules_button')}
       </CellButton>
     </Group>

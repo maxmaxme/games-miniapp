@@ -3,6 +3,7 @@ import {Icon20Check, Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
 import {lang} from "../../../utils/langs";
 import React, {useContext} from "react";
 import {AppContext} from "../../../AppContext";
+import {ModalNames} from "../../../panels/Modals";
 
 interface Props {
   id: string;
@@ -22,7 +23,7 @@ export const QuestionsList = (props: Props) => {
       {lang('games_openquestions_title')}
     </PanelHeader>
     <Group separator="hide">
-      <CellButton onClick={() => openModal('OpenQuestions_rules')}>
+      <CellButton onClick={() => openModal(ModalNames.OpenQuestions_rules)}>
         {lang('games_openquestions_rules_button')}
       </CellButton>
     </Group>

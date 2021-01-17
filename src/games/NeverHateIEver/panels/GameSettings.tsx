@@ -1,12 +1,13 @@
 import {Button, CardGrid, CellButton, Div, Group, IOS, Panel, PanelHeader, PanelHeaderButton, platform, Tabs, TabsItem} from "@vkontakte/vkui";
 import React, {SetStateAction, useContext, useState} from "react";
-import { WordsListItem} from "../../../utils/types";
+import {WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
 import {ListItemComponent} from "../../../components/ListItemComponent/ListItemComponent";
 import {doHaptic} from "../../../utils/device";
 import {Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
 import {AppContext} from "../../../AppContext";
 import {Panels} from "../NeverHateIEver";
+import {ModalNames} from "../../../panels/Modals";
 
 interface Props {
   id: string;
@@ -30,7 +31,7 @@ export const GameSettings = (props: Props) => {
       {lang('games_neverihaveever_title')}
     </PanelHeader>
     <Group>
-      <CellButton onClick={() => openModal('NeverHateIEver_rules')}>
+      <CellButton onClick={() => openModal(ModalNames.NeverHateIEver_rules)}>
         {lang('games_neverihaveever_rules_button')}
       </CellButton>
       <Tabs>

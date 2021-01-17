@@ -8,6 +8,7 @@ import {ListItemComponent} from "../../../components/ListItemComponent/ListItemC
 import {doHaptic} from "../../../utils/device";
 import {AppContext} from "../../../AppContext";
 import {Panels} from "../SpyFall";
+import {ModalNames} from "../../../panels/Modals";
 
 interface Props {
   id: string;
@@ -29,7 +30,7 @@ export const GameSettings = (props: Props) => {
       {lang('games_spyfall_title')}
     </PanelHeader>
     <Group>
-      <CellButton onClick={() => openModal('SpyFall_rules')}>
+      <CellButton onClick={() => openModal(ModalNames.SpyFall_rules)}>
         {lang('games_spyfall_rules_button')}
       </CellButton>
 

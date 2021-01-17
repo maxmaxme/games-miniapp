@@ -1,8 +1,9 @@
-import {Button,  HorizontalCell, HorizontalScroll,  Search} from '@vkontakte/vkui';
+import {Button, HorizontalCell, HorizontalScroll, Search} from '@vkontakte/vkui';
 import React, {useContext} from 'react';
 import './SearchFilters.css'
 import {lang, langNumeric} from '../../utils/langs';
 import {AppContext} from "../../AppContext";
+import {ModalNames} from "../../panels/Modals";
 
 interface Props {
   search: (query: string) => void;
@@ -32,7 +33,7 @@ export function GamesSearch(props: Props) {
 
     <HorizontalScroll className="SearchFilters">
       <div style={{display: 'flex'}}>
-        <HorizontalCell size='l' onClick={() => openModal('games_filters')}>
+        <HorizontalCell size='l' onClick={() => openModal(ModalNames.games_filters)}>
           <Button mode="outline">{filtersButtonLabel}</Button>
         </HorizontalCell>
       </div>

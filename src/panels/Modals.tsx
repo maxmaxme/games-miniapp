@@ -6,14 +6,21 @@ import './Modals.css';
 import {doHaptic} from "../utils/device";
 import {AppContext} from "../AppContext";
 
+export enum ModalNames {
+  NeverHateIEver_rules = 'NeverHateIEver_rules',
+  SpyFall_rules = 'SpyFall_rules',
+  OpenQuestions_rules = 'OpenQuestions_rules',
+  YesNo_rules = 'YesNo_rules',
+  games_filters = 'games_filters',
+}
 
 export const Modals = () => {
-  const rules: { [name: string]: string } = {
-    NeverHateIEver_rules: lang('games_neverihaveever_rules'),
-    SpyFall_rules: lang('games_spyfall_rules'),
-    OpenQuestions_rules: lang('games_openquestions_rules'),
-    YesNo_rules: lang('games_yesno_rules'),
-  }
+  let rules: { [name: string]: string } = {}
+
+  rules[ModalNames.NeverHateIEver_rules] = lang('games_neverihaveever_rules');
+  rules[ModalNames.SpyFall_rules] = lang('games_spyfall_rules');
+  rules[ModalNames.OpenQuestions_rules] = lang('games_openquestions_rules');
+  rules[ModalNames.YesNo_rules] = lang('games_yesno_rules');
 
   const { activeModal, filters, setFilters } = useContext(AppContext);
   const closeModal = () => window.history.back();
@@ -39,7 +46,7 @@ export const Modals = () => {
   let modals = Object.keys(rules).map(gameId => rulesModal(gameId, rules[gameId]));
 
   modals.push(<ModalPage
-    id="games_filters"
+    id={ModalNames.games_filters}
     onClose={closeModal}
     header={
       <ModalPageHeader

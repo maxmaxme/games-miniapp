@@ -12,6 +12,7 @@ import {NeverHateIEver} from "./games/NeverHateIEver/NeverHateIEver";
 import {YesNo} from "./games/YesNo/YesNo";
 import {OpenQuestions} from "./games/OpenQuestions/OpenQuestions";
 import {Filters} from "./utils/types";
+import {ModalNames} from "./panels/Modals";
 
 const App = () => {
   const defaultView = Views.HOME;
@@ -88,7 +89,7 @@ const App = () => {
     setActivePanel(to);
     panelsHistory.push(to);
   };
-  const openModal = (to: string) => {
+  const openModal = (to: ModalNames) => {
     window.history.pushState({panel: to}, to);
     setActiveModal(to);
     modalsHistory.push(to);
