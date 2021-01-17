@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {GamesListItem} from '../GamesListItem/GamesListItem';
 import {Card, CardGrid, Footer, Placeholder, Spinner} from '@vkontakte/vkui';
 import {Filters, Game, GoFunc} from "../../utils/types";
@@ -6,16 +6,17 @@ import {lang, langNumeric} from "../../utils/langs";
 import {Icon24ShareOutline, Icon24FavoriteOutline, Icon24Favorite} from "@vkontakte/icons";
 import './GameList.css';
 import bridge from "@vkontakte/vk-bridge";
+import {AppContext} from "../../AppContext";
 
 interface Props {
   games: Game[] | null;
   searchQuery: string;
-  filters: Filters;
   isFavoriteApp: boolean;
 }
 
 export function GamesList(props: Props) {
-  const {searchQuery, filters} = props;
+  const {searchQuery} = props;
+  const {filters} = useContext(AppContext);
   let {games} = props;
   if (games === null) {
     return <Spinner/>;

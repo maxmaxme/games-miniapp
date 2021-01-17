@@ -7,9 +7,9 @@ import './OpenQuestions.css';
 import {doHaptic} from "../../utils/device";
 import {LocalStorage, LocalStorageKeys} from "../../utils/localstorage";
 import {QuestionsList} from "./panels/QuestionsList";
-import {RulesModal} from "../../components/RulesModal/RulesModal";
 import {AppContext} from "../../AppContext";
 import {transformActivePanel} from "../../utils/panels";
+import {Modals} from "../../panels/Modals";
 
 interface Props {
   id: string;
@@ -46,17 +46,13 @@ export const OpenQuestions = (props: Props) => {
     LocalStorage.setNumberArray(LocalStorageKeys.OPENQUESTIONS_VIEWED_QUESTIONS, []);
   }
 
-  const [activeModal, setActiveModal] = useState<string | null>(null);
-  const modals = <RulesModal activeModal={activeModal} setActiveModal={setActiveModal} text={lang('games_openquestions_rules')}/>;
-
   return <View
     id={props.id}
     activePanel={activePanel}
-    modal={modals}
+    modal={<Modals />}
   >
     <QuestionsList
       id={Panels.LIST}
-      openRules={() => setActiveModal('rules')}
       clickQuestion={clickQuestion}
       questions={questions}
       resetViewed={resetViewed}

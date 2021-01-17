@@ -1,11 +1,11 @@
 import {Cell, CellButton, Div, Group, IOS, List, Panel, PanelHeader, PanelHeaderButton, platform} from "@vkontakte/vkui";
-import {Icon20Check, Icon24Back, Icon24Cancel, Icon28CancelOutline, Icon28ChevronBack} from "@vkontakte/icons";
+import {Icon20Check, Icon24Cancel, Icon28CancelOutline, Icon28ChevronBack} from "@vkontakte/icons";
 import {lang} from "../../../utils/langs";
-import React from "react";
+import React, {useContext} from "react";
+import {AppContext} from "../../../AppContext";
 
 interface Props {
   id: string;
-  openRules: () => void;
   questions: string[];
   viewedQuestions: number[]
   clickQuestion: (num: number) => void;
@@ -13,6 +13,7 @@ interface Props {
 }
 
 export const QuestionsList = (props: Props) => {
+  const { openModal } = useContext(AppContext);
   return <Panel id={props.id}>
     <PanelHeader
       left={<PanelHeaderButton onClick={() => window.history.back()}>{(platform() === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>)}</PanelHeaderButton>}
@@ -21,7 +22,7 @@ export const QuestionsList = (props: Props) => {
       {lang('games_openquestions_title')}
     </PanelHeader>
     <Group separator="hide">
-      <CellButton onClick={() => props.openRules()}>
+      <CellButton onClick={() => openModal('OpenQuestions_rules')}>
         {lang('games_openquestions_rules_button')}
       </CellButton>
     </Group>

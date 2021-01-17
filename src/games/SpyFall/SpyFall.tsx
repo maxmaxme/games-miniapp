@@ -9,10 +9,9 @@ import './SpyFall.css';
 import {LocalStorageKeys, LocalStorage} from "../../utils/localstorage";
 import {GameSettings} from "./panels/GameSettings";
 import {Game} from "./panels/Game";
-import {RulesModal} from "../../components/RulesModal/RulesModal";
-import {lang} from "../../utils/langs";
 import {AppContext} from "../../AppContext";
 import {transformActivePanel} from "../../utils/panels";
+import {Modals} from "../../panels/Modals";
 
 interface Props {
   id: string;
@@ -46,16 +45,10 @@ export const SpyFall = (props: Props) => {
   wordsForGame.sort(() => Math.random() - 0.5)
   const wordForGame = wordsForGame.shift() || '';
 
-  const [activeModal, setActiveModal] = useState<string | null>(null);
-  const modals = <RulesModal activeModal={activeModal} setActiveModal={setActiveModal} text={lang('games_spyfall_rules')}/>;
-  const openRules = () => {
-    setActiveModal('rules');
-  };
-
   return <View
     id={props.id}
     activePanel={activePanel}
-    modal={modals}
+    modal={<Modals />}
     history={panelsHistory}
     onSwipeBack={goBackPanel}
   >
@@ -65,7 +58,6 @@ export const SpyFall = (props: Props) => {
       collections={collections}
       selectedCollections={selectedCollections}
       setSelectedCollections={setSelectedCollections}
-      openRules={openRules}
       id={Panels.SETTINGS}
     />
     <Game

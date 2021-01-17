@@ -11,7 +11,6 @@ import {Panels} from "../SpyFall";
 
 interface Props {
   id: string;
-  openRules: () => void;
   playersCount: number;
   setPlayersCount: SetStateAction<any>;
   selectedCollections: number[];
@@ -21,7 +20,7 @@ interface Props {
 
 export const GameSettings = (props: Props) => {
   const {playersCount, setPlayersCount, collections, selectedCollections, setSelectedCollections} = props;
-  const {changePanel} = useContext(AppContext);
+  const {changePanel, openModal} = useContext(AppContext);
 
   return <Panel id={props.id}>
     <PanelHeader
@@ -30,7 +29,7 @@ export const GameSettings = (props: Props) => {
       {lang('games_spyfall_title')}
     </PanelHeader>
     <Group>
-      <CellButton onClick={() => props.openRules()}>
+      <CellButton onClick={() => openModal('SpyFall_rules')}>
         {lang('games_spyfall_rules_button')}
       </CellButton>
 

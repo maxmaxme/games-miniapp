@@ -1,15 +1,14 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 
 import {View} from "@vkontakte/vkui";
 import {YesNoItem} from "../../utils/types";
-import {lang} from "../../utils/langs";
 import {getYesNoBase} from "./yesnobase";
 import {Intro} from "./panels/Intro";
 import {ListView} from "./panels/ListView";
 import {ViewOne} from "./panels/ViewOne";
-import {RulesModal} from "../../components/RulesModal/RulesModal";
 import {AppContext} from "../../AppContext";
 import {transformActivePanel} from "../../utils/panels";
+import {Modals} from "../../panels/Modals";
 
 const yesNoBase = getYesNoBase();
 
@@ -34,13 +33,10 @@ export const YesNo = (props: Props) => {
     changePanel(Panels.ONE_VIEW);
   }
 
-  const [activeModal, setActiveModal] = useState<string | null>(null);
-  const modals = <RulesModal activeModal={activeModal} setActiveModal={setActiveModal} text={lang('games_yesno_rules')}/>;
-
   return <View
     id={props.id}
     activePanel={activePanel}
-    modal={modals}
+    modal={<Modals />}
     history={panelsHistory}
     onSwipeBack={goBackPanel}
   >
@@ -48,7 +44,6 @@ export const YesNo = (props: Props) => {
       id={Panels.INTRO}
       yesNoBase={yesNoBase}
       openYesNo={openYesNo}
-      openRules={() => setActiveModal('rules')}
     />
 
     <ListView

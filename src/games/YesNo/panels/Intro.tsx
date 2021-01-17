@@ -9,13 +9,12 @@ import {AppContext} from "../../../AppContext";
 
 interface Props {
   id: string;
-  openRules: () => void;
   yesNoBase: YesNoItem[];
   openYesNo: (yesNo: YesNoItem) => void;
 }
 
 export const Intro = (props: Props) => {
-  const { changePanel } = useContext(AppContext);
+  const { changePanel, openModal } = useContext(AppContext);
   return <Panel id={props.id}>
     <PanelHeader
       left={<PanelHeaderButton onClick={() => window.history.back()} data-to="home">{(platform() === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>)}</PanelHeaderButton>}
@@ -23,7 +22,7 @@ export const Intro = (props: Props) => {
       {lang('games_yesno_title')}
     </PanelHeader>
     <Group separator="hide">
-      <CellButton onClick={() => props.openRules()}>
+      <CellButton onClick={() => openModal('YesNo_rules')}>
         {lang('games_yesno_rules_button')}
       </CellButton>
     </Group>

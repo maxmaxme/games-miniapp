@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ConfigProvider, Root, ScreenSpinner, View} from '@vkontakte/vkui';
+import {ConfigProvider, Root} from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import {SpyFall} from './games/SpyFall/SpyFall';
@@ -11,6 +11,7 @@ import {Views} from "./utils/views";
 import {NeverHateIEver} from "./games/NeverHateIEver/NeverHateIEver";
 import {YesNo} from "./games/YesNo/YesNo";
 import {OpenQuestions} from "./games/OpenQuestions/OpenQuestions";
+import {Filters} from "./utils/types";
 
 const App = () => {
   const defaultView = Views.HOME;
@@ -19,7 +20,10 @@ const App = () => {
   const lights = ['bright_light', 'client_light'];
   const [activeView, setActiveView] = useState<string>(defaultView);
   const [activePanel, setActivePanel] = useState<string>('');
+  const [activeModal, setActiveModal] = useState<string|null>(null);
   const [panelsHistory] = useState<string[]>([]);
+  const [modalsHistory] = useState<string[]>([]);
+  const [filters, setFilters] = useState<Filters>({playersCount: null, gameDuration: null});
 
   useEffect(() => {
     function changeScheme( scheme: string, needChange = false ) {
@@ -39,7 +43,9 @@ const App = () => {
     }
 
     window.addEventListener('popstate', () => {
-      if (panelsHistory.length > 0) {
+      if (modalsHistory.length > 0) {
+        goBackModal();
+      } else if (panelsHistory.length > 0) {
         goBackPanel();
       } else {
         goBackView();
@@ -76,14 +82,28 @@ const App = () => {
     setActivePanel(to);
     panelsHistory.push(to);
   };
+  const openModal = (to: string) => {
+    window.history.pushState({panel: to}, to);
+    setActiveModal(to);
+    modalsHistory.push(to);
+  };
+  const goBackModal = () => {
+    modalsHistory.pop()
+    setActiveModal(modalsHistory[modalsHistory.length - 1] || null)
+  }
 
   const appContextProvider = {
+    activeModal: activeModal,
     activeView: activeView,
     activePanel: activePanel,
+    openModal: openModal,
     changeView: changeView,
     changePanel: changePanel,
     goBackPanel: goBackPanel,
     panelsHistory: panelsHistory,
+
+    filters: filters,
+    setFilters: setFilters,
   };
 
   return (

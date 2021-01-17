@@ -1,15 +1,15 @@
 import {Button, CardGrid, CellButton, Div, Group, IOS, Panel, PanelHeader, PanelHeaderButton, platform, Tabs, TabsItem, View} from "@vkontakte/vkui";
-import React, {SetStateAction, useState} from "react";
+import React, {SetStateAction, useContext, useState} from "react";
 import {GoFunc, WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
 import {ListItemComponent} from "../../../components/ListItemComponent/ListItemComponent";
 import {doHaptic} from "../../../utils/device";
 import {Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
+import {AppContext} from "../../../AppContext";
+import {Panels} from "../NeverHateIEver";
 
 interface Props {
   id: string;
-  openRules: () => void;
-  startGame: () => void;
   selectedPhrases: number[];
   setSelectedPhrases: SetStateAction<any>;
   selectedPunishments: number[];
@@ -21,6 +21,7 @@ interface Props {
 export const GameSettings = (props: Props) => {
   const [activeTab, setActiveTab] = useState(0);
   const {phrases, punishments, selectedPhrases, selectedPunishments, setSelectedPhrases, setSelectedPunishments} = props;
+  const { openModal, changePanel } = useContext(AppContext);
 
   return <Panel id={props.id} className="NeverHateIEver__panel">
     <PanelHeader
@@ -29,7 +30,7 @@ export const GameSettings = (props: Props) => {
       {lang('games_neverihaveever_title')}
     </PanelHeader>
     <Group>
-      <CellButton onClick={() => props.openRules()}>
+      <CellButton onClick={() => openModal('NeverHateIEver_rules')}>
         {lang('games_neverihaveever_rules_button')}
       </CellButton>
       <Tabs>
@@ -56,7 +57,7 @@ export const GameSettings = (props: Props) => {
           size="l"
           disabled={selectedPhrases.length === 0 || selectedPunishments.length === 0} stretched mode="secondary" onClick={() => {
           doHaptic();
-          props.startGame()
+          changePanel(Panels.GAME)
         }}
         >{lang('games_neverihaveever_start_game_full_button')}</Button>
       </Div>
