@@ -1,5 +1,5 @@
 import {Cell, CellButton, Div, Group, IOS, List, Panel, PanelHeader, PanelHeaderButton, platform} from "@vkontakte/vkui";
-import {Icon20Check, Icon24Cancel, Icon28CancelOutline, Icon28ChevronBack} from "@vkontakte/icons";
+import {Icon20Check, Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
 import {lang} from "../../../utils/langs";
 import React, {useContext} from "react";
 import {AppContext} from "../../../AppContext";

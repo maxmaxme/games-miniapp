@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {GamesListItem} from '../GamesListItem/GamesListItem';
 import {Card, CardGrid, Footer, Placeholder, Spinner} from '@vkontakte/vkui';
-import {Filters, Game, GoFunc} from "../../utils/types";
+import { Game } from "../../utils/types";
 import {lang, langNumeric} from "../../utils/langs";
 import {Icon24ShareOutline, Icon24FavoriteOutline, Icon24Favorite} from "@vkontakte/icons";
 import './GameList.css';
@@ -11,12 +11,11 @@ import {AppContext} from "../../AppContext";
 interface Props {
   games: Game[] | null;
   searchQuery: string;
-  isFavoriteApp: boolean;
 }
 
 export function GamesList(props: Props) {
   const {searchQuery} = props;
-  const {filters} = useContext(AppContext);
+  const {filters, isFavoriteApp} = useContext(AppContext);
   let {games} = props;
   if (games === null) {
     return <Spinner/>;
@@ -65,7 +64,7 @@ export function GamesList(props: Props) {
       </CardGrid>);
 
       let favoriteButton;
-      if (props.isFavoriteApp) {
+      if (isFavoriteApp) {
         favoriteButton = <Card className="GamesList__subscribeBlock GamesList__subscribeBlock--orange"><Icon24Favorite/>{lang('card_added_to_favorite')}</Card>
       } else {
         favoriteButton = <Card onClick={() => {

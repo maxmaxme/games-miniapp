@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react';
 
 import {View} from "@vkontakte/vkui";
-import {lang} from "../../utils/langs";
 import {getQuestions} from "./questions";
 import './OpenQuestions.css';
 import {doHaptic} from "../../utils/device";

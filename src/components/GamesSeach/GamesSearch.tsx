@@ -2,7 +2,6 @@ import {Button,  HorizontalCell, HorizontalScroll,  Search} from '@vkontakte/vku
 import React, {useContext} from 'react';
 import './SearchFilters.css'
 import {lang, langNumeric} from '../../utils/langs';
-import {Filters} from "../../utils/types";
 import {AppContext} from "../../AppContext";
 
 interface Props {

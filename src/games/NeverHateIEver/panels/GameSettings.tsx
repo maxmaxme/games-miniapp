@@ -1,6 +1,6 @@
-import {Button, CardGrid, CellButton, Div, Group, IOS, Panel, PanelHeader, PanelHeaderButton, platform, Tabs, TabsItem, View} from "@vkontakte/vkui";
+import {Button, CardGrid, CellButton, Div, Group, IOS, Panel, PanelHeader, PanelHeaderButton, platform, Tabs, TabsItem} from "@vkontakte/vkui";
 import React, {SetStateAction, useContext, useState} from "react";
-import {GoFunc, WordsListItem} from "../../../utils/types";
+import { WordsListItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
 import {ListItemComponent} from "../../../components/ListItemComponent/ListItemComponent";
 import {doHaptic} from "../../../utils/device";

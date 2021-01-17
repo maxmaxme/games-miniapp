@@ -15,6 +15,7 @@ import {Filters} from "./utils/types";
 
 const App = () => {
   const defaultView = Views.HOME;
+  const urlParams = new URLSearchParams(window.location.search);
 
   const [scheme, SetStateScheme] = useState<AppearanceScheme>('bright_light');
   const lights = ['bright_light', 'client_light'];
@@ -24,6 +25,7 @@ const App = () => {
   const [panelsHistory] = useState<string[]>([]);
   const [modalsHistory] = useState<string[]>([]);
   const [filters, setFilters] = useState<Filters>({playersCount: null, gameDuration: null});
+  const [isFavoriteApp, setIsFavoriteApp] = useState(urlParams.get('vk_is_favorite') === '1');
 
   useEffect(() => {
     function changeScheme( scheme: string, needChange = false ) {
@@ -58,7 +60,7 @@ const App = () => {
         changeScheme( data.scheme )
       } else if (type === 'VKWebAppAddToFavoritesResult') {
         // @ts-ignore
-        setIsFavorite(data.result);
+        setIsFavoriteApp(data.result);
       }
     });
     bridge.send("VKWebAppInit");
@@ -101,9 +103,9 @@ const App = () => {
     changePanel: changePanel,
     goBackPanel: goBackPanel,
     panelsHistory: panelsHistory,
-
     filters: filters,
     setFilters: setFilters,
+    isFavoriteApp: isFavoriteApp,
   };
 
   return (

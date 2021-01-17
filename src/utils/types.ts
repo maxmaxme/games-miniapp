@@ -1,5 +1,3 @@
-import React, {SetStateAction} from "react";
-import {Panel} from "@vkontakte/vkui";
 import {Views} from "./views";
 
 export interface Game {

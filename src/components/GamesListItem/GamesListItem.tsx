@@ -3,10 +3,9 @@ import './GamesListItem.css';
 import {Card} from '@vkontakte/vkui';
 import Icon12Clock from '@vkontakte/icons/dist/12/clock';
 import Icon16Users from '@vkontakte/icons/dist/16/users';
-import {Game, GoFunc, MinMax} from "../../utils/types";
+import {Game, MinMax} from "../../utils/types";
 import {lang, langNumeric} from "../../utils/langs";
 import {classNames} from "@vkontakte/vkjs";
-import {Views} from "../../utils/views";
 import {AppContext} from "../../AppContext";
 
 interface Props {

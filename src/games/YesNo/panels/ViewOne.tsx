@@ -1,12 +1,11 @@
 import {Button, Card, Div, FixedLayout, IOS, Panel, PanelHeader, PanelHeaderButton, platform, Separator, Title} from "@vkontakte/vkui";
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import {YesNoItem} from "../../../utils/types";
 import './ViewOne.css';
 import {classNames} from "@vkontakte/vkjs";
 import {lang} from "../../../utils/langs";
 import {doHaptic} from "../../../utils/device";
 import {Icon24Back, Icon28ChevronBack} from "@vkontakte/icons";
-import {AppContext} from "../../../AppContext";
 
 interface Props {
   id: string;

@@ -2,16 +2,17 @@ import { createContext } from 'react';
 import {Filters} from "./utils/types";
 
 const defaultContext = {
-  activeModal:<string|null> null,
+  activeModal: null as string|null,
   activeView: '',
   activePanel: '',
   openModal: (to: string) => {},
   changeView: (to: string) => {},
   changePanel: (to: string) => {},
   goBackPanel: () => {},
-  panelsHistory: <string[]> [],
-  filters: <Filters> {},
+  panelsHistory: [] as string[],
+  filters: {} as Filters,
   setFilters: (filters: Filters) => {},
+  isFavoriteApp: false,
 };
 
 export const AppContext = createContext(defaultContext);

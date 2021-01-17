@@ -1,9 +1,8 @@
 import {Cell, IOS, List, Panel, PanelHeader, PanelHeaderButton, Placeholder, platform, Search} from "@vkontakte/vkui";
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import {YesNoItem} from "../../../utils/types";
 import {lang} from "../../../utils/langs";
-import {Icon24Back, Icon24Cancel, Icon28CancelOutline, Icon28ChevronBack} from "@vkontakte/icons";
-import {AppContext} from "../../../AppContext";
+import {Icon24Back, Icon28ChevronBack} from "@vkontakte/icons";
 
 interface Props {
   id: string;
@@ -12,7 +11,6 @@ interface Props {
 }
 
 export const ListView = (props: Props) => {
-  const { goBackPanel } = useContext(AppContext);
   const [searchQuery, setSearchQuery] = useState('');
   const filtered = props.yesNoBase.filter(item => !searchQuery.length || item.title.toLowerCase().includes(searchQuery.toLowerCase()))
   return <Panel id={props.id}>
