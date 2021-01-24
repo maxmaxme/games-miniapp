@@ -12,7 +12,7 @@ interface Props {
 
 export const ListView = (props: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const filtered = props.yesNoBase.filter(item => !searchQuery.length || item.title.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filtered = props.yesNoBase.filter(item => !searchQuery.length || item.title.toLowerCase().replace('ё', 'е').includes(searchQuery.toLowerCase().replace('ё', 'е')))
   return <Panel id={props.id}>
     <PanelHeader
       left={<PanelHeaderButton onClick={() => window.history.back()}>{platform() === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
