@@ -1,5 +1,5 @@
 import {ANDROID, CellButton, Div, FormItem, IOS, ModalPage, ModalPageHeader, ModalRoot, PanelHeaderButton, platform, Slider} from "@vkontakte/vkui";
-import {Icon24Cancel, Icon24Done} from "@vkontakte/icons";
+import {Icon24Cancel} from "@vkontakte/icons";
 import React, {useContext} from "react";
 import {lang, langNumeric} from "../utils/langs";
 import './Modals.css';
