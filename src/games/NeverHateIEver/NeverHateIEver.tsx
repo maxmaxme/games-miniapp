@@ -1,30 +1,24 @@
 import React, {useContext, useState} from 'react';
 
-import {
-  View,
-} from "@vkontakte/vkui";
-import { WordsListItem} from "../../utils/types";
-import {GameSettings} from "./panels/GameSettings";
-import {Game} from "./panels/Game";
-import {getPhrases} from "./phrases";
-import {getPunishments} from "./punishments";
+import { View } from "@vkontakte/vkui";
+import { WordsListItem } from "../../utils/types";
+import { GameSettings } from "./panels/GameSettings";
+import { Game } from "./panels/Game";
+import { getPhrases } from "./phrases";
+import { getPunishments } from "./punishments";
 import './NeverHateIEver.css';
-import {LocalStorage, LocalStorageKeys} from "../../utils/localstorage";
-import {AppContext} from "../../AppContext";
-import {transformActivePanel} from "../../utils/panels";
-import {Modals} from "../../panels/Modals";
+import { LocalStorage, LocalStorageKeys } from "../../utils/localstorage";
+import { AppContext } from "../../AppContext";
+import { Panels, transformActivePanel } from "../../utils/panels";
+import { Modals } from "../../panels/Modals";
 
 interface Props {
   id: string;
 }
-export enum Panels {
-  SETTINGS = 'settings',
-  GAME = 'game',
-}
 
 export const NeverHateIEver = (props: Props) => {
   let {activePanel, goBackPanel, panelsHistory} = useContext(AppContext);
-  activePanel = transformActivePanel(activePanel, Panels.SETTINGS, Panels);
+  activePanel = transformActivePanel(activePanel, Panels.NEVER_HATE_I_EVER_SETTINGS, Panels);
 
   const phrases: WordsListItem[] = getPhrases();
   const punishments: WordsListItem[] = getPunishments();
@@ -60,7 +54,7 @@ export const NeverHateIEver = (props: Props) => {
     onSwipeBack={goBackPanel}
   >
       <GameSettings
-        id={Panels.SETTINGS}
+        id={Panels.NEVER_HATE_I_EVER_SETTINGS}
         selectedPhrases={selectedPhrases}
         selectedPunishments={selectedPunishments}
         setSelectedPhrases={setSelectedPhrases}
@@ -70,10 +64,9 @@ export const NeverHateIEver = (props: Props) => {
       />
 
       <Game
-        id={Panels.GAME}
+        id={Panels.NEVER_HATE_I_EVER_GAME}
         phrases={phrasesForGame}
         punishments={punishmentsForGame}
       />
   </View>;
 }
-

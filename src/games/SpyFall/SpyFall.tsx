@@ -10,21 +10,16 @@ import {LocalStorageKeys, LocalStorage} from "../../utils/localstorage";
 import {GameSettings} from "./panels/GameSettings";
 import {Game} from "./panels/Game";
 import {AppContext} from "../../AppContext";
-import {transformActivePanel} from "../../utils/panels";
+import {Panels, transformActivePanel} from "../../utils/panels";
 import {Modals} from "../../panels/Modals";
 
 interface Props {
   id: string;
 }
 
-export enum Panels {
-  SETTINGS = 'settings',
-  GAME = 'game',
-}
-
 export const SpyFall = (props: Props) => {
   let {activePanel, panelsHistory, goBackPanel} = useContext(AppContext);
-  activePanel = transformActivePanel(activePanel, Panels.SETTINGS, Panels);
+  activePanel = transformActivePanel(activePanel, Panels.SPYFALL_SETTINGS, Panels);
 
   const collections = getCollections();
 
@@ -58,10 +53,10 @@ export const SpyFall = (props: Props) => {
       collections={collections}
       selectedCollections={selectedCollections}
       setSelectedCollections={setSelectedCollections}
-      id={Panels.SETTINGS}
+      id={Panels.SPYFALL_SETTINGS}
     />
     <Game
-      id={Panels.GAME}
+      id={Panels.SPYFALL_GAME}
       playersCount={playersCount}
       spyPlayerNum={randomInteger(1, playersCount)}
       word={wordForGame}

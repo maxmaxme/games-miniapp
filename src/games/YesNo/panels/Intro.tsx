@@ -2,11 +2,11 @@ import {Button, CellButton, Div, Group, IOS, Panel, PanelHeader, PanelHeaderButt
 import {lang, langNumeric} from "../../../utils/langs";
 import React, {useContext} from "react";
 import {YesNoItem} from "../../../utils/types";
-import {Panels} from "../YesNo";
 import {shuffleArray} from "@vkontakte/vkjs";
 import {Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
 import {AppContext} from "../../../AppContext";
 import {ModalNames} from "../../../panels/Modals";
+import {Panels} from "../../../utils/panels";
 
 interface Props {
   id: string;
@@ -33,7 +33,7 @@ export const Intro = (props: Props) => {
       </Title>
       <Group separator="hide">
         <Button
-          onClick={() => changePanel(Panels.LIST_VIEW)}
+          onClick={() => changePanel(Panels.YES_OR_NO_LIST_VIEW)}
           stretched
           mode="secondary"
           size="l"

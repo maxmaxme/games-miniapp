@@ -6,8 +6,8 @@ import {ListItemComponent} from "../../../components/ListItemComponent/ListItemC
 import {doHaptic} from "../../../utils/device";
 import {Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
 import {AppContext} from "../../../AppContext";
-import {Panels} from "../NeverHateIEver";
 import {ModalNames} from "../../../panels/Modals";
+import {Panels} from "../../../utils/panels";
 
 interface Props {
   id: string;
@@ -58,7 +58,7 @@ export const GameSettings = (props: Props) => {
           size="l"
           disabled={selectedPhrases.length === 0 || selectedPunishments.length === 0} stretched mode="secondary" onClick={() => {
           doHaptic();
-          changePanel(Panels.GAME)
+          changePanel(Panels.NEVER_HATE_I_EVER_GAME)
         }}
         >{lang('games_neverihaveever_start_game_full_button')}</Button>
       </Div>

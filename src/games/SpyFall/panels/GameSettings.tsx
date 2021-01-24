@@ -7,8 +7,8 @@ import {range} from "../../../utils/arrays";
 import {ListItemComponent} from "../../../components/ListItemComponent/ListItemComponent";
 import {doHaptic} from "../../../utils/device";
 import {AppContext} from "../../../AppContext";
-import {Panels} from "../SpyFall";
 import {ModalNames} from "../../../panels/Modals";
+import {Panels} from "../../../utils/panels";
 
 interface Props {
   id: string;
@@ -59,7 +59,7 @@ export const GameSettings = (props: Props) => {
           stretched mode="secondary"
           onClick={() => {
             doHaptic();
-            changePanel(Panels.GAME);
+            changePanel(Panels.SPYFALL_GAME);
           }}
         >{lang('games_spyfall_start_game_full_button')}</Button>
       </Div>
