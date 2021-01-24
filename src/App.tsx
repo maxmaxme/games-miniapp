@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {ConfigProvider, Root} from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
-
+import 'popstate-direction';
 import {SpyFall} from './games/SpyFall/SpyFall';
 import Home from './panels/Home'
 import {AppContext} from './AppContext';
@@ -46,12 +46,13 @@ const App = () => {
       }
     }
 
-    window.addEventListener('popstate', () => {
+    // @ts-ignore
+    window.addEventListener('back', () => {
       if (modalsHistory.length > 0) {
         goBackModal();
       } else if (panelsHistory.length > 0) {
         goBackPanel();
-      } else {
+      } else if (viewsHistory.length > 1) {
         goBackView();
       }
     });

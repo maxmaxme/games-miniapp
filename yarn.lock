@@ -7992,6 +7992,10 @@ pnp-webpack-plugin@1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
+"popstate-direction@git://github.com/johanholmerin/popstate-direction.git#1.0.0":
+  version "1.0.0"
+  resolved "git://github.com/johanholmerin/popstate-direction.git#6ae0c03c8170602c2c77301e53c87f321334d278"
+
 portfinder@^1.0.26:
   version "1.0.28"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.28.tgz#67c4622852bd5374dd1dd900f779f53462fac778"

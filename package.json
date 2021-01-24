@@ -39,6 +39,7 @@
     "eruda-code": "2.0.0",
     "eruda-dom": "2.0.0",
     "prop-types": "15.7.2",
+    "popstate-direction": "git://github.com/johanholmerin/popstate-direction.git#1.0.0",
     "react": "16.14.0",
     "react-compound-timer": "1.2.0",
     "react-dom": "16.14.0",
