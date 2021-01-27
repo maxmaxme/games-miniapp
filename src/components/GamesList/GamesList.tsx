@@ -98,6 +98,6 @@ export function GamesList(props: Props) {
 
   return <>
     {gamesBlock.length > 0 ? gamesBlock : <Placeholder>{lang('gamelist_search_not_found')}</Placeholder>}
-    <Footer>{langNumeric(games.length, 'gamelist_search_count').replace('%s', String(games.length))}</Footer>
+    {gamesBlock.length > 0 && <Footer>{langNumeric(games.length, 'gamelist_search_count').replace('%s', String(games.length))}</Footer>}
   </>;
 }
