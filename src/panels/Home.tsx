@@ -23,7 +23,7 @@ const Home = (props: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
   // @ts-ignore
   const [popout, setPopout] = useState<Element | null>(<ScreenSpinner/>);
-  const [games, setGames] = useState<Game[] | null>(null);
+  const [games, setGames] = useState<Game[] | null>(getGames());
 
   const onSearch = (query: string) => {
     setSearchQuery(query);
