@@ -1,4 +1,5 @@
-import {localStorage} from "@vkontakte/vkjs";
+/* eslint-disable no-unused-vars */
+import { localStorage } from '@vkontakte/vkjs';
 
 export enum LocalStorageKeys {
   SPYFALL_PLAYERS_COUNT = 'spyfall_players_count',
@@ -19,14 +20,14 @@ export class LocalStorage {
   }
 
   static setNumber(key: string, value: number) {
-    localStorage.setItem(key, String(value))
+    localStorage.setItem(key, String(value));
   }
 
   static getNumberArray(key: string, defaultValue: number[]): number[] {
     const valueFromLC = localStorage.getItem(key);
 
     if (valueFromLC !== null) {
-      return valueFromLC.split(',').map(itemId => parseInt(itemId));
+      return valueFromLC.split(',').map((itemId) => parseInt(itemId));
     } else {
       return defaultValue;
     }

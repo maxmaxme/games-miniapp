@@ -1,14 +1,15 @@
-import React, {useContext, useState} from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useContext, useState } from 'react';
 
-import {View} from "@vkontakte/vkui";
-import {getQuestions} from "./questions";
+import { View } from '@vkontakte/vkui';
+import { getQuestions } from './questions';
 import './OpenQuestions.css';
-import {doHaptic} from "../../utils/device";
-import {LocalStorage, LocalStorageKeys} from "../../utils/localstorage";
-import {QuestionsList} from "./panels/QuestionsList";
-import {AppContext} from "../../AppContext";
-import {transformActivePanel} from "../../utils/panels";
-import {Modals} from "../../panels/Modals";
+import { doHaptic } from '../../utils/device';
+import { LocalStorage, LocalStorageKeys } from '../../utils/localstorage';
+import { QuestionsList } from './panels/QuestionsList';
+import { AppContext } from '../../AppContext';
+import { transformActivePanel } from '../../utils/panels';
+import { Modals } from '../../panels/Modals';
 
 interface Props {
   id: string;
@@ -21,7 +22,7 @@ export const OpenQuestions = (props: Props) => {
   const questions = getQuestions();
   const viewedFromLS = LocalStorage.getNumberArray(LocalStorageKeys.OPENQUESTIONS_VIEWED_QUESTIONS, []);
 
-  let {activePanel} = useContext(AppContext);
+  let { activePanel } = useContext(AppContext);
   activePanel = transformActivePanel(activePanel, Panels.LIST, Panels);
 
   const [viewedQuestions, setViewedQuestions] = useState<number[]>(viewedFromLS);
@@ -34,16 +35,16 @@ export const OpenQuestions = (props: Props) => {
         viewedQuestions.splice(index, 1);
       }
     } else {
-      viewedQuestions.push(num)
+      viewedQuestions.push(num);
     }
     setViewedQuestions([...viewedQuestions]);
     LocalStorage.setNumberArray(LocalStorageKeys.OPENQUESTIONS_VIEWED_QUESTIONS, viewedQuestions);
-  }
+  };
 
   const resetViewed = () => {
     setViewedQuestions([]);
     LocalStorage.setNumberArray(LocalStorageKeys.OPENQUESTIONS_VIEWED_QUESTIONS, []);
-  }
+  };
 
   return <View
     id={props.id}
@@ -58,5 +59,5 @@ export const OpenQuestions = (props: Props) => {
       viewedQuestions={viewedQuestions}
     />
   </View>;
-}
+};
 

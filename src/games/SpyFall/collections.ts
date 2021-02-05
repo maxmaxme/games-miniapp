@@ -1,9 +1,10 @@
-import {WordsListItem} from '../../utils/types';
+/* eslint-disable max-len */
+import { WordsListItem } from '../../utils/types';
 
 export function getCollections(): WordsListItem[] {
   return [
     {
-      id: 0, title: 'Базовый', defaultSelected: true, image_url: '/img/list-items/spyfall/spy.jpg', words: [
+      id: 0, title: 'Базовый', defaultSelected: true, imageUrl: '/img/list-items/spyfall/spy.jpg', words: [
         'Аэропорт',
         'Бар',
         'Кафе',
@@ -106,11 +107,11 @@ export function getCollections(): WordsListItem[] {
         'Психиатрическая клиника',
         'Тюрьма',
         'Завод',
-      ]
+      ],
     },
 
     {
-      id: 3, title: 'Машина времени', defaultSelected: true, image_url: '/img/list-items/spyfall/time-machine.jpg', words: [
+      id: 3, title: 'Машина времени', defaultSelected: true, imageUrl: '/img/list-items/spyfall/time-machine.jpg', words: [
         'Древняя Греция',
         'Древний Рим',
         'Город будущего',
@@ -122,11 +123,11 @@ export function getCollections(): WordsListItem[] {
         '2000-е',
         'Вторая мировая война',
         'Дикий запад',
-      ]
+      ],
     },
 
     {
-      id: 1, title: 'Страны', defaultSelected: false, image_url: '/img/list-items/spyfall/country.jpg', words: [
+      id: 1, title: 'Страны', defaultSelected: false, imageUrl: '/img/list-items/spyfall/country.jpg', words: [
         'Россия',
         'США',
         'Великобритания',
@@ -156,11 +157,11 @@ export function getCollections(): WordsListItem[] {
         'Финляндия',
         'Нидерланды',
         'Греция',
-      ]
+      ],
     },
 
     {
-      id: 2, title: 'Города', defaultSelected: false, image_url: '/img/list-items/spyfall/city.jpg', words: [
+      id: 2, title: 'Города', defaultSelected: false, imageUrl: '/img/list-items/spyfall/city.jpg', words: [
         'Москва, Россия',
         'Гонконг, Китай',
         'Бангкок, Таиланд',
@@ -189,7 +190,7 @@ export function getCollections(): WordsListItem[] {
         'Сидней, Австралия',
         'Сан-Франциско, США',
         'Санкт-Петербург, Россия',
-      ]
+      ],
     },
-  ]
+  ];
 }

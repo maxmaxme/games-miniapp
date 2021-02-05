@@ -1,9 +1,10 @@
-import {Cell, CellButton, Div, Group, IOS, List, Panel, PanelHeader, PanelHeaderButton, platform} from "@vkontakte/vkui";
-import {Icon20Check, Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
-import {lang} from "../../../utils/langs";
-import React, {useContext} from "react";
-import {AppContext} from "../../../AppContext";
-import {ModalNames} from "../../../panels/Modals";
+import { Cell, CellButton, Div, Group, IOS, List,
+  Panel, PanelHeader, PanelHeaderButton, platform } from '@vkontakte/vkui';
+import { Icon20Check, Icon24Cancel, Icon28CancelOutline } from '@vkontakte/icons';
+import { lang } from '../../../utils/langs';
+import React, { useContext } from 'react';
+import { AppContext } from '../../../AppContext';
+import { ModalNames } from '../../../panels/Modals';
 
 interface Props {
   id: string;
@@ -17,7 +18,8 @@ export const QuestionsList = (props: Props) => {
   const { openModal } = useContext(AppContext);
   return <Panel id={props.id}>
     <PanelHeader
-      left={<PanelHeaderButton onClick={() => window.history.back()}>{(platform() === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>)}</PanelHeaderButton>}
+      left={<PanelHeaderButton onClick={() => window.history.back()}>
+        {(platform() === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>)}</PanelHeaderButton>}
 
     >
       {lang('games_openquestions_title')}
@@ -27,7 +29,7 @@ export const QuestionsList = (props: Props) => {
         {lang('games_openquestions_rules_button')}
       </CellButton>
     </Group>
-    <Div style={{paddingTop: 0}} className="OpenQuestions__header">{lang('games_openquestions_questions')}</Div>
+    <Div style={{ paddingTop: 0 }} className="OpenQuestions__header">{lang('games_openquestions_questions')}</Div>
     <List>
       {props.questions.map((question, num) => <Cell
         key={'question' + num} onClick={() => props.clickQuestion(num)}
@@ -44,4 +46,4 @@ export const QuestionsList = (props: Props) => {
       </CellButton>
     </Group>}
   </Panel>;
-}
+};

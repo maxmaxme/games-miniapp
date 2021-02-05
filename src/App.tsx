@@ -1,24 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import {ConfigProvider, Root} from '@vkontakte/vkui';
+import React, { useEffect, useState } from 'react';
+import { ConfigProvider, Root } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import 'popstate-direction';
-import {SpyFall} from './games/SpyFall/SpyFall';
-import Home from './panels/Home'
-import {AppContext} from './AppContext';
-import bridge from "@vkontakte/vk-bridge";
-import {AppearanceScheme} from "@vkontakte/vkui/src/components/ConfigProvider/ConfigProviderContext";
-import {Views} from "./utils/views";
-import {NeverHateIEver} from "./games/NeverHateIEver/NeverHateIEver";
-import {YesNo} from "./games/YesNo/YesNo";
-import {OpenQuestions} from "./games/OpenQuestions/OpenQuestions";
-import {Filters} from "./utils/types";
-import {ModalNames} from "./panels/Modals";
+import { SpyFall } from './games/SpyFall/SpyFall';
+import Home from './panels/Home';
+import { AppContext } from './AppContext';
+import bridge from '@vkontakte/vk-bridge';
+import { AppearanceScheme } from '@vkontakte/vkui/src/components/ConfigProvider/ConfigProviderContext';
+import { Views } from './utils/views';
+import { NeverHateIEver } from './games/NeverHateIEver/NeverHateIEver';
+import { YesNo } from './games/YesNo/YesNo';
+import { OpenQuestions } from './games/OpenQuestions/OpenQuestions';
+import { Filters } from './utils/types';
+import { ModalNames } from './panels/Modals';
 
 const App = () => {
   const defaultView = Views.HOME;
   const urlParams = new URLSearchParams(window.location.search);
 
-  const [scheme, SetStateScheme] = useState<AppearanceScheme>('bright_light');
+  const [scheme, setStateScheme] = useState<AppearanceScheme>('bright_light');
   const lights = ['bright_light', 'client_light'];
   const [activeView, setActiveView] = useState<string>(defaultView);
   const [activePanel, setActivePanel] = useState<string>('');
@@ -26,22 +26,23 @@ const App = () => {
   const [viewsHistory] = useState<string[]>([defaultView]);
   const [panelsHistory] = useState<string[]>([]);
   const [modalsHistory] = useState<string[]>([]);
-  const [filters, setFilters] = useState<Filters>({playersCount: null, gameDuration: null});
+  const [filters, setFilters] = useState<Filters>({ playersCount: null, gameDuration: null });
   const [isFavoriteApp, setIsFavoriteApp] = useState(urlParams.get('vk_is_favorite') === '1');
 
   useEffect(() => {
+    // eslint-disable-next-line require-jsdoc
     function changeScheme( scheme: string, needChange = false ) {
       let isLight = lights.includes( scheme );
 
-      if( needChange ) {
+      if ( needChange ) {
         isLight = !isLight;
       }
-      SetStateScheme( isLight ? 'bright_light' : 'space_gray' );
+      setStateScheme( isLight ? 'bright_light' : 'space_gray' );
 
       if (bridge.supports('VKWebAppSetViewSettings')) {
         bridge.send('VKWebAppSetViewSettings', {
           'status_bar_style': isLight ? 'dark' : 'light',
-          'action_bar_color': isLight ? '#ffffff' : '#191919'
+          'action_bar_color': isLight ? '#ffffff' : '#191919',
         });
       }
     }
@@ -57,48 +58,47 @@ const App = () => {
       }
     });
 
-    bridge.subscribe(({detail: {type, data}}) => {
+    bridge.subscribe(({ detail: { type, data } }) => {
       if (type === 'VKWebAppUpdateConfig') {
         // @ts-ignore
-        changeScheme( data.scheme )
+        changeScheme( data.scheme );
       } else if (type === 'VKWebAppAddToFavoritesResult') {
         // @ts-ignore
         setIsFavoriteApp(data.result);
       }
     });
-    bridge.send("VKWebAppInit");
-
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    bridge.send('VKWebAppInit');
+  }, []);
 
 
   const changeView = (to: string) => {
-    window.history.pushState({panel: to}, to);
+    window.history.pushState({ panel: to }, to);
     setActiveView(to);
     viewsHistory.push(to);
   };
   const goBackView = () => {
-    viewsHistory.pop()
-    setActiveView(viewsHistory[viewsHistory.length - 1])
+    viewsHistory.pop();
+    setActiveView(viewsHistory[viewsHistory.length - 1]);
   };
 
   const goBackPanel = () => {
-    panelsHistory.pop()
-    setActivePanel(panelsHistory[panelsHistory.length - 1])
-  }
+    panelsHistory.pop();
+    setActivePanel(panelsHistory[panelsHistory.length - 1]);
+  };
   const changePanel = (to: string) => {
-    window.history.pushState({panel: to}, to);
+    window.history.pushState({ panel: to }, to);
     setActivePanel(to);
     panelsHistory.push(to);
   };
   const openModal = (to: ModalNames) => {
-    window.history.pushState({panel: to}, to);
+    window.history.pushState({ panel: to }, to);
     setActiveModal(to);
     modalsHistory.push(to);
   };
   const goBackModal = () => {
-    modalsHistory.pop()
-    setActiveModal(modalsHistory[modalsHistory.length - 1] || null)
-  }
+    modalsHistory.pop();
+    setActiveModal(modalsHistory[modalsHistory.length - 1] || null);
+  };
 
   const appContextProvider = {
     activeModal: activeModal,
@@ -127,7 +127,7 @@ const App = () => {
       </ConfigProvider>
     </AppContext.Provider>
   );
-}
+};
 
 export default App;
 

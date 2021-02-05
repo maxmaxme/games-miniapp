@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export function transformActivePanel(panel: string, defaultPanel: string, panels: object) {
   if (!Object.values(panels).includes(panel)) {
     panel = defaultPanel;

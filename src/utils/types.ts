@@ -1,9 +1,10 @@
-import {Views} from "./views";
+/* eslint-disable no-unused-vars */
+import { Views } from './views';
 
 export interface Game {
   id: GameNames;
   title: string;
-  image_url: string;
+  imageUrl: string;
   duration: MinMax;
   players: MinMax;
   view?: Views;
@@ -39,7 +40,7 @@ export type ListItem = {
 
 export interface WordsListItem extends ListItem {
   words: string[];
-  image_url: string;
+  imageUrl: string;
   disabled?: boolean;
 }
 

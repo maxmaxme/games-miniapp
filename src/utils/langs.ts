@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export function lang(langKey: string): string {
   const langs: { [name: string]: string } = {
     gamelist_search_filters_button: 'Фильтры: {filters}',
@@ -36,7 +37,8 @@ export function lang(langKey: string): string {
     games_yesno_search_not_found: 'Не найдено',
     games_yesno_hide_answer: 'Скрыть ответ',
     games_yesno_rules: `Ведущий выбирает данетку и озвучивает её условие. Затем смотрит ответ, не показывая его остальным.<br>
-                        Цель игроков: догадаться и пересказать, что же произошло. Для этого нужно задавать вопросы ведущему. При этом ведущий может отвечать на вопросы только «Да», «Нет» или «Не имеет значения/Не знаю/Уточните вопрос».<br><br>
+                        Цель игроков: догадаться и пересказать, что же произошло. Для этого нужно задавать вопросы ведущему. При этом ведущий может отвечать на вопросы только «Да»,
+                         «Нет» или «Не имеет значения/Не знаю/Уточните вопрос».<br><br>
                         <b>Пример:</b><br>
                         Ведущий загадал: Голый человек был найден мертвым посреди поля. В его руке была сгоревшая спичка. Что произошло и как он сюда попал?<br>
                         <br>
@@ -133,5 +135,4 @@ export function langNumeric(value: number, langKey: string): string {
   if (num > 1 && num < 5) return words[1];
   if (num === 1) return words[0];
   return words[2];
-
 }

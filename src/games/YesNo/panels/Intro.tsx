@@ -1,12 +1,13 @@
-import {Button, CellButton, Div, Group, IOS, Panel, PanelHeader, PanelHeaderButton, platform, Title} from "@vkontakte/vkui";
-import {lang, langNumeric} from "../../../utils/langs";
-import React, {useContext} from "react";
-import {YesNoItem} from "../../../utils/types";
-import {shuffleArray} from "@vkontakte/vkjs";
-import {Icon24Cancel, Icon28CancelOutline} from "@vkontakte/icons";
-import {AppContext} from "../../../AppContext";
-import {ModalNames} from "../../../panels/Modals";
-import {Panels} from "../../../utils/panels";
+import { Button, CellButton, Div, Group, IOS, Panel,
+  PanelHeader, PanelHeaderButton, platform, Title } from '@vkontakte/vkui';
+import { lang, langNumeric } from '../../../utils/langs';
+import React, { useContext } from 'react';
+import { YesNoItem } from '../../../utils/types';
+import { shuffleArray } from '@vkontakte/vkjs';
+import { Icon24Cancel, Icon28CancelOutline } from '@vkontakte/icons';
+import { AppContext } from '../../../AppContext';
+import { ModalNames } from '../../../panels/Modals';
+import { Panels } from '../../../utils/panels';
 
 interface Props {
   id: string;
@@ -18,7 +19,9 @@ export const Intro = (props: Props) => {
   const { changePanel, openModal } = useContext(AppContext);
   return <Panel id={props.id}>
     <PanelHeader
-      left={<PanelHeaderButton onClick={() => window.history.back()} data-to="home">{(platform() === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>)}</PanelHeaderButton>}
+      left={<PanelHeaderButton onClick={() => window.history.back()} data-to="home">
+        {(platform() === IOS ? <Icon28CancelOutline/> : <Icon24Cancel/>)}</PanelHeaderButton>
+      }
     >
       {lang('games_yesno_title')}
     </PanelHeader>
@@ -28,7 +31,7 @@ export const Intro = (props: Props) => {
       </CellButton>
     </Group>
     <Div>
-      <Title style={{marginBottom: 20, marginTop: 20, textAlign: 'center'}} level="2" weight="regular">
+      <Title style={{ marginBottom: 20, marginTop: 20, textAlign: 'center' }} level="2" weight="regular">
         {langNumeric(props.yesNoBase.length, 'games_yesno_base_count').replace('%s', props.yesNoBase.length.toString())}
       </Title>
       <Group separator="hide">
@@ -52,5 +55,5 @@ export const Intro = (props: Props) => {
         </Button>
       </Group>
     </Div>
-  </Panel>
-}
+  </Panel>;
+};

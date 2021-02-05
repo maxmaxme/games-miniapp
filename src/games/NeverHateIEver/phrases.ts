@@ -1,9 +1,10 @@
-import {WordsListItem} from '../../utils/types';
+/* eslint-disable max-len */
+import { WordsListItem } from '../../utils/types';
 
 export function getPhrases(): WordsListItem[] {
   return [
     {
-      id: 0, title: 'Общие', defaultSelected: true, image_url: '/img/list-items/never-hate-i-ever/friends.jpg', words: [
+      id: 0, title: 'Общие', defaultSelected: true, imageUrl: '/img/list-items/never-hate-i-ever/friends.jpg', words: [
         'Я никогда не надевал сланцы с носками',
         'Я никогда не падал с дерева',
         'Я никогда не танцевал вальс',
@@ -562,10 +563,10 @@ export function getPhrases(): WordsListItem[] {
         'Я никогда не ночевал в тюрьме',
         'Я никогда не пробовался на реалити-шоу',
         'Я ни разу не солгал во время этой игры!',
-      ]
+      ],
     },
     {
-      id: 1, title: '18+', defaultSelected: false, image_url: '/img/list-items/never-hate-i-ever/adult.jpg', words: [
+      id: 1, title: '18+', defaultSelected: false, imageUrl: '/img/list-items/never-hate-i-ever/adult.jpg', words: [
         'Я никогда не занимался сексом в воде',
         'Я никогда не делал обнаженных фотографий или селфи',
         'Я никогда ни за кем не подсматривал',
@@ -818,10 +819,10 @@ export function getPhrases(): WordsListItem[] {
         'Я никогда не занимался(лась) сексом в позе 69',
         'Я никогда целенаправленно не искал(а) кого-то для секса в интернете',
         'У меня нет друга/подруги только для секса',
-      ]
+      ],
     },
     {
-      id: 2, title: 'Вечеринка', defaultSelected: false, image_url: '/img/list-items/never-hate-i-ever/party.jpg', words: [
+      id: 2, title: 'Вечеринка', defaultSelected: false, imageUrl: '/img/list-items/never-hate-i-ever/party.jpg', words: [
         'Я никогда не просил кого-нибудь купить мне алкоголь в несовершеннолетнем возрасте',
         'Меня никогда не арестовывали в нетрезвом виде',
         'Меня никогда не просили покинуть вечеринку',
@@ -909,10 +910,10 @@ export function getPhrases(): WordsListItem[] {
         'Я никогда не пытался напоить алкоголем кого-нибудь',
         'Я никогда не выгуливал собаку пьяным',
         'Я никогда не просыпался пьяным',
-      ]
+      ],
     },
     {
-      id: 3, title: 'Отношения', defaultSelected: false, image_url: '/img/list-items/never-hate-i-ever/relationships.jpg', words: [
+      id: 3, title: 'Отношения', defaultSelected: false, imageUrl: '/img/list-items/never-hate-i-ever/relationships.jpg', words: [
         'Я никогда не советовал кому-то бросить своего партнера',
         'Я никогда не стрелял чей-то номер телефона',
         'Я никогда при расставании не предлагал остаться друзьями',
@@ -976,10 +977,10 @@ export function getPhrases(): WordsListItem[] {
         'Я никогда не пробовала ароматизированный презерватив',
         'Я никогда не пытался отбить чью-то партнершу',
         'Я никогда не использовался Tinder или подобными приложениями',
-      ]
+      ],
     },
     {
-      id: 4, title: 'Учеба и работа', defaultSelected: false, image_url: '/img/list-items/never-hate-i-ever/work.jpg', words: [
+      id: 4, title: 'Учеба и работа', defaultSelected: false, imageUrl: '/img/list-items/never-hate-i-ever/work.jpg', words: [
         'Я никогда не говорил на иностранном языке хорошо',
         'Я никогда не просил о прибавке',
         'Я никогда не был программистом',
@@ -993,7 +994,7 @@ export function getPhrases(): WordsListItem[] {
         'Я никогда не умолял учителя поставить оценку получше',
         'Я никогда не злился на своего босса за их спиной',
         'Я никогда не обвинял кого-то в своей ошибке на работе',
-        "Я никогда не врал в тестах",
+        'Я никогда не врал в тестах',
         'Я никогда не списывал домашнее задание',
         'Я никогда не плакал на работе или в школе',
         'Я никогда не проклинал учителя',
@@ -1060,7 +1061,7 @@ export function getPhrases(): WordsListItem[] {
         'Я никогда не носил униформу',
         'Я никогда не носил одну и ту же одежду на работу/в школу два дня подряд',
         'Я никогда не писал книги',
-      ]
+      ],
     },
-  ]
+  ];
 }

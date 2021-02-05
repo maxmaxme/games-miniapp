@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export function getQuestions(): string[] {
   return [
     'Если бы вы могли жить в любом месте, где бы это было?',
