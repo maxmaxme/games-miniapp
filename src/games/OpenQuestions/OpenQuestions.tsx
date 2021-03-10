@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react';
 
 import { View } from '@vkontakte/vkui';
@@ -8,7 +7,7 @@ import { doHaptic } from '../../utils/device';
 import { LocalStorage, LocalStorageKeys } from '../../utils/localstorage';
 import { QuestionsList } from './panels/QuestionsList';
 import { AppContext } from '../../AppContext';
-import { transformActivePanel } from '../../utils/panels';
+import { Panels, transformActivePanel } from '../../utils/panels';
 import { Modals } from '../../panels/Modals';
 
 interface Props {
@@ -16,14 +15,11 @@ interface Props {
 }
 
 export const OpenQuestions = (props: Props) => {
-  enum Panels {
-    LIST = 'list',
-  }
   const questions = getQuestions();
   const viewedFromLS = LocalStorage.getNumberArray(LocalStorageKeys.OPENQUESTIONS_VIEWED_QUESTIONS, []);
 
   let { activePanel } = useContext(AppContext);
-  activePanel = transformActivePanel(activePanel, Panels.LIST, Panels);
+  activePanel = transformActivePanel(activePanel, Panels.OPEN_QUESTIONS_LIST, Panels);
 
   const [viewedQuestions, setViewedQuestions] = useState<number[]>(viewedFromLS);
 
@@ -52,7 +48,7 @@ export const OpenQuestions = (props: Props) => {
     modal={<Modals />}
   >
     <QuestionsList
-      id={Panels.LIST}
+      id={Panels.OPEN_QUESTIONS_LIST}
       clickQuestion={clickQuestion}
       questions={questions}
       resetViewed={resetViewed}

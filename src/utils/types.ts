@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Views } from './views';
+import { Panels } from './panels';
 
 export interface Game {
   id: GameNames;
@@ -8,6 +9,7 @@ export interface Game {
   duration: MinMax;
   players: MinMax;
   view?: Views;
+  panel?: Panels;
 }
 
 export interface MinMax {

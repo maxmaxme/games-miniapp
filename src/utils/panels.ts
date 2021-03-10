@@ -16,4 +16,6 @@ export enum Panels {
   YES_OR_NO_INTRO = 'YesOrNo_intro',
   YES_OR_NO_LIST_VIEW = 'YesOrNo_list_view',
   YES_OR_NO_ONE_VIEW = 'YesOrNo_one_view',
+
+  OPEN_QUESTIONS_LIST = 'OpenQuestions_list',
 }

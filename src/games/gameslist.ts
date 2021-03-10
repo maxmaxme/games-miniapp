@@ -1,6 +1,7 @@
 import { Game, GameNames } from '../utils/types';
 import { lang } from '../utils/langs';
 import { Views } from '../utils/views';
+import { Panels } from '../utils/panels';
 
 export function getGames(): Game[] {
   return [
@@ -11,6 +12,7 @@ export function getGames(): Game[] {
       players: { min: 2, max: 10 },
       imageUrl: '/img/games/never-have-i-ever.jpg',
       view: Views.NEVER_HATE_I_EVER,
+      panel: Panels.NEVER_HATE_I_EVER_SETTINGS,
     },
     {
       id: GameNames.SpyFall,
@@ -19,6 +21,7 @@ export function getGames(): Game[] {
       players: { min: 3, max: 8 },
       imageUrl: '/img/games/spy-fall.jpg',
       view: Views.SPYFALL,
+      panel: Panels.SPYFALL_SETTINGS,
     },
     {
       id: GameNames.YesNo,
@@ -27,6 +30,7 @@ export function getGames(): Game[] {
       players: { min: 2 },
       imageUrl: '/img/games/yesno.jpg',
       view: Views.YES_OR_NO,
+      panel: Panels.YES_OR_NO_INTRO,
     },
     {
       id: GameNames.OpenQuestions,
@@ -35,6 +39,7 @@ export function getGames(): Game[] {
       players: { min: 2 },
       imageUrl: '/img/games/open-questions.jpeg',
       view: Views.OPEN_QUESTIONS,
+      panel: Panels.OPEN_QUESTIONS_LIST,
     },
     {
       id: GameNames.TruthOrDare,
