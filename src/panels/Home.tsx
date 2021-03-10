@@ -12,6 +12,7 @@ import {
 import { lang } from '../utils/langs';
 import { getGames } from '../games/gameslist';
 import { Modals } from './Modals';
+import { Panels } from '../utils/panels';
 
 interface Props {
   id: string;
@@ -37,11 +38,11 @@ const Home = (props: Props) => {
 
   return <View
     id={props.id}
-    activePanel="home"
+    activePanel={Panels.HOME_HOME}
     popout={popout}
     modal={<Modals />}
   >
-    <Panel id='home'>
+    <Panel id={Panels.HOME_HOME}>
       <PanelHeader>
         {lang('app_name')}
       </PanelHeader>

@@ -8,7 +8,7 @@ const defaultContext = {
   activeModal: null as ModalNames | null,
   activeView: Views.HOME,
   activePanel: Panels.HOME_HOME,
-  go: (view: Views | null, panel: Panels | null, modal: ModalNames | null) => {},
+  go: (view: Views, panel: Panels, modal: ModalNames | null) => {},
   goBack: () => {},
   history: [] as HistoryItem[],
   filters: {} as Filters,

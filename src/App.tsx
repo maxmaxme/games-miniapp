@@ -53,11 +53,7 @@ const App = () => {
 
     // @ts-ignore
     window.addEventListener('back', () => {
-      if (history.length > 1) {
-        goBack();
-      } else {
-        // closeApp(); // todo
-      }
+      goBack();
     });
 
     bridge.subscribe(({ detail: { type, data } }) => {
@@ -72,10 +68,10 @@ const App = () => {
     bridge.send('VKWebAppInit');
   }, []);
 
-  const go = (view: Views | null, panel: Panels | null, modal: ModalNames | null) => {
+  const go = (view: Views, panel: Panels, modal: ModalNames | null) => {
     const historyItem: HistoryItem = {
-      view: view ?? activeView,
-      panel: panel ?? activePanel,
+      view: view,
+      panel: panel,
       modal: modal ?? activeModal,
     };
     window.history.pushState(historyItem, '');
@@ -92,9 +88,13 @@ const App = () => {
   };
   const goBack = () => {
     history.pop();
-    setActiveView(history[history.length - 1].view);
-    setActivePanel(history[history.length - 1].panel);
-    setActiveModal(history[history.length - 1].modal);
+    const prevItem = history[history.length - 1];
+    if (!prevItem) {
+      return;
+    }
+    setActiveView(prevItem.view);
+    setActivePanel(prevItem.panel);
+    setActiveModal(prevItem.modal);
   };
 
   const appContextProvider = {
