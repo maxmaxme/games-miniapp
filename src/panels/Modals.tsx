@@ -49,6 +49,7 @@ export const Modals = () => {
   const modals = Object.keys(rules).map((gameId) => rulesModal(gameId, rules[gameId]));
 
   modals.push(<ModalPage
+    key="games_filter"
     id={ModalNames.games_filters}
     onClose={closeModal}
     header={
