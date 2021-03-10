@@ -11,13 +11,14 @@ import { LocalStorage, LocalStorageKeys } from '../../utils/localstorage';
 import { AppContext } from '../../AppContext';
 import { Panels, transformActivePanel } from '../../utils/panels';
 import { Modals } from '../../panels/Modals';
+import { transformHistory } from '../../utils/history';
 
 interface Props {
   id: string;
 }
 
 export const NeverHateIEver = (props: Props) => {
-  let { activePanel, goBackPanel, panelsHistory } = useContext(AppContext);
+  let { activePanel, activeView, goBack, history } = useContext(AppContext);
   activePanel = transformActivePanel(activePanel, Panels.NEVER_HATE_I_EVER_SETTINGS, Panels);
 
   const phrases: WordsListItem[] = getPhrases();
@@ -52,8 +53,8 @@ export const NeverHateIEver = (props: Props) => {
     id={props.id}
     activePanel={activePanel}
     modal={<Modals />}
-    history={panelsHistory}
-    onSwipeBack={goBackPanel}
+    history={transformHistory(activeView, history)}
+    onSwipeBack={goBack}
   >
     <GameSettings
       id={Panels.NEVER_HATE_I_EVER_SETTINGS}

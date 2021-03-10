@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const QuestionsList = (props: Props) => {
-  const { openModal } = useContext(AppContext);
+  const { go, activeView, activePanel } = useContext(AppContext);
   return <Panel id={props.id}>
     <PanelHeader
       left={<PanelHeaderButton onClick={() => window.history.back()}>
@@ -25,7 +25,7 @@ export const QuestionsList = (props: Props) => {
       {lang('games_openquestions_title')}
     </PanelHeader>
     <Group separator="hide">
-      <CellButton onClick={() => openModal(ModalNames.OpenQuestions_rules)}>
+      <CellButton onClick={() => go(activeView, activePanel, ModalNames.OpenQuestions_rules)}>
         {lang('games_openquestions_rules_button')}
       </CellButton>
     </Group>

@@ -11,23 +11,27 @@ import { Views } from './utils/views';
 import { NeverHateIEver } from './games/NeverHateIEver/NeverHateIEver';
 import { YesNo } from './games/YesNo/YesNo';
 import { OpenQuestions } from './games/OpenQuestions/OpenQuestions';
-import { Filters } from './utils/types';
+import { Filters, HistoryItem } from './utils/types';
 import { ModalNames } from './panels/Modals';
+import { Panels } from './utils/panels';
 
 const App = () => {
   const defaultView = Views.HOME;
+  const defaultPanel = Panels.HOME_HOME;
   const urlParams = new URLSearchParams(window.location.search);
 
   const [scheme, setStateScheme] = useState<AppearanceScheme>('bright_light');
   const lights = ['bright_light', 'client_light'];
-  const [activeView, setActiveView] = useState<string>(defaultView);
-  const [activePanel, setActivePanel] = useState<string>('');
-  const [activeModal, setActiveModal] = useState<string|null>(null);
-  const [viewsHistory] = useState<string[]>([defaultView]);
-  const [panelsHistory] = useState<string[]>([]);
-  const [modalsHistory] = useState<string[]>([]);
+  const [activeView, setActiveView] = useState<Views>(defaultView);
+  const [activePanel, setActivePanel] = useState<Panels>(defaultPanel);
+  const [activeModal, setActiveModal] = useState<ModalNames|null>(null);
   const [filters, setFilters] = useState<Filters>({ playersCount: null, gameDuration: null });
   const [isFavoriteApp, setIsFavoriteApp] = useState(urlParams.get('vk_is_favorite') === '1');
+  const [history] = useState<HistoryItem[]>([{
+    view: activeView,
+    panel: activePanel,
+    modal: null,
+  }]);
 
   useEffect(() => {
     // eslint-disable-next-line require-jsdoc
@@ -49,12 +53,10 @@ const App = () => {
 
     // @ts-ignore
     window.addEventListener('back', () => {
-      if (modalsHistory.length > 0) {
-        goBackModal();
-      } else if (panelsHistory.length > 0) {
-        goBackPanel();
-      } else if (viewsHistory.length > 1) {
-        goBackView();
+      if (history.length > 1) {
+        goBack();
+      } else {
+        // closeApp(); // todo
       }
     });
 
@@ -70,48 +72,41 @@ const App = () => {
     bridge.send('VKWebAppInit');
   }, []);
 
-
-  const changeView = (to: string) => {
-    window.history.pushState({ panel: to }, to);
-    setActiveView(to);
-    viewsHistory.push(to);
+  const go = (view: Views | null, panel: Panels | null, modal: ModalNames | null) => {
+    const historyItem: HistoryItem = {
+      view: view ?? activeView,
+      panel: panel ?? activePanel,
+      modal: modal ?? activeModal,
+    };
+    window.history.pushState(historyItem, '');
+    if (view && activeView != view) {
+      setActiveView(view);
+    }
+    if (panel && activePanel != panel) {
+      setActivePanel(panel);
+    }
+    if (modal && activeModal != modal) {
+      setActiveModal(modal);
+    }
+    history.push(historyItem);
   };
-  const goBackView = () => {
-    viewsHistory.pop();
-    setActiveView(viewsHistory[viewsHistory.length - 1]);
-  };
-
-  const goBackPanel = () => {
-    panelsHistory.pop();
-    setActivePanel(panelsHistory[panelsHistory.length - 1]);
-  };
-  const changePanel = (to: string) => {
-    window.history.pushState({ panel: to }, to);
-    setActivePanel(to);
-    panelsHistory.push(to);
-  };
-  const openModal = (to: ModalNames) => {
-    window.history.pushState({ panel: to }, to);
-    setActiveModal(to);
-    modalsHistory.push(to);
-  };
-  const goBackModal = () => {
-    modalsHistory.pop();
-    setActiveModal(modalsHistory[modalsHistory.length - 1] || null);
+  const goBack = () => {
+    history.pop();
+    setActiveView(history[history.length - 1].view);
+    setActivePanel(history[history.length - 1].panel);
+    setActiveModal(history[history.length - 1].modal);
   };
 
   const appContextProvider = {
-    activeModal: activeModal,
-    activeView: activeView,
-    activePanel: activePanel,
-    openModal: openModal,
-    changeView: changeView,
-    changePanel: changePanel,
-    goBackPanel: goBackPanel,
-    panelsHistory: panelsHistory,
-    filters: filters,
-    setFilters: setFilters,
-    isFavoriteApp: isFavoriteApp,
+    activeModal,
+    activeView,
+    activePanel,
+    go,
+    goBack,
+    history,
+    filters,
+    setFilters,
+    isFavoriteApp,
   };
 
   return (

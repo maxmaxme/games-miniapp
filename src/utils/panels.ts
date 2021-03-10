@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-export function transformActivePanel(panel: string, defaultPanel: string, panels: object) {
+export function transformActivePanel(panel: Panels, defaultPanel: Panels, panels: object) {
   if (!Object.values(panels).includes(panel)) {
     panel = defaultPanel;
   }
@@ -18,4 +18,6 @@ export enum Panels {
   YES_OR_NO_ONE_VIEW = 'YesOrNo_one_view',
 
   OPEN_QUESTIONS_LIST = 'OpenQuestions_list',
+
+  HOME_HOME = 'HOME_HOME',
 }

@@ -24,7 +24,7 @@ export const GameSettings = (props: Props) => {
   const [activeTab, setActiveTab] = useState(0);
   const { phrases, punishments, selectedPhrases, selectedPunishments,
     setSelectedPhrases, setSelectedPunishments } = props;
-  const { openModal, changePanel } = useContext(AppContext);
+  const { go, activeView, activePanel } = useContext(AppContext);
 
   return <Panel id={props.id} className="NeverHateIEver__panel">
     <PanelHeader
@@ -34,7 +34,7 @@ export const GameSettings = (props: Props) => {
       {lang('games_neverihaveever_title')}
     </PanelHeader>
     <Group>
-      <CellButton onClick={() => openModal(ModalNames.NeverHateIEver_rules)}>
+      <CellButton onClick={() => go(activeView, activePanel, ModalNames.NeverHateIEver_rules)}>
         {lang('games_neverihaveever_rules_button')}
       </CellButton>
       <Tabs>
@@ -71,7 +71,7 @@ export const GameSettings = (props: Props) => {
           mode="secondary"
           onClick={() => {
             doHaptic();
-            changePanel(Panels.NEVER_HATE_I_EVER_GAME);
+            go(activeView, Panels.NEVER_HATE_I_EVER_GAME, null);
           }}
         >{lang('games_neverihaveever_start_game_full_button')}</Button>
       </Div>

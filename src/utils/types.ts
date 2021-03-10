@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Views } from './views';
 import { Panels } from './panels';
+import { ModalNames } from '../panels/Modals';
 
 export interface Game {
   id: GameNames;
@@ -10,6 +11,12 @@ export interface Game {
   players: MinMax;
   view?: Views;
   panel?: Panels;
+}
+
+export interface HistoryItem {
+  view: Views;
+  panel: Panels;
+  modal: ModalNames | null;
 }
 
 export interface MinMax {

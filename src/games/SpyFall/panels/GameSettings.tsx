@@ -22,7 +22,7 @@ interface Props {
 
 export const GameSettings = (props: Props) => {
   const { playersCount, setPlayersCount, collections, selectedCollections, setSelectedCollections } = props;
-  const { changePanel, openModal } = useContext(AppContext);
+  const { go, activePanel, activeView } = useContext(AppContext);
 
   return <Panel id={props.id}>
     <PanelHeader
@@ -32,7 +32,7 @@ export const GameSettings = (props: Props) => {
       {lang('games_spyfall_title')}
     </PanelHeader>
     <Group>
-      <CellButton onClick={() => openModal(ModalNames.SpyFall_rules)}>
+      <CellButton onClick={() => go(activeView, activePanel, ModalNames.SpyFall_rules)}>
         {lang('games_spyfall_rules_button')}
       </CellButton>
 
@@ -64,7 +64,7 @@ export const GameSettings = (props: Props) => {
           stretched mode="secondary"
           onClick={() => {
             doHaptic();
-            changePanel(Panels.SPYFALL_GAME);
+            go(activeView, Panels.SPYFALL_GAME, null);
           }}
         >{lang('games_spyfall_start_game_full_button')}</Button>
       </Div>

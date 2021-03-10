@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const Intro = (props: Props) => {
-  const { changePanel, openModal } = useContext(AppContext);
+  const { go, activeView, activePanel } = useContext(AppContext);
   return <Panel id={props.id}>
     <PanelHeader
       left={<PanelHeaderButton onClick={() => window.history.back()} data-to="home">
@@ -26,7 +26,7 @@ export const Intro = (props: Props) => {
       {lang('games_yesno_title')}
     </PanelHeader>
     <Group separator="hide">
-      <CellButton onClick={() => openModal(ModalNames.YesNo_rules)}>
+      <CellButton onClick={() => go(activeView, activePanel, ModalNames.YesNo_rules)}>
         {lang('games_yesno_rules_button')}
       </CellButton>
     </Group>
@@ -36,7 +36,7 @@ export const Intro = (props: Props) => {
       </Title>
       <Group separator="hide">
         <Button
-          onClick={() => changePanel(Panels.YES_OR_NO_LIST_VIEW)}
+          onClick={() => go(activeView, Panels.YES_OR_NO_LIST_VIEW, null)}
           stretched
           mode="secondary"
           size="l"

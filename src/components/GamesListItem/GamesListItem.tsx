@@ -15,7 +15,7 @@ interface Props {
 export const GamesListItem = (props: Props) => {
   const tags = [];
   const game = props.game;
-  const { changeView } = useContext(AppContext);
+  const { go } = useContext(AppContext);
 
   const minMaxFormatter = (minMax: MinMax, langKey: string) => {
     if (!minMax.max) {
@@ -32,7 +32,7 @@ export const GamesListItem = (props: Props) => {
     <Icon16Users width={12} height={12} /> {minMaxFormatter(game.players, 'gamelist_item_tag_players')}
   </div>);
   const unavailable = game.view === undefined;
-  const onClick = unavailable ? undefined : () => changeView(game.view as string);
+  const onClick = unavailable ? undefined : () => go(game.view!, game.panel!, null);
 
   return <Card mode="outline" onClick={onClick}>
     <div className={classNames('GamesListItem', { 'GamesListItem--disabled': unavailable })}>

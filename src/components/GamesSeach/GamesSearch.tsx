@@ -10,7 +10,7 @@ interface Props {
 }
 
 export function GamesSearch(props: Props) {
-  const { filters, openModal } = useContext(AppContext);
+  const { filters, go, activeView, activePanel } = useContext(AppContext);
   let filtersLabel = '??';
 
   if (filters.gameDuration === null && filters.playersCount === null) {
@@ -37,7 +37,7 @@ export function GamesSearch(props: Props) {
 
     <HorizontalScroll className="SearchFilters">
       <div style={{ display: 'flex' }}>
-        <HorizontalCell size='l' onClick={() => openModal(ModalNames.games_filters)}>
+        <HorizontalCell size='l' onClick={() => go(activeView, activePanel, ModalNames.games_filters)}>
           <Button mode="outline">{filtersButtonLabel}</Button>
         </HorizontalCell>
       </div>

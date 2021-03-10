@@ -9,6 +9,7 @@ import { ViewOne } from './panels/ViewOne';
 import { AppContext } from '../../AppContext';
 import { Panels, transformActivePanel } from '../../utils/panels';
 import { Modals } from '../../panels/Modals';
+import { transformHistory } from '../../utils/history';
 
 const yesNoBase = getYesNoBase();
 
@@ -19,20 +20,20 @@ interface Props {
 export const YesNo = (props: Props) => {
   const [selectedYesNo, setSelectedYesNo] = useState<YesNoItem|null>(null);
 
-  let { activePanel, panelsHistory, goBackPanel, changePanel } = useContext(AppContext);
+  let { activePanel, history, goBack, go, activeView } = useContext(AppContext);
   activePanel = transformActivePanel(activePanel, Panels.YES_OR_NO_INTRO, Panels);
 
   const openYesNo = (yesNo: YesNoItem) => {
     setSelectedYesNo(yesNo);
-    changePanel(Panels.YES_OR_NO_ONE_VIEW);
+    go(activeView, Panels.YES_OR_NO_ONE_VIEW, null);
   };
 
   return <View
     id={props.id}
     activePanel={activePanel}
     modal={<Modals />}
-    history={panelsHistory}
-    onSwipeBack={goBackPanel}
+    history={transformHistory(activeView, history)}
+    onSwipeBack={goBack}
   >
     <Intro
       id={Panels.YES_OR_NO_INTRO}

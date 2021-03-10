@@ -12,13 +12,14 @@ import { Game } from './panels/Game';
 import { AppContext } from '../../AppContext';
 import { Panels, transformActivePanel } from '../../utils/panels';
 import { Modals } from '../../panels/Modals';
+import { transformHistory } from '../../utils/history';
 
 interface Props {
   id: string;
 }
 
 export const SpyFall = (props: Props) => {
-  let { activePanel, panelsHistory, goBackPanel } = useContext(AppContext);
+  let { activePanel, activeView, history, goBack } = useContext(AppContext);
   activePanel = transformActivePanel(activePanel, Panels.SPYFALL_SETTINGS, Panels);
 
   const collections = getCollections();
@@ -45,8 +46,8 @@ export const SpyFall = (props: Props) => {
     id={props.id}
     activePanel={activePanel}
     modal={<Modals />}
-    history={panelsHistory}
-    onSwipeBack={goBackPanel}
+    history={transformHistory(activeView, history)}
+    onSwipeBack={goBack}
   >
     <GameSettings
       playersCount={playersCount}
