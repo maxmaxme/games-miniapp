@@ -33,7 +33,7 @@ export const QuestionsList = (props: Props) => {
     <List>
       {props.questions.map((question, num) => <Cell
         key={'question' + num} onClick={() => props.clickQuestion(num)}
-        after={props.viewedQuestions.includes(num) ? <Icon20Check/> : null}
+        after={props.viewedQuestions.includes(num) ? <Icon20Check/> : <div className="OpenQuestions__icon20Empty" />}
         multiline
       >
         <div className="OpenQuestions__question"><b>{num + 1}</b>. {question}</div>
