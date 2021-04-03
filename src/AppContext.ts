@@ -1,14 +1,13 @@
 import { createContext } from 'react';
 import { Filters } from './utils/types';
 import { ModalNames } from './panels/Modals';
+import { Panels } from './utils/panels';
 
 const defaultContext = {
   activeModal: null as string|null,
-  activeView: '',
   activePanel: '',
   openModal: (to: ModalNames) => {},
-  changeView: (to: string) => {},
-  changePanel: (to: string) => {},
+  changePanel: (to: Panels) => {},
   goBackPanel: () => {},
   panelsHistory: [] as string[],
   filters: {} as Filters,

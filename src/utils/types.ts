@@ -52,3 +52,7 @@ export interface YesNoItem {
   question: string;
   answer: string;
 }
+
+export interface Routers {
+  [key: string]: Panels[];
+}

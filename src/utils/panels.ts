@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Views } from './views';
+import { Routers } from './types';
 
 export function transformActivePanel(panel: string, defaultPanel: string, panels: object) {
   if (!Object.values(panels).includes(panel)) {
@@ -24,7 +25,7 @@ export enum Panels {
   OPEN_QUESTIONS_LIST = 'OpenQuestions_list',
 }
 
-export const routes = {
+export const routes: Routers = {
   [Views.HOME]: [
     Panels.GAMES_LIST,
   ],

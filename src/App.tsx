@@ -11,20 +11,18 @@ import { Views } from './utils/views';
 import { NeverHateIEver } from './games/NeverHateIEver/NeverHateIEver';
 import { YesNo } from './games/YesNo/YesNo';
 import { OpenQuestions } from './games/OpenQuestions/OpenQuestions';
-import { Filters } from './utils/types';
+import { Filters, Routers } from './utils/types';
 import { ModalNames } from './panels/Modals';
+import { Panels, routes } from './utils/panels';
 
 const App = () => {
-  const defaultView = Views.HOME;
   const urlParams = new URLSearchParams(window.location.search);
 
   const [scheme, setStateScheme] = useState<AppearanceScheme>('bright_light');
   const lights = ['bright_light', 'client_light'];
-  const [activeView, setActiveView] = useState<string>(defaultView);
-  const [activePanel, setActivePanel] = useState<string>('');
+  const [activePanel, setActivePanel] = useState<Panels>(Panels.GAMES_LIST);
   const [activeModal, setActiveModal] = useState<string|null>(null);
-  const [viewsHistory] = useState<string[]>([defaultView]);
-  const [panelsHistory] = useState<string[]>([]);
+  const [panelsHistory] = useState<Panels[]>([]);
   const [modalsHistory] = useState<string[]>([]);
   const [filters, setFilters] = useState<Filters>({ playersCount: null, gameDuration: null });
   const [isFavoriteApp, setIsFavoriteApp] = useState(urlParams.get('vk_is_favorite') === '1');
@@ -53,8 +51,6 @@ const App = () => {
         goBackModal();
       } else if (panelsHistory.length > 0) {
         goBackPanel();
-      } else if (viewsHistory.length > 1) {
-        goBackView();
       }
     });
 
@@ -70,22 +66,11 @@ const App = () => {
     bridge.send('VKWebAppInit');
   }, []);
 
-
-  const changeView = (to: string) => {
-    window.history.pushState({ panel: to }, to);
-    setActiveView(to);
-    viewsHistory.push(to);
-  };
-  const goBackView = () => {
-    viewsHistory.pop();
-    setActiveView(viewsHistory[viewsHistory.length - 1]);
-  };
-
   const goBackPanel = () => {
     panelsHistory.pop();
     setActivePanel(panelsHistory[panelsHistory.length - 1]);
   };
-  const changePanel = (to: string) => {
+  const changePanel = (to: Panels) => {
     window.history.pushState({ panel: to }, to);
     setActivePanel(to);
     panelsHistory.push(to);
@@ -102,10 +87,8 @@ const App = () => {
 
   const appContextProvider = {
     activeModal: activeModal,
-    activeView: activeView,
     activePanel: activePanel,
     openModal: openModal,
-    changeView: changeView,
     changePanel: changePanel,
     goBackPanel: goBackPanel,
     panelsHistory: panelsHistory,
@@ -114,10 +97,20 @@ const App = () => {
     isFavoriteApp: isFavoriteApp,
   };
 
+  const getView = (routes: Routers, panel: Panels): string => {
+    for (const view in routes) {
+      if (routes.hasOwnProperty(view) && routes[view].includes(panel)) {
+        return view;
+      }
+    }
+
+    return Views.HOME;
+  };
+
   return (
     <AppContext.Provider value={appContextProvider}>
       <ConfigProvider scheme={scheme}>
-        <Root activeView={activeView}>
+        <Root activeView={getView(routes, activePanel)}>
           <Home id={Views.HOME}/>
           <SpyFall id={Views.SPYFALL} />
           <NeverHateIEver id={Views.NEVER_HATE_I_EVER} />
