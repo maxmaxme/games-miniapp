@@ -11,9 +11,10 @@ import { Views } from './utils/views';
 import { NeverHateIEver } from './games/NeverHateIEver/NeverHateIEver';
 import { YesNo } from './games/YesNo/YesNo';
 import { OpenQuestions } from './games/OpenQuestions/OpenQuestions';
-import { Filters, Routers } from './utils/types';
+import { Filters } from './utils/types';
 import { ModalNames } from './panels/Modals';
-import { Panels, routes } from './utils/panels';
+import { Panels } from './utils/panels';
+import { getView, routes } from './utils/router';
 
 const App = () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -64,16 +65,14 @@ const App = () => {
 
   const goBack = () => {
     if (modalsHistory.length > 0) {
-      goBackModal();
+      modalsHistory.pop();
+      setActiveModal(modalsHistory[modalsHistory.length - 1] || null);
     } else if (panelsHistory.length > 0) {
-      goBackPanel();
+      panelsHistory.pop();
+      setActivePanel(panelsHistory[panelsHistory.length - 1]);
     }
   };
 
-  const goBackPanel = () => {
-    panelsHistory.pop();
-    setActivePanel(panelsHistory[panelsHistory.length - 1]);
-  };
   const changePanel = (to: Panels) => {
     window.history.pushState({ panel: to }, to);
     setActivePanel(to);
@@ -83,10 +82,6 @@ const App = () => {
     window.history.pushState({ panel: to }, to);
     setActiveModal(to);
     modalsHistory.push(to);
-  };
-  const goBackModal = () => {
-    modalsHistory.pop();
-    setActiveModal(modalsHistory[modalsHistory.length - 1] || null);
   };
 
   const appContextProvider = {
@@ -101,15 +96,6 @@ const App = () => {
     isFavoriteApp: isFavoriteApp,
   };
 
-  const getView = (routes: Routers, panel: Panels): string => {
-    for (const view in routes) {
-      if (routes.hasOwnProperty(view) && routes[view].includes(panel)) {
-        return view;
-      }
-    }
-
-    return Views.HOME;
-  };
 
   return (
     <AppContext.Provider value={appContextProvider}>
