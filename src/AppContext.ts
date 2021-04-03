@@ -8,7 +8,7 @@ const defaultContext = {
   activePanel: '',
   openModal: (to: ModalNames) => {},
   changePanel: (to: Panels) => {},
-  goBackPanel: () => {},
+  goBack: () => {},
   panelsHistory: [] as string[],
   filters: {} as Filters,
   setFilters: (filters: Filters) => {},

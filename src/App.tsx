@@ -47,11 +47,7 @@ const App = () => {
 
     // @ts-ignore
     window.addEventListener('back', () => {
-      if (modalsHistory.length > 0) {
-        goBackModal();
-      } else if (panelsHistory.length > 0) {
-        goBackPanel();
-      }
+      goBack();
     });
 
     bridge.subscribe(({ detail: { type, data } }) => {
@@ -65,6 +61,14 @@ const App = () => {
     });
     bridge.send('VKWebAppInit');
   }, []);
+
+  const goBack = () => {
+    if (modalsHistory.length > 0) {
+      goBackModal();
+    } else if (panelsHistory.length > 0) {
+      goBackPanel();
+    }
+  };
 
   const goBackPanel = () => {
     panelsHistory.pop();
@@ -90,7 +94,7 @@ const App = () => {
     activePanel: activePanel,
     openModal: openModal,
     changePanel: changePanel,
-    goBackPanel: goBackPanel,
+    goBack: goBack,
     panelsHistory: panelsHistory,
     filters: filters,
     setFilters: setFilters,

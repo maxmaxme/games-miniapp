@@ -18,7 +18,7 @@ interface Props {
 }
 
 export const SpyFall = (props: Props) => {
-  let { activePanel, panelsHistory, goBackPanel } = useContext(AppContext);
+  let { activePanel, panelsHistory, goBack } = useContext(AppContext);
   activePanel = transformActivePanel(activePanel, Panels.SPYFALL_SETTINGS, Panels);
 
   const collections = getCollections();
@@ -46,7 +46,7 @@ export const SpyFall = (props: Props) => {
     activePanel={activePanel}
     modal={<Modals />}
     history={panelsHistory}
-    onSwipeBack={goBackPanel}
+    onSwipeBack={goBack}
   >
     <GameSettings
       playersCount={playersCount}

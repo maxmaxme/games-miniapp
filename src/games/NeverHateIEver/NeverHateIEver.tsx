@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const NeverHateIEver = (props: Props) => {
-  let { activePanel, goBackPanel, panelsHistory } = useContext(AppContext);
+  let { activePanel, goBack, panelsHistory } = useContext(AppContext);
   activePanel = transformActivePanel(activePanel, Panels.NEVER_HATE_I_EVER_SETTINGS, Panels);
 
   const phrases: WordsListItem[] = getPhrases();
@@ -53,7 +53,7 @@ export const NeverHateIEver = (props: Props) => {
     activePanel={activePanel}
     modal={<Modals />}
     history={panelsHistory}
-    onSwipeBack={goBackPanel}
+    onSwipeBack={goBack}
   >
     <GameSettings
       id={Panels.NEVER_HATE_I_EVER_SETTINGS}

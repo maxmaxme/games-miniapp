@@ -19,7 +19,7 @@ interface Props {
 export const YesNo = (props: Props) => {
   const [selectedYesNo, setSelectedYesNo] = useState<YesNoItem|null>(null);
 
-  let { activePanel, panelsHistory, goBackPanel, changePanel } = useContext(AppContext);
+  let { activePanel, panelsHistory, goBack, changePanel } = useContext(AppContext);
   activePanel = transformActivePanel(activePanel, Panels.YES_OR_NO_INTRO, Panels);
 
   const openYesNo = (yesNo: YesNoItem) => {
@@ -32,7 +32,7 @@ export const YesNo = (props: Props) => {
     activePanel={activePanel}
     modal={<Modals />}
     history={panelsHistory}
-    onSwipeBack={goBackPanel}
+    onSwipeBack={goBack}
   >
     <Intro
       id={Panels.YES_OR_NO_INTRO}
